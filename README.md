@@ -3,7 +3,7 @@ Adaptive Video Streaming with Layered Neural Codecs
 
 [Mallesham Dasari](), [Kumara Kahatapitiya](), [Samir R. Das](), [Aruna Balasubramanian](), [Dimitris Samaras](). <br />
 NSDI 2022 (Conference on Networked Systems Design and Implementation). <br />
-[Paper]() [Slides]() [Video]()
+[[Paper]()][[Slides]()][[Video]()]
 
 Overview
 ========
