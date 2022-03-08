@@ -1,0 +1,616 @@
+Namespace(batch_size=8, bits=8, checkpoint_iters=5000, clip=0.5, decoder_fuse_level=1, distance1=1, distance2=2, encoder_fuse_level=1, eval='data/eval', eval_batch_size=1, eval_iters=4000, eval_mv='data/eval_mv', fuse_encoder=True, gamma=0.5, gpus='0', iterations=10, load_iter=None, load_model_name=None, lr=0.00025, max_train_iters=20000, model_dir='model', num_crops=2, out_dir='output', patch=64, save_codes=False, save_model_name='demo', save_out_img=False, schedule='10000,12000,14000,16000,18000', shrink=2, stack=True, train='data/train', train_mv='data/train_mv', v_compress=True, warp=True)
+
+Creating loader for data/train...
+26518 images loaded.
+	distance=1/2
+Loader for 26518 images (3315 batches) created.
+	Encoder fuse level: 1
+	Decoder fuse level: 1
+	Decoder fuse level: 1
+[EncoderCell(
+  (conv): Conv2d(9, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+  (rnn1): ConvLSTMCell(128, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), hidden_kernel_size=(1, 1))
+  (rnn2): ConvLSTMCell(256, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), hidden_kernel_size=(1, 1))
+  (rnn3): ConvLSTMCell(512, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), hidden_kernel_size=(1, 1))
+), Binarizer(
+  (conv): Conv2d(512, 8, kernel_size=(1, 1), stride=(1, 1), bias=False)
+  (sign): Sign()
+), DecoderCell(
+  (conv1): Conv2d(8, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+  (rnn1): ConvLSTMCell(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), hidden_kernel_size=(1, 1))
+  (rnn2): ConvLSTMCell(128, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), hidden_kernel_size=(1, 1))
+  (rnn3): ConvLSTMCell(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), hidden_kernel_size=(3, 3))
+  (rnn4): ConvLSTMCell(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), hidden_kernel_size=(3, 3))
+  (conv2): Conv2d(32, 3, kernel_size=(1, 1), stride=(1, 1), bias=False)
+), DecoderCell2(
+  (conv1): Conv2d(80, 640, kernel_size=(1, 1), stride=(1, 1), groups=10, bias=False)
+  (conv2): Conv2d(640, 1280, kernel_size=(1, 1), stride=(1, 1), groups=10, bias=False)
+  (conv3): Conv2d(1280, 5120, kernel_size=(1, 1), stride=(1, 1), groups=10, bias=False)
+  (ee1): EarlyExit(
+    (conv): Conv2d(2, 3, kernel_size=(1, 1), stride=(1, 1), bias=False)
+  )
+  (ee2): EarlyExit(
+    (conv): Conv2d(8, 3, kernel_size=(1, 1), stride=(1, 1), bias=False)
+  )
+  (ee3): EarlyExit(
+    (conv): Conv2d(16, 3, kernel_size=(1, 1), stride=(1, 1), bias=False)
+  )
+  (ee4): EarlyExit(
+    (conv): Conv2d(32, 3, kernel_size=(1, 1), stride=(1, 1), bias=False)
+  )
+  (rnn1): ConvLSTMCell(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), hidden_kernel_size=(1, 1))
+  (rnn2): ConvLSTMCell(128, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), hidden_kernel_size=(1, 1))
+  (rnn3): ConvLSTMCell(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), hidden_kernel_size=(3, 3))
+  (rnn4): ConvLSTMCell(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), hidden_kernel_size=(3, 3))
+  (conv_end): Conv2d(32, 3, kernel_size=(1, 1), stride=(1, 1), bias=False)
+), UNet(
+  (inc): inconv(
+    (conv): double_conv(
+      (conv): Sequential(
+        (0): Conv2d(3, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+        (3): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (4): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): ReLU(inplace=True)
+      )
+    )
+  )
+  (down1): down(
+    (mpconv): Sequential(
+      (0): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+      (1): double_conv(
+        (conv): Sequential(
+          (0): Conv2d(32, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (2): ReLU(inplace=True)
+          (3): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (4): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (5): ReLU(inplace=True)
+        )
+      )
+    )
+  )
+  (down2): down(
+    (mpconv): Sequential(
+      (0): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+      (1): double_conv(
+        (conv): Sequential(
+          (0): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (2): ReLU(inplace=True)
+          (3): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (4): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (5): ReLU(inplace=True)
+        )
+      )
+    )
+  )
+  (down3): down(
+    (mpconv): Sequential(
+      (0): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+      (1): double_conv(
+        (conv): Sequential(
+          (0): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (2): ReLU(inplace=True)
+          (3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (4): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (5): ReLU(inplace=True)
+        )
+      )
+    )
+  )
+  (down4): down(
+    (mpconv): Sequential(
+      (0): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+      (1): double_conv(
+        (conv): Sequential(
+          (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (2): ReLU(inplace=True)
+          (3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (4): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (5): ReLU(inplace=True)
+        )
+      )
+    )
+  )
+  (up1): up(
+    (up): UpsamplingBilinear2d(scale_factor=2.0, mode=bilinear)
+    (conv): double_conv(
+      (conv): Sequential(
+        (0): Conv2d(512, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+        (3): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (4): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): ReLU(inplace=True)
+      )
+    )
+  )
+  (up2): up(
+    (up): UpsamplingBilinear2d(scale_factor=2.0, mode=bilinear)
+    (conv): double_conv(
+      (conv): Sequential(
+        (0): Conv2d(256, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+        (3): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (4): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): ReLU(inplace=True)
+      )
+    )
+  )
+  (up3): up(
+    (up): UpsamplingBilinear2d(scale_factor=2.0, mode=bilinear)
+    (conv): double_conv(
+      (conv): Sequential(
+        (0): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+        (3): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (4): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): ReLU(inplace=True)
+      )
+    )
+  )
+  (up4): up(
+    (up): UpsamplingBilinear2d(scale_factor=2.0, mode=bilinear)
+    (conv): double_conv(
+      (conv): Sequential(
+        (0): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+        (3): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (4): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): ReLU(inplace=True)
+      )
+    )
+  )
+)]
+/home/kumarak/anaconda3/envs/kkenv2/lib/python3.7/site-packages/torch/optim/lr_scheduler.py:136: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  "https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate", UserWarning)
+/home/kumarak/anaconda3/envs/kkenv2/lib/python3.7/site-packages/torch/nn/functional.py:3392: UserWarning: Default grid_sample and affine_grid behavior has changed to align_corners=False since 1.3.0. Please specify align_corners=True if the old behavior is desired. See the documentation of grid_sample for details.
+  warnings.warn("Default grid_sample and affine_grid behavior has changed "
+/home/kumarak/anaconda3/envs/kkenv2/lib/python3.7/site-packages/torch/nn/functional.py:1640: UserWarning: nn.functional.sigmoid is deprecated. Use torch.sigmoid instead.
+  warnings.warn("nn.functional.sigmoid is deprecated. Use torch.sigmoid instead.")
+/home/kumarak/anaconda3/envs/kkenv2/lib/python3.7/site-packages/torch/nn/functional.py:1629: UserWarning: nn.functional.tanh is deprecated. Use torch.tanh instead.
+  warnings.warn("nn.functional.tanh is deprecated. Use torch.tanh instead.")
+train.py:226: UserWarning: torch.nn.utils.clip_grad_norm is now deprecated in favor of torch.nn.utils.clip_grad_norm_.
+  torch.nn.utils.clip_grad_norm(net.parameters(), args.clip)
+/home/kumarak/anaconda3/envs/kkenv2/lib/python3.7/site-packages/torch/functional.py:1277: UserWarning: torch.norm is deprecated and may be removed in a future PyTorch release. Use torch.linalg.norm instead.
+  "torch.norm is deprecated and may be removed in a future PyTorch release. "
+/home/kumarak/anaconda3/envs/kkenv2/lib/python3.7/site-packages/torch/optim/lr_scheduler.py:417: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  "please use `get_last_lr()`.", UserWarning)
+[TRAIN] Iter[10]; LR: 0.00025; Losses [Rec1: 0.181128; Rec2: 0.204667; EE1: 0.255972; EE2: 0.253471; EE3: 0.253721; EE4: 0.238224]; Backprop: 0.6239 sec; Batch: 1.4778 sec
+[TRAIN] Iter[20]; LR: 0.00025; Losses [Rec1: 0.153420; Rec2: 0.118733; EE1: 0.283543; EE2: 0.282934; EE3: 0.279903; EE4: 0.198369]; Backprop: 0.7539 sec; Batch: 1.5944 sec
+[TRAIN] Iter[30]; LR: 0.00025; Losses [Rec1: 0.140104; Rec2: 0.098245; EE1: 0.237803; EE2: 0.237240; EE3: 0.239510; EE4: 0.136724]; Backprop: 0.7631 sec; Batch: 1.6361 sec
+[TRAIN] Iter[40]; LR: 0.00025; Losses [Rec1: 0.146173; Rec2: 0.108102; EE1: 0.273716; EE2: 0.237216; EE3: 0.231231; EE4: 0.134031]; Backprop: 0.9935 sec; Batch: 1.7955 sec
+[TRAIN] Iter[50]; LR: 0.00025; Losses [Rec1: 0.124590; Rec2: 0.086332; EE1: 0.232802; EE2: 0.200003; EE3: 0.184777; EE4: 0.112287]; Backprop: 0.7167 sec; Batch: 1.6627 sec
+[TRAIN] Iter[60]; LR: 0.00025; Losses [Rec1: 0.121489; Rec2: 0.111717; EE1: 0.168929; EE2: 0.140922; EE3: 0.143808; EE4: 0.113930]; Backprop: 0.7776 sec; Batch: 1.5636 sec
+[TRAIN] Iter[70]; LR: 0.00025; Losses [Rec1: 0.122894; Rec2: 0.080813; EE1: 0.238517; EE2: 0.185918; EE3: 0.162582; EE4: 0.090533]; Backprop: 0.7255 sec; Batch: 1.4807 sec
+[TRAIN] Iter[80]; LR: 0.00025; Losses [Rec1: 0.088174; Rec2: 0.072228; EE1: 0.218516; EE2: 0.156080; EE3: 0.139819; EE4: 0.090368]; Backprop: 0.7675 sec; Batch: 1.6930 sec
+[TRAIN] Iter[90]; LR: 0.00025; Losses [Rec1: 0.098818; Rec2: 0.096345; EE1: 0.191571; EE2: 0.150312; EE3: 0.155917; EE4: 0.098402]; Backprop: 0.6592 sec; Batch: 1.4148 sec
+[TRAIN] Iter[100]; LR: 0.00025; Losses [Rec1: 0.137716; Rec2: 0.122061; EE1: 0.253979; EE2: 0.208059; EE3: 0.212295; EE4: 0.127800]; Backprop: 0.5872 sec; Batch: 1.3306 sec
+Loss at each step:
+0.2079 0.1494 0.1389 0.1355 0.1321 0.1288 0.1256 0.1225 0.1195 0.1169 
+
+[TRAIN] Iter[110]; LR: 0.00025; Losses [Rec1: 0.137911; Rec2: 0.125198; EE1: 0.269936; EE2: 0.189112; EE3: 0.174409; EE4: 0.132210]; Backprop: 0.6700 sec; Batch: 1.4904 sec
+[TRAIN] Iter[120]; LR: 0.00025; Losses [Rec1: 0.092013; Rec2: 0.076229; EE1: 0.245836; EE2: 0.164815; EE3: 0.155714; EE4: 0.085348]; Backprop: 0.6047 sec; Batch: 1.5643 sec
+[TRAIN] Iter[130]; LR: 0.00025; Losses [Rec1: 0.111537; Rec2: 0.092168; EE1: 0.222672; EE2: 0.153298; EE3: 0.146274; EE4: 0.095876]; Backprop: 0.7224 sec; Batch: 1.5780 sec
+[TRAIN] Iter[140]; LR: 0.00025; Losses [Rec1: 0.080026; Rec2: 0.072565; EE1: 0.224994; EE2: 0.154408; EE3: 0.154053; EE4: 0.075528]; Backprop: 0.6782 sec; Batch: 1.4190 sec
+[TRAIN] Iter[150]; LR: 0.00025; Losses [Rec1: 0.072615; Rec2: 0.069073; EE1: 0.197809; EE2: 0.140592; EE3: 0.141268; EE4: 0.074877]; Backprop: 0.8393 sec; Batch: 1.5684 sec
+[TRAIN] Iter[160]; LR: 0.00025; Losses [Rec1: 0.082846; Rec2: 0.072388; EE1: 0.210140; EE2: 0.148812; EE3: 0.141863; EE4: 0.077259]; Backprop: 0.7309 sec; Batch: 1.5067 sec
+[TRAIN] Iter[170]; LR: 0.00025; Losses [Rec1: 0.101141; Rec2: 0.100167; EE1: 0.203586; EE2: 0.146827; EE3: 0.148574; EE4: 0.106405]; Backprop: 0.2861 sec; Batch: 1.0525 sec
+[TRAIN] Iter[180]; LR: 0.00025; Losses [Rec1: 0.062649; Rec2: 0.061435; EE1: 0.190823; EE2: 0.134805; EE3: 0.131542; EE4: 0.064523]; Backprop: 0.6700 sec; Batch: 1.4242 sec
+[TRAIN] Iter[190]; LR: 0.00025; Losses [Rec1: 0.078479; Rec2: 0.073729; EE1: 0.211482; EE2: 0.142085; EE3: 0.129734; EE4: 0.078569]; Backprop: 0.6494 sec; Batch: 1.3932 sec
+[TRAIN] Iter[200]; LR: 0.00025; Losses [Rec1: 0.089320; Rec2: 0.086289; EE1: 0.190982; EE2: 0.141183; EE3: 0.134788; EE4: 0.086441]; Backprop: 0.7735 sec; Batch: 1.6846 sec
+Loss at each step:
+0.1234 0.0884 0.0865 0.0862 0.0858 0.0853 0.0849 0.0845 0.0842 0.0839 
+
+[TRAIN] Iter[210]; LR: 0.00025; Losses [Rec1: 0.079685; Rec2: 0.077462; EE1: 0.161597; EE2: 0.121787; EE3: 0.119347; EE4: 0.079991]; Backprop: 0.8725 sec; Batch: 1.6320 sec
+[TRAIN] Iter[220]; LR: 0.00025; Losses [Rec1: 0.088109; Rec2: 0.078080; EE1: 0.188563; EE2: 0.132099; EE3: 0.118746; EE4: 0.080428]; Backprop: 0.7663 sec; Batch: 1.6463 sec
+[TRAIN] Iter[230]; LR: 0.00025; Losses [Rec1: 0.106953; Rec2: 0.100366; EE1: 0.230914; EE2: 0.168134; EE3: 0.149757; EE4: 0.102716]; Backprop: 0.6706 sec; Batch: 1.5648 sec
+[TRAIN] Iter[240]; LR: 0.00025; Losses [Rec1: 0.119082; Rec2: 0.095378; EE1: 0.181386; EE2: 0.118980; EE3: 0.110827; EE4: 0.096866]; Backprop: 0.7279 sec; Batch: 1.4952 sec
+[TRAIN] Iter[250]; LR: 0.00025; Losses [Rec1: 0.063524; Rec2: 0.059826; EE1: 0.192066; EE2: 0.127908; EE3: 0.111247; EE4: 0.061964]; Backprop: 0.7237 sec; Batch: 1.5262 sec
+[TRAIN] Iter[260]; LR: 0.00025; Losses [Rec1: 0.059126; Rec2: 0.056769; EE1: 0.190141; EE2: 0.117948; EE3: 0.105238; EE4: 0.060216]; Backprop: 0.5674 sec; Batch: 1.3676 sec
+[TRAIN] Iter[270]; LR: 0.00025; Losses [Rec1: 0.085305; Rec2: 0.078402; EE1: 0.203641; EE2: 0.141822; EE3: 0.131703; EE4: 0.078272]; Backprop: 0.6535 sec; Batch: 1.4061 sec
+[TRAIN] Iter[280]; LR: 0.00025; Losses [Rec1: 0.080608; Rec2: 0.074201; EE1: 0.179236; EE2: 0.127772; EE3: 0.122671; EE4: 0.075965]; Backprop: 0.6839 sec; Batch: 1.6082 sec
+[TRAIN] Iter[290]; LR: 0.00025; Losses [Rec1: 0.070002; Rec2: 0.065983; EE1: 0.185754; EE2: 0.108095; EE3: 0.105232; EE4: 0.064934]; Backprop: 0.2771 sec; Batch: 1.0318 sec
+[TRAIN] Iter[300]; LR: 0.00025; Losses [Rec1: 0.075757; Rec2: 0.075739; EE1: 0.223559; EE2: 0.151051; EE3: 0.135155; EE4: 0.081587]; Backprop: 0.6937 sec; Batch: 1.4507 sec
+Loss at each step:
+0.1173 0.0708 0.0703 0.0704 0.0707 0.0709 0.0712 0.0716 0.0720 0.0724 
+
+[TRAIN] Iter[310]; LR: 0.00025; Losses [Rec1: 0.074085; Rec2: 0.071163; EE1: 0.212942; EE2: 0.126554; EE3: 0.110541; EE4: 0.076042]; Backprop: 0.9025 sec; Batch: 1.6447 sec
+[TRAIN] Iter[320]; LR: 0.00025; Losses [Rec1: 0.057045; Rec2: 0.053595; EE1: 0.164312; EE2: 0.107600; EE3: 0.103915; EE4: 0.054411]; Backprop: 0.7786 sec; Batch: 1.5924 sec
+[TRAIN] Iter[330]; LR: 0.00025; Losses [Rec1: 0.064956; Rec2: 0.060228; EE1: 0.179244; EE2: 0.114997; EE3: 0.104855; EE4: 0.060828]; Backprop: 0.7115 sec; Batch: 1.6291 sec
+[TRAIN] Iter[340]; LR: 0.00025; Losses [Rec1: 0.068543; Rec2: 0.062678; EE1: 0.168980; EE2: 0.118258; EE3: 0.110037; EE4: 0.062895]; Backprop: 0.7487 sec; Batch: 1.7443 sec
+[TRAIN] Iter[350]; LR: 0.00025; Losses [Rec1: 0.070023; Rec2: 0.063502; EE1: 0.190940; EE2: 0.115480; EE3: 0.108659; EE4: 0.065358]; Backprop: 0.9345 sec; Batch: 1.7796 sec
+[TRAIN] Iter[360]; LR: 0.00025; Losses [Rec1: 0.051189; Rec2: 0.049348; EE1: 0.191174; EE2: 0.100222; EE3: 0.088830; EE4: 0.052120]; Backprop: 0.8854 sec; Batch: 1.6378 sec
+[TRAIN] Iter[370]; LR: 0.00025; Losses [Rec1: 0.080795; Rec2: 0.076137; EE1: 0.209939; EE2: 0.145771; EE3: 0.135412; EE4: 0.079288]; Backprop: 0.2436 sec; Batch: 0.9827 sec
+[TRAIN] Iter[380]; LR: 0.00025; Losses [Rec1: 0.054655; Rec2: 0.054438; EE1: 0.162494; EE2: 0.091672; EE3: 0.080223; EE4: 0.055328]; Backprop: 0.5701 sec; Batch: 1.3454 sec
+[TRAIN] Iter[390]; LR: 0.00025; Losses [Rec1: 0.061024; Rec2: 0.058395; EE1: 0.195249; EE2: 0.126820; EE3: 0.116337; EE4: 0.059796]; Backprop: 0.5544 sec; Batch: 1.3347 sec
+[TRAIN] Iter[400]; LR: 0.00025; Losses [Rec1: 0.088957; Rec2: 0.071350; EE1: 0.214880; EE2: 0.129920; EE3: 0.111823; EE4: 0.072909]; Backprop: 0.6109 sec; Batch: 1.3595 sec
+Loss at each step:
+0.1231 0.0860 0.0855 0.0853 0.0852 0.0851 0.0850 0.0849 0.0848 0.0848 
+
+[TRAIN] Iter[410]; LR: 0.00025; Losses [Rec1: 0.052663; Rec2: 0.052308; EE1: 0.192430; EE2: 0.102382; EE3: 0.092262; EE4: 0.052121]; Backprop: 0.7437 sec; Batch: 1.5028 sec
+[TRAIN] Iter[420]; LR: 0.00025; Losses [Rec1: 0.064341; Rec2: 0.062592; EE1: 0.215415; EE2: 0.126059; EE3: 0.101822; EE4: 0.066651]; Backprop: 0.7257 sec; Batch: 1.5207 sec
+[TRAIN] Iter[430]; LR: 0.00025; Losses [Rec1: 0.073425; Rec2: 0.069908; EE1: 0.198004; EE2: 0.135575; EE3: 0.129782; EE4: 0.070994]; Backprop: 0.8059 sec; Batch: 1.6113 sec
+[TRAIN] Iter[440]; LR: 0.00025; Losses [Rec1: 0.096904; Rec2: 0.087872; EE1: 0.198306; EE2: 0.132719; EE3: 0.128986; EE4: 0.085916]; Backprop: 0.6742 sec; Batch: 1.4344 sec
+[TRAIN] Iter[450]; LR: 0.00025; Losses [Rec1: 0.068355; Rec2: 0.061720; EE1: 0.179300; EE2: 0.119733; EE3: 0.113889; EE4: 0.063088]; Backprop: 0.7679 sec; Batch: 1.5511 sec
+[TRAIN] Iter[460]; LR: 0.00025; Losses [Rec1: 0.069427; Rec2: 0.067023; EE1: 0.171799; EE2: 0.130839; EE3: 0.125560; EE4: 0.067514]; Backprop: 0.7490 sec; Batch: 1.6088 sec
+[TRAIN] Iter[470]; LR: 0.00025; Losses [Rec1: 0.066935; Rec2: 0.060076; EE1: 0.208731; EE2: 0.124951; EE3: 0.107214; EE4: 0.063755]; Backprop: 0.6701 sec; Batch: 1.5034 sec
+[TRAIN] Iter[480]; LR: 0.00025; Losses [Rec1: 0.056613; Rec2: 0.053890; EE1: 0.185520; EE2: 0.117070; EE3: 0.106449; EE4: 0.055379]; Backprop: 0.5828 sec; Batch: 1.3706 sec
+[TRAIN] Iter[490]; LR: 0.00025; Losses [Rec1: 0.087277; Rec2: 0.083384; EE1: 0.220432; EE2: 0.149417; EE3: 0.136706; EE4: 0.084825]; Backprop: 0.7356 sec; Batch: 1.5998 sec
+[TRAIN] Iter[500]; LR: 0.00025; Losses [Rec1: 0.057574; Rec2: 0.054666; EE1: 0.186187; EE2: 0.105942; EE3: 0.096066; EE4: 0.056310]; Backprop: 0.7076 sec; Batch: 1.4787 sec
+Loss at each step:
+0.0845 0.0544 0.0542 0.0543 0.0544 0.0545 0.0546 0.0548 0.0549 0.0551 
+
+[TRAIN] Iter[510]; LR: 0.00025; Losses [Rec1: 0.057717; Rec2: 0.053156; EE1: 0.166219; EE2: 0.103139; EE3: 0.095588; EE4: 0.053894]; Backprop: 0.2933 sec; Batch: 1.0453 sec
+[TRAIN] Iter[520]; LR: 0.00025; Losses [Rec1: 0.059106; Rec2: 0.053948; EE1: 0.149974; EE2: 0.091312; EE3: 0.087019; EE4: 0.052921]; Backprop: 0.6543 sec; Batch: 1.4863 sec
+[TRAIN] Iter[530]; LR: 0.00025; Losses [Rec1: 0.054871; Rec2: 0.055847; EE1: 0.172775; EE2: 0.103823; EE3: 0.090654; EE4: 0.057560]; Backprop: 0.6300 sec; Batch: 1.4916 sec
+[TRAIN] Iter[540]; LR: 0.00025; Losses [Rec1: 0.060142; Rec2: 0.062362; EE1: 0.152903; EE2: 0.112438; EE3: 0.108550; EE4: 0.062717]; Backprop: 0.9117 sec; Batch: 1.7655 sec
+[TRAIN] Iter[550]; LR: 0.00025; Losses [Rec1: 0.060283; Rec2: 0.060337; EE1: 0.175358; EE2: 0.105138; EE3: 0.104948; EE4: 0.062266]; Backprop: 0.9618 sec; Batch: 1.7531 sec
+[TRAIN] Iter[560]; LR: 0.00025; Losses [Rec1: 0.058767; Rec2: 0.056748; EE1: 0.164246; EE2: 0.105778; EE3: 0.096167; EE4: 0.056908]; Backprop: 0.3140 sec; Batch: 1.1543 sec
+[TRAIN] Iter[570]; LR: 0.00025; Losses [Rec1: 0.063441; Rec2: 0.060866; EE1: 0.165781; EE2: 0.096256; EE3: 0.093269; EE4: 0.060607]; Backprop: 0.7679 sec; Batch: 1.5261 sec
+[TRAIN] Iter[580]; LR: 0.00025; Losses [Rec1: 0.045515; Rec2: 0.043697; EE1: 0.189884; EE2: 0.091666; EE3: 0.074815; EE4: 0.044606]; Backprop: 0.2716 sec; Batch: 1.0131 sec
+[TRAIN] Iter[590]; LR: 0.00025; Losses [Rec1: 0.060479; Rec2: 0.056135; EE1: 0.201841; EE2: 0.116624; EE3: 0.107126; EE4: 0.058304]; Backprop: 0.6038 sec; Batch: 1.3698 sec
+[TRAIN] Iter[600]; LR: 0.00025; Losses [Rec1: 0.054458; Rec2: 0.056049; EE1: 0.200749; EE2: 0.109243; EE3: 0.098334; EE4: 0.057780]; Backprop: 0.8911 sec; Batch: 1.6581 sec
+Loss at each step:
+0.0932 0.0500 0.0500 0.0499 0.0500 0.0501 0.0502 0.0503 0.0504 0.0506 
+
+[TRAIN] Iter[610]; LR: 0.00025; Losses [Rec1: 0.050922; Rec2: 0.050732; EE1: 0.180198; EE2: 0.098898; EE3: 0.092564; EE4: 0.053785]; Backprop: 0.5606 sec; Batch: 1.3246 sec
+[TRAIN] Iter[620]; LR: 0.00025; Losses [Rec1: 0.083230; Rec2: 0.081486; EE1: 0.195858; EE2: 0.138780; EE3: 0.131204; EE4: 0.084174]; Backprop: 0.9008 sec; Batch: 1.6582 sec
+[TRAIN] Iter[630]; LR: 0.00025; Losses [Rec1: 0.056878; Rec2: 0.055399; EE1: 0.166387; EE2: 0.117821; EE3: 0.115423; EE4: 0.055791]; Backprop: 0.7142 sec; Batch: 1.4697 sec
+[TRAIN] Iter[640]; LR: 0.00025; Losses [Rec1: 0.058716; Rec2: 0.057052; EE1: 0.164175; EE2: 0.106363; EE3: 0.101033; EE4: 0.057116]; Backprop: 0.6796 sec; Batch: 1.4444 sec
+[TRAIN] Iter[650]; LR: 0.00025; Losses [Rec1: 0.057033; Rec2: 0.057423; EE1: 0.176671; EE2: 0.105784; EE3: 0.095386; EE4: 0.058960]; Backprop: 0.2496 sec; Batch: 1.0993 sec
+[TRAIN] Iter[660]; LR: 0.00025; Losses [Rec1: 0.050140; Rec2: 0.053996; EE1: 0.162050; EE2: 0.114010; EE3: 0.106717; EE4: 0.057071]; Backprop: 0.7372 sec; Batch: 1.4875 sec
+[TRAIN] Iter[670]; LR: 0.00025; Losses [Rec1: 0.054502; Rec2: 0.052015; EE1: 0.169688; EE2: 0.130174; EE3: 0.124933; EE4: 0.051762]; Backprop: 0.7000 sec; Batch: 1.4507 sec
+[TRAIN] Iter[680]; LR: 0.00025; Losses [Rec1: 0.052650; Rec2: 0.059823; EE1: 0.185418; EE2: 0.098841; EE3: 0.082722; EE4: 0.059358]; Backprop: 0.5061 sec; Batch: 1.2764 sec
+[TRAIN] Iter[690]; LR: 0.00025; Losses [Rec1: 0.045508; Rec2: 0.042954; EE1: 0.153014; EE2: 0.090265; EE3: 0.084055; EE4: 0.042820]; Backprop: 0.7107 sec; Batch: 1.5954 sec
+[TRAIN] Iter[700]; LR: 0.00025; Losses [Rec1: 0.061536; Rec2: 0.058569; EE1: 0.157222; EE2: 0.115951; EE3: 0.112054; EE4: 0.058991]; Backprop: 0.7385 sec; Batch: 1.5173 sec
+Loss at each step:
+0.0802 0.0602 0.0597 0.0596 0.0595 0.0594 0.0593 0.0592 0.0592 0.0591 
+
+[TRAIN] Iter[710]; LR: 0.00025; Losses [Rec1: 0.047531; Rec2: 0.054315; EE1: 0.167374; EE2: 0.091662; EE3: 0.083422; EE4: 0.055166]; Backprop: 0.8751 sec; Batch: 1.6901 sec
+[TRAIN] Iter[720]; LR: 0.00025; Losses [Rec1: 0.067549; Rec2: 0.070386; EE1: 0.168182; EE2: 0.132362; EE3: 0.129750; EE4: 0.071432]; Backprop: 0.5212 sec; Batch: 1.2813 sec
+[TRAIN] Iter[730]; LR: 0.00025; Losses [Rec1: 0.046298; Rec2: 0.047909; EE1: 0.186395; EE2: 0.127098; EE3: 0.114301; EE4: 0.050412]; Backprop: 0.6769 sec; Batch: 1.5178 sec
+[TRAIN] Iter[740]; LR: 0.00025; Losses [Rec1: 0.061281; Rec2: 0.061137; EE1: 0.155926; EE2: 0.099165; EE3: 0.097256; EE4: 0.061548]; Backprop: 0.9117 sec; Batch: 1.7945 sec
+[TRAIN] Iter[750]; LR: 0.00025; Losses [Rec1: 0.056130; Rec2: 0.056086; EE1: 0.132927; EE2: 0.088945; EE3: 0.087512; EE4: 0.056259]; Backprop: 0.4501 sec; Batch: 1.2223 sec
+[TRAIN] Iter[760]; LR: 0.00025; Losses [Rec1: 0.059069; Rec2: 0.058103; EE1: 0.146332; EE2: 0.100991; EE3: 0.095998; EE4: 0.060134]; Backprop: 0.6676 sec; Batch: 1.5018 sec
+[TRAIN] Iter[770]; LR: 0.00025; Losses [Rec1: 0.046411; Rec2: 0.048520; EE1: 0.148525; EE2: 0.088116; EE3: 0.082529; EE4: 0.048720]; Backprop: 0.5397 sec; Batch: 1.3842 sec
+[TRAIN] Iter[780]; LR: 0.00025; Losses [Rec1: 0.056667; Rec2: 0.055450; EE1: 0.143634; EE2: 0.113225; EE3: 0.108865; EE4: 0.056267]; Backprop: 0.5971 sec; Batch: 1.4258 sec
+[TRAIN] Iter[790]; LR: 0.00025; Losses [Rec1: 0.055364; Rec2: 0.052666; EE1: 0.162205; EE2: 0.103152; EE3: 0.096788; EE4: 0.052112]; Backprop: 0.6227 sec; Batch: 1.4103 sec
+[TRAIN] Iter[800]; LR: 0.00025; Losses [Rec1: 0.053279; Rec2: 0.053068; EE1: 0.189052; EE2: 0.100958; EE3: 0.089419; EE4: 0.053547]; Backprop: 0.5439 sec; Batch: 1.2803 sec
+Loss at each step:
+0.0840 0.0493 0.0495 0.0496 0.0497 0.0498 0.0499 0.0501 0.0503 0.0505 
+
+[TRAIN] Iter[810]; LR: 0.00025; Losses [Rec1: 0.040371; Rec2: 0.039806; EE1: 0.149694; EE2: 0.089355; EE3: 0.083988; EE4: 0.040242]; Backprop: 0.7896 sec; Batch: 1.6286 sec
+[TRAIN] Iter[820]; LR: 0.00025; Losses [Rec1: 0.054275; Rec2: 0.051707; EE1: 0.158417; EE2: 0.100865; EE3: 0.094378; EE4: 0.052298]; Backprop: 0.5549 sec; Batch: 1.2961 sec
+[TRAIN] Iter[830]; LR: 0.00025; Losses [Rec1: 0.045757; Rec2: 0.045675; EE1: 0.157966; EE2: 0.091277; EE3: 0.082845; EE4: 0.046784]; Backprop: 0.5517 sec; Batch: 1.3629 sec
+[TRAIN] Iter[840]; LR: 0.00025; Losses [Rec1: 0.035947; Rec2: 0.039824; EE1: 0.157741; EE2: 0.075117; EE3: 0.066182; EE4: 0.040511]; Backprop: 0.7604 sec; Batch: 1.6064 sec
+[TRAIN] Iter[850]; LR: 0.00025; Losses [Rec1: 0.047116; Rec2: 0.049374; EE1: 0.161632; EE2: 0.079775; EE3: 0.070770; EE4: 0.050410]; Backprop: 0.6409 sec; Batch: 1.4385 sec
+[TRAIN] Iter[860]; LR: 0.00025; Losses [Rec1: 0.038920; Rec2: 0.038776; EE1: 0.133352; EE2: 0.088966; EE3: 0.079935; EE4: 0.038608]; Backprop: 0.7333 sec; Batch: 1.5471 sec
+[TRAIN] Iter[870]; LR: 0.00025; Losses [Rec1: 0.052165; Rec2: 0.052839; EE1: 0.167553; EE2: 0.097654; EE3: 0.086968; EE4: 0.054195]; Backprop: 0.8036 sec; Batch: 1.5725 sec
+[TRAIN] Iter[880]; LR: 0.00025; Losses [Rec1: 0.047576; Rec2: 0.046437; EE1: 0.142998; EE2: 0.093018; EE3: 0.088083; EE4: 0.046976]; Backprop: 0.5317 sec; Batch: 1.3157 sec
+[TRAIN] Iter[890]; LR: 0.00025; Losses [Rec1: 0.055177; Rec2: 0.052848; EE1: 0.165945; EE2: 0.115161; EE3: 0.108254; EE4: 0.053351]; Backprop: 0.7041 sec; Batch: 1.5849 sec
+[TRAIN] Iter[900]; LR: 0.00025; Losses [Rec1: 0.052620; Rec2: 0.049022; EE1: 0.124108; EE2: 0.081623; EE3: 0.077329; EE4: 0.049172]; Backprop: 0.5517 sec; Batch: 1.4037 sec
+Loss at each step:
+0.0618 0.0518 0.0515 0.0515 0.0515 0.0515 0.0515 0.0516 0.0517 0.0518 
+
+[TRAIN] Iter[910]; LR: 0.00025; Losses [Rec1: 0.060975; Rec2: 0.059168; EE1: 0.165893; EE2: 0.109770; EE3: 0.099253; EE4: 0.058151]; Backprop: 0.6383 sec; Batch: 1.4502 sec
+[TRAIN] Iter[920]; LR: 0.00025; Losses [Rec1: 0.046697; Rec2: 0.044489; EE1: 0.166210; EE2: 0.098508; EE3: 0.090811; EE4: 0.044740]; Backprop: 0.7935 sec; Batch: 1.5543 sec
+[TRAIN] Iter[930]; LR: 0.00025; Losses [Rec1: 0.049962; Rec2: 0.048381; EE1: 0.160086; EE2: 0.106097; EE3: 0.099878; EE4: 0.048166]; Backprop: 0.7304 sec; Batch: 1.5310 sec
+[TRAIN] Iter[940]; LR: 0.00025; Losses [Rec1: 0.048779; Rec2: 0.050630; EE1: 0.186184; EE2: 0.099042; EE3: 0.088785; EE4: 0.052247]; Backprop: 0.6443 sec; Batch: 1.4155 sec
+[TRAIN] Iter[950]; LR: 0.00025; Losses [Rec1: 0.056382; Rec2: 0.051446; EE1: 0.157319; EE2: 0.112437; EE3: 0.109483; EE4: 0.051706]; Backprop: 0.7450 sec; Batch: 1.6031 sec
+[TRAIN] Iter[960]; LR: 0.00025; Losses [Rec1: 0.048499; Rec2: 0.048092; EE1: 0.156982; EE2: 0.103974; EE3: 0.098956; EE4: 0.049163]; Backprop: 0.8266 sec; Batch: 1.6201 sec
+[TRAIN] Iter[970]; LR: 0.00025; Losses [Rec1: 0.052479; Rec2: 0.049399; EE1: 0.157922; EE2: 0.102773; EE3: 0.096371; EE4: 0.049438]; Backprop: 0.8367 sec; Batch: 1.7684 sec
+[TRAIN] Iter[980]; LR: 0.00025; Losses [Rec1: 0.049546; Rec2: 0.047989; EE1: 0.154427; EE2: 0.103860; EE3: 0.099981; EE4: 0.048089]; Backprop: 0.3667 sec; Batch: 1.1226 sec
+[TRAIN] Iter[990]; LR: 0.00025; Losses [Rec1: 0.050736; Rec2: 0.053262; EE1: 0.149242; EE2: 0.091288; EE3: 0.088747; EE4: 0.053062]; Backprop: 0.5371 sec; Batch: 1.3387 sec
+[TRAIN] Iter[1000]; LR: 0.00025; Losses [Rec1: 0.042993; Rec2: 0.044695; EE1: 0.155580; EE2: 0.088093; EE3: 0.080249; EE4: 0.045495]; Backprop: 0.5911 sec; Batch: 1.3336 sec
+Loss at each step:
+0.0673 0.0408 0.0405 0.0404 0.0402 0.0402 0.0401 0.0401 0.0401 0.0402 
+
+[TRAIN] Iter[1010]; LR: 0.00025; Losses [Rec1: 0.051955; Rec2: 0.049904; EE1: 0.163225; EE2: 0.101416; EE3: 0.093847; EE4: 0.048842]; Backprop: 0.5751 sec; Batch: 1.4868 sec
+[TRAIN] Iter[1020]; LR: 0.00025; Losses [Rec1: 0.045035; Rec2: 0.045231; EE1: 0.147630; EE2: 0.091374; EE3: 0.086524; EE4: 0.045397]; Backprop: 0.5520 sec; Batch: 1.4515 sec
+[TRAIN] Iter[1030]; LR: 0.00025; Losses [Rec1: 0.054471; Rec2: 0.054233; EE1: 0.124783; EE2: 0.084847; EE3: 0.078240; EE4: 0.053650]; Backprop: 0.6036 sec; Batch: 1.3696 sec
+[TRAIN] Iter[1040]; LR: 0.00025; Losses [Rec1: 0.044260; Rec2: 0.045916; EE1: 0.136361; EE2: 0.084746; EE3: 0.078831; EE4: 0.046344]; Backprop: 0.6593 sec; Batch: 1.4846 sec
+[TRAIN] Iter[1050]; LR: 0.00025; Losses [Rec1: 0.056872; Rec2: 0.056537; EE1: 0.144909; EE2: 0.093937; EE3: 0.092588; EE4: 0.056130]; Backprop: 0.6172 sec; Batch: 1.4928 sec
+[TRAIN] Iter[1060]; LR: 0.00025; Losses [Rec1: 0.056523; Rec2: 0.057148; EE1: 0.148297; EE2: 0.099714; EE3: 0.095416; EE4: 0.058000]; Backprop: 0.5870 sec; Batch: 1.3378 sec
+[TRAIN] Iter[1070]; LR: 0.00025; Losses [Rec1: 0.054600; Rec2: 0.056535; EE1: 0.116487; EE2: 0.077886; EE3: 0.076168; EE4: 0.057119]; Backprop: 0.6129 sec; Batch: 1.4061 sec
+[TRAIN] Iter[1080]; LR: 0.00025; Losses [Rec1: 0.053730; Rec2: 0.054580; EE1: 0.141108; EE2: 0.101402; EE3: 0.102550; EE4: 0.056253]; Backprop: 0.5475 sec; Batch: 1.3106 sec
+[TRAIN] Iter[1090]; LR: 0.00025; Losses [Rec1: 0.049337; Rec2: 0.047265; EE1: 0.149619; EE2: 0.088373; EE3: 0.078205; EE4: 0.047405]; Backprop: 0.7586 sec; Batch: 1.6299 sec
+[TRAIN] Iter[1100]; LR: 0.00025; Losses [Rec1: 0.056608; Rec2: 0.058082; EE1: 0.142567; EE2: 0.093770; EE3: 0.088105; EE4: 0.057929]; Backprop: 0.7329 sec; Batch: 1.4994 sec
+Loss at each step:
+0.0756 0.0547 0.0546 0.0546 0.0546 0.0545 0.0544 0.0544 0.0543 0.0543 
+
+[TRAIN] Iter[1110]; LR: 0.00025; Losses [Rec1: 0.047509; Rec2: 0.047591; EE1: 0.167409; EE2: 0.099142; EE3: 0.084850; EE4: 0.048815]; Backprop: 0.3024 sec; Batch: 1.0523 sec
+[TRAIN] Iter[1120]; LR: 0.00025; Losses [Rec1: 0.046225; Rec2: 0.043457; EE1: 0.150143; EE2: 0.110431; EE3: 0.102515; EE4: 0.043029]; Backprop: 0.7201 sec; Batch: 1.5836 sec
+[TRAIN] Iter[1130]; LR: 0.00025; Losses [Rec1: 0.052974; Rec2: 0.054509; EE1: 0.146692; EE2: 0.098233; EE3: 0.095021; EE4: 0.055675]; Backprop: 0.7377 sec; Batch: 1.5951 sec
+[TRAIN] Iter[1140]; LR: 0.00025; Losses [Rec1: 0.037572; Rec2: 0.039789; EE1: 0.138771; EE2: 0.072549; EE3: 0.065572; EE4: 0.040075]; Backprop: 0.2576 sec; Batch: 1.0408 sec
+[TRAIN] Iter[1150]; LR: 0.00025; Losses [Rec1: 0.047397; Rec2: 0.047300; EE1: 0.160010; EE2: 0.100503; EE3: 0.096396; EE4: 0.048447]; Backprop: 0.6949 sec; Batch: 1.5574 sec
+[TRAIN] Iter[1160]; LR: 0.00025; Losses [Rec1: 0.043112; Rec2: 0.040229; EE1: 0.158908; EE2: 0.086913; EE3: 0.080208; EE4: 0.039952]; Backprop: 0.7446 sec; Batch: 1.4802 sec
+[TRAIN] Iter[1170]; LR: 0.00025; Losses [Rec1: 0.054754; Rec2: 0.054940; EE1: 0.146792; EE2: 0.098575; EE3: 0.090625; EE4: 0.055805]; Backprop: 0.7511 sec; Batch: 1.6005 sec
+[TRAIN] Iter[1180]; LR: 0.00025; Losses [Rec1: 0.040980; Rec2: 0.042903; EE1: 0.117104; EE2: 0.079132; EE3: 0.079353; EE4: 0.042959]; Backprop: 0.8214 sec; Batch: 1.5791 sec
+[TRAIN] Iter[1190]; LR: 0.00025; Losses [Rec1: 0.053189; Rec2: 0.056360; EE1: 0.154626; EE2: 0.112976; EE3: 0.104545; EE4: 0.058540]; Backprop: 0.2643 sec; Batch: 1.0365 sec
+[TRAIN] Iter[1200]; LR: 0.00025; Losses [Rec1: 0.046171; Rec2: 0.044991; EE1: 0.147470; EE2: 0.086394; EE3: 0.076977; EE4: 0.045301]; Backprop: 0.7001 sec; Batch: 1.4469 sec
+Loss at each step:
+0.0704 0.0437 0.0436 0.0435 0.0435 0.0434 0.0434 0.0434 0.0434 0.0434 
+
+[TRAIN] Iter[1210]; LR: 0.00025; Losses [Rec1: 0.039163; Rec2: 0.038734; EE1: 0.105788; EE2: 0.073595; EE3: 0.067249; EE4: 0.039225]; Backprop: 0.7478 sec; Batch: 1.6929 sec
+[TRAIN] Iter[1220]; LR: 0.00025; Losses [Rec1: 0.037280; Rec2: 0.041663; EE1: 0.141612; EE2: 0.095908; EE3: 0.086920; EE4: 0.042696]; Backprop: 0.2696 sec; Batch: 1.0228 sec
+[TRAIN] Iter[1230]; LR: 0.00025; Losses [Rec1: 0.044934; Rec2: 0.045915; EE1: 0.174320; EE2: 0.095004; EE3: 0.083176; EE4: 0.046884]; Backprop: 0.7726 sec; Batch: 1.5318 sec
+[TRAIN] Iter[1240]; LR: 0.00025; Losses [Rec1: 0.057061; Rec2: 0.060095; EE1: 0.154492; EE2: 0.103068; EE3: 0.095640; EE4: 0.062024]; Backprop: 0.6097 sec; Batch: 1.3555 sec
+[TRAIN] Iter[1250]; LR: 0.00025; Losses [Rec1: 0.063467; Rec2: 0.063671; EE1: 0.147646; EE2: 0.112562; EE3: 0.107635; EE4: 0.064407]; Backprop: 0.7520 sec; Batch: 1.5154 sec
+[TRAIN] Iter[1260]; LR: 0.00025; Losses [Rec1: 0.030794; Rec2: 0.029987; EE1: 0.148391; EE2: 0.078896; EE3: 0.070124; EE4: 0.030381]; Backprop: 0.5900 sec; Batch: 1.4606 sec
+[TRAIN] Iter[1270]; LR: 0.00025; Losses [Rec1: 0.033648; Rec2: 0.033465; EE1: 0.115948; EE2: 0.065463; EE3: 0.060233; EE4: 0.034529]; Backprop: 0.5963 sec; Batch: 1.3304 sec
+[TRAIN] Iter[1280]; LR: 0.00025; Losses [Rec1: 0.043691; Rec2: 0.047665; EE1: 0.162084; EE2: 0.105518; EE3: 0.098654; EE4: 0.048332]; Backprop: 0.7511 sec; Batch: 1.4961 sec
+[TRAIN] Iter[1290]; LR: 0.00025; Losses [Rec1: 0.047132; Rec2: 0.046650; EE1: 0.142889; EE2: 0.094362; EE3: 0.087466; EE4: 0.047106]; Backprop: 0.7416 sec; Batch: 1.5441 sec
+[TRAIN] Iter[1300]; LR: 0.00025; Losses [Rec1: 0.039043; Rec2: 0.040984; EE1: 0.098774; EE2: 0.078844; EE3: 0.077759; EE4: 0.041171]; Backprop: 0.7086 sec; Batch: 1.5189 sec
+Loss at each step:
+0.0492 0.0388 0.0380 0.0378 0.0378 0.0377 0.0377 0.0377 0.0378 0.0378 
+
+[TRAIN] Iter[1310]; LR: 0.00025; Losses [Rec1: 0.036759; Rec2: 0.033349; EE1: 0.135371; EE2: 0.075848; EE3: 0.067793; EE4: 0.033911]; Backprop: 0.8493 sec; Batch: 1.7172 sec
+[TRAIN] Iter[1320]; LR: 0.00025; Losses [Rec1: 0.039260; Rec2: 0.037454; EE1: 0.123664; EE2: 0.071021; EE3: 0.063719; EE4: 0.037273]; Backprop: 0.4431 sec; Batch: 1.1888 sec
+[TRAIN] Iter[1330]; LR: 0.00025; Losses [Rec1: 0.044134; Rec2: 0.043816; EE1: 0.138746; EE2: 0.088391; EE3: 0.080963; EE4: 0.044068]; Backprop: 0.5108 sec; Batch: 1.2567 sec
+[TRAIN] Iter[1340]; LR: 0.00025; Losses [Rec1: 0.038384; Rec2: 0.038860; EE1: 0.129958; EE2: 0.077800; EE3: 0.070640; EE4: 0.040050]; Backprop: 0.2737 sec; Batch: 1.0223 sec
+[TRAIN] Iter[1350]; LR: 0.00025; Losses [Rec1: 0.037721; Rec2: 0.041831; EE1: 0.125453; EE2: 0.076162; EE3: 0.064067; EE4: 0.043214]; Backprop: 0.8024 sec; Batch: 1.6264 sec
+[TRAIN] Iter[1360]; LR: 0.00025; Losses [Rec1: 0.044420; Rec2: 0.045565; EE1: 0.105030; EE2: 0.068674; EE3: 0.064730; EE4: 0.045588]; Backprop: 0.8241 sec; Batch: 1.5863 sec
+[TRAIN] Iter[1370]; LR: 0.00025; Losses [Rec1: 0.042840; Rec2: 0.042331; EE1: 0.117776; EE2: 0.092122; EE3: 0.087726; EE4: 0.042957]; Backprop: 0.8129 sec; Batch: 1.6790 sec
+[TRAIN] Iter[1380]; LR: 0.00025; Losses [Rec1: 0.049136; Rec2: 0.050614; EE1: 0.141310; EE2: 0.096451; EE3: 0.093437; EE4: 0.051328]; Backprop: 0.6881 sec; Batch: 1.5454 sec
+[TRAIN] Iter[1390]; LR: 0.00025; Losses [Rec1: 0.056126; Rec2: 0.055040; EE1: 0.148312; EE2: 0.096554; EE3: 0.087673; EE4: 0.056438]; Backprop: 0.7223 sec; Batch: 1.5016 sec
+[TRAIN] Iter[1400]; LR: 0.00025; Losses [Rec1: 0.049574; Rec2: 0.050696; EE1: 0.141779; EE2: 0.092267; EE3: 0.081927; EE4: 0.051585]; Backprop: 0.5415 sec; Batch: 1.2871 sec
+Loss at each step:
+0.0685 0.0476 0.0471 0.0471 0.0472 0.0473 0.0475 0.0476 0.0478 0.0480 
+
+[TRAIN] Iter[1410]; LR: 0.00025; Losses [Rec1: 0.040348; Rec2: 0.041154; EE1: 0.153300; EE2: 0.098603; EE3: 0.087516; EE4: 0.041022]; Backprop: 0.6706 sec; Batch: 1.4893 sec
+[TRAIN] Iter[1420]; LR: 0.00025; Losses [Rec1: 0.048723; Rec2: 0.047602; EE1: 0.128395; EE2: 0.100809; EE3: 0.096606; EE4: 0.047725]; Backprop: 0.7003 sec; Batch: 1.6181 sec
+[TRAIN] Iter[1430]; LR: 0.00025; Losses [Rec1: 0.040531; Rec2: 0.041855; EE1: 0.136653; EE2: 0.086270; EE3: 0.078009; EE4: 0.042517]; Backprop: 0.7249 sec; Batch: 1.4819 sec
+[TRAIN] Iter[1440]; LR: 0.00025; Losses [Rec1: 0.042308; Rec2: 0.041561; EE1: 0.119542; EE2: 0.078831; EE3: 0.075291; EE4: 0.041771]; Backprop: 0.8513 sec; Batch: 1.7473 sec
+[TRAIN] Iter[1450]; LR: 0.00025; Losses [Rec1: 0.049794; Rec2: 0.048782; EE1: 0.143655; EE2: 0.100613; EE3: 0.090593; EE4: 0.049090]; Backprop: 0.8149 sec; Batch: 1.6157 sec
+[TRAIN] Iter[1460]; LR: 0.00025; Losses [Rec1: 0.041919; Rec2: 0.042028; EE1: 0.143216; EE2: 0.076538; EE3: 0.066368; EE4: 0.042512]; Backprop: 0.8536 sec; Batch: 1.6687 sec
+[TRAIN] Iter[1470]; LR: 0.00025; Losses [Rec1: 0.050529; Rec2: 0.050992; EE1: 0.110058; EE2: 0.078490; EE3: 0.075930; EE4: 0.050826]; Backprop: 0.6440 sec; Batch: 1.4253 sec
+[TRAIN] Iter[1480]; LR: 0.00025; Losses [Rec1: 0.055027; Rec2: 0.051382; EE1: 0.145335; EE2: 0.100199; EE3: 0.091434; EE4: 0.052903]; Backprop: 0.4307 sec; Batch: 1.1890 sec
+[TRAIN] Iter[1490]; LR: 0.00025; Losses [Rec1: 0.028305; Rec2: 0.028548; EE1: 0.097353; EE2: 0.061387; EE3: 0.056128; EE4: 0.028621]; Backprop: 0.5764 sec; Batch: 1.3482 sec
+[TRAIN] Iter[1500]; LR: 0.00025; Losses [Rec1: 0.028552; Rec2: 0.028192; EE1: 0.106388; EE2: 0.063224; EE3: 0.057511; EE4: 0.028755]; Backprop: 0.6638 sec; Batch: 1.5419 sec
+Loss at each step:
+0.0455 0.0286 0.0270 0.0265 0.0264 0.0263 0.0263 0.0263 0.0263 0.0263 
+
+[TRAIN] Iter[1510]; LR: 0.00025; Losses [Rec1: 0.048508; Rec2: 0.048298; EE1: 0.128313; EE2: 0.091043; EE3: 0.082607; EE4: 0.048529]; Backprop: 0.7469 sec; Batch: 1.6218 sec
+[TRAIN] Iter[1520]; LR: 0.00025; Losses [Rec1: 0.045197; Rec2: 0.052334; EE1: 0.146265; EE2: 0.102271; EE3: 0.092303; EE4: 0.053494]; Backprop: 0.7658 sec; Batch: 1.5375 sec
+[TRAIN] Iter[1530]; LR: 0.00025; Losses [Rec1: 0.053695; Rec2: 0.051922; EE1: 0.140092; EE2: 0.105852; EE3: 0.096279; EE4: 0.053686]; Backprop: 0.5784 sec; Batch: 1.3212 sec
+[TRAIN] Iter[1540]; LR: 0.00025; Losses [Rec1: 0.049928; Rec2: 0.049785; EE1: 0.135281; EE2: 0.095843; EE3: 0.090575; EE4: 0.049993]; Backprop: 0.6832 sec; Batch: 1.4697 sec
+[TRAIN] Iter[1550]; LR: 0.00025; Losses [Rec1: 0.042763; Rec2: 0.043299; EE1: 0.116032; EE2: 0.079294; EE3: 0.074608; EE4: 0.044200]; Backprop: 0.4706 sec; Batch: 1.2489 sec
+[TRAIN] Iter[1560]; LR: 0.00025; Losses [Rec1: 0.037408; Rec2: 0.038172; EE1: 0.135495; EE2: 0.079781; EE3: 0.068852; EE4: 0.039113]; Backprop: 0.6671 sec; Batch: 1.4902 sec
+[TRAIN] Iter[1570]; LR: 0.00025; Losses [Rec1: 0.048659; Rec2: 0.049257; EE1: 0.138046; EE2: 0.095741; EE3: 0.088835; EE4: 0.051350]; Backprop: 0.5139 sec; Batch: 1.2823 sec
+[TRAIN] Iter[1580]; LR: 0.00025; Losses [Rec1: 0.037729; Rec2: 0.038161; EE1: 0.128530; EE2: 0.089769; EE3: 0.081412; EE4: 0.038469]; Backprop: 0.7037 sec; Batch: 1.4971 sec
+[TRAIN] Iter[1590]; LR: 0.00025; Losses [Rec1: 0.038099; Rec2: 0.039914; EE1: 0.129145; EE2: 0.084709; EE3: 0.079636; EE4: 0.040293]; Backprop: 0.2919 sec; Batch: 1.0624 sec
+[TRAIN] Iter[1600]; LR: 0.00025; Losses [Rec1: 0.041995; Rec2: 0.041442; EE1: 0.126898; EE2: 0.069239; EE3: 0.062435; EE4: 0.042359]; Backprop: 0.8360 sec; Batch: 1.7134 sec
+Loss at each step:
+0.0691 0.0417 0.0395 0.0388 0.0386 0.0385 0.0384 0.0384 0.0384 0.0385 
+
+[TRAIN] Iter[1610]; LR: 0.00025; Losses [Rec1: 0.035929; Rec2: 0.037308; EE1: 0.109208; EE2: 0.069503; EE3: 0.064614; EE4: 0.037284]; Backprop: 0.7254 sec; Batch: 1.5203 sec
+[TRAIN] Iter[1620]; LR: 0.00025; Losses [Rec1: 0.040420; Rec2: 0.038932; EE1: 0.115970; EE2: 0.078591; EE3: 0.073712; EE4: 0.039550]; Backprop: 0.5491 sec; Batch: 1.3162 sec
+[TRAIN] Iter[1630]; LR: 0.00025; Losses [Rec1: 0.034250; Rec2: 0.036516; EE1: 0.126542; EE2: 0.071215; EE3: 0.066364; EE4: 0.037269]; Backprop: 0.6886 sec; Batch: 1.6786 sec
+[TRAIN] Iter[1640]; LR: 0.00025; Losses [Rec1: 0.037986; Rec2: 0.041505; EE1: 0.114009; EE2: 0.078567; EE3: 0.071899; EE4: 0.041586]; Backprop: 0.6378 sec; Batch: 1.3851 sec
+[TRAIN] Iter[1650]; LR: 0.00025; Losses [Rec1: 0.045466; Rec2: 0.046526; EE1: 0.134499; EE2: 0.086888; EE3: 0.084423; EE4: 0.046787]; Backprop: 0.8215 sec; Batch: 1.6150 sec
+[TRAIN] Iter[1660]; LR: 0.00025; Losses [Rec1: 0.042113; Rec2: 0.041224; EE1: 0.120357; EE2: 0.080125; EE3: 0.074885; EE4: 0.041593]; Backprop: 0.7425 sec; Batch: 1.5333 sec
+[TRAIN] Iter[1670]; LR: 0.00025; Losses [Rec1: 0.039500; Rec2: 0.040104; EE1: 0.095187; EE2: 0.060184; EE3: 0.055998; EE4: 0.040325]; Backprop: 0.6041 sec; Batch: 1.4554 sec
+[TRAIN] Iter[1680]; LR: 0.00025; Losses [Rec1: 0.052804; Rec2: 0.052952; EE1: 0.139964; EE2: 0.093999; EE3: 0.087472; EE4: 0.053852]; Backprop: 0.5983 sec; Batch: 1.3950 sec
+[TRAIN] Iter[1690]; LR: 0.00025; Losses [Rec1: 0.047241; Rec2: 0.047305; EE1: 0.112829; EE2: 0.083933; EE3: 0.079907; EE4: 0.047347]; Backprop: 0.5670 sec; Batch: 1.4817 sec
+[TRAIN] Iter[1700]; LR: 0.00025; Losses [Rec1: 0.034986; Rec2: 0.035522; EE1: 0.106312; EE2: 0.068477; EE3: 0.064537; EE4: 0.035204]; Backprop: 0.6195 sec; Batch: 1.4124 sec
+Loss at each step:
+0.0495 0.0359 0.0338 0.0332 0.0331 0.0330 0.0329 0.0329 0.0328 0.0328 
+
+[TRAIN] Iter[1710]; LR: 0.00025; Losses [Rec1: 0.040274; Rec2: 0.040319; EE1: 0.100389; EE2: 0.077012; EE3: 0.074584; EE4: 0.040727]; Backprop: 0.8008 sec; Batch: 1.5688 sec
+[TRAIN] Iter[1720]; LR: 0.00025; Losses [Rec1: 0.047451; Rec2: 0.046629; EE1: 0.142939; EE2: 0.099624; EE3: 0.090927; EE4: 0.046790]; Backprop: 0.5465 sec; Batch: 1.3296 sec
+[TRAIN] Iter[1730]; LR: 0.00025; Losses [Rec1: 0.036677; Rec2: 0.037889; EE1: 0.123386; EE2: 0.072248; EE3: 0.062543; EE4: 0.037994]; Backprop: 0.7233 sec; Batch: 1.6656 sec
+[TRAIN] Iter[1740]; LR: 0.00025; Losses [Rec1: 0.045072; Rec2: 0.044920; EE1: 0.141987; EE2: 0.094809; EE3: 0.085861; EE4: 0.045542]; Backprop: 0.4697 sec; Batch: 1.1951 sec
+[TRAIN] Iter[1750]; LR: 0.00025; Losses [Rec1: 0.044087; Rec2: 0.043420; EE1: 0.136845; EE2: 0.075351; EE3: 0.067556; EE4: 0.043636]; Backprop: 0.6622 sec; Batch: 1.4664 sec
+[TRAIN] Iter[1760]; LR: 0.00025; Losses [Rec1: 0.040137; Rec2: 0.041078; EE1: 0.112224; EE2: 0.074682; EE3: 0.066726; EE4: 0.041762]; Backprop: 0.2879 sec; Batch: 1.0201 sec
+[TRAIN] Iter[1770]; LR: 0.00025; Losses [Rec1: 0.038575; Rec2: 0.041550; EE1: 0.116129; EE2: 0.071764; EE3: 0.064191; EE4: 0.041666]; Backprop: 0.6033 sec; Batch: 1.3733 sec
+[TRAIN] Iter[1780]; LR: 0.00025; Losses [Rec1: 0.049125; Rec2: 0.049595; EE1: 0.128615; EE2: 0.082578; EE3: 0.077242; EE4: 0.050213]; Backprop: 0.6447 sec; Batch: 1.3902 sec
+[TRAIN] Iter[1790]; LR: 0.00025; Losses [Rec1: 0.038848; Rec2: 0.039451; EE1: 0.100661; EE2: 0.067592; EE3: 0.063322; EE4: 0.039660]; Backprop: 0.7085 sec; Batch: 1.4672 sec
+[TRAIN] Iter[1800]; LR: 0.00025; Losses [Rec1: 0.045788; Rec2: 0.046865; EE1: 0.099231; EE2: 0.077648; EE3: 0.071751; EE4: 0.046028]; Backprop: 0.5658 sec; Batch: 1.3476 sec
+Loss at each step:
+0.0559 0.0448 0.0443 0.0440 0.0442 0.0445 0.0447 0.0450 0.0452 0.0454 
+
+[TRAIN] Iter[1810]; LR: 0.00025; Losses [Rec1: 0.050552; Rec2: 0.048772; EE1: 0.119133; EE2: 0.083908; EE3: 0.077293; EE4: 0.049202]; Backprop: 0.9517 sec; Batch: 1.8081 sec
+[TRAIN] Iter[1820]; LR: 0.00025; Losses [Rec1: 0.032334; Rec2: 0.032076; EE1: 0.113007; EE2: 0.059841; EE3: 0.050154; EE4: 0.032159]; Backprop: 0.2857 sec; Batch: 1.0378 sec
+[TRAIN] Iter[1830]; LR: 0.00025; Losses [Rec1: 0.036099; Rec2: 0.036295; EE1: 0.114270; EE2: 0.066342; EE3: 0.059832; EE4: 0.037005]; Backprop: 0.6908 sec; Batch: 1.4641 sec
+[TRAIN] Iter[1840]; LR: 0.00025; Losses [Rec1: 0.044213; Rec2: 0.043646; EE1: 0.126634; EE2: 0.084474; EE3: 0.079891; EE4: 0.043756]; Backprop: 0.6535 sec; Batch: 1.4855 sec
+[TRAIN] Iter[1850]; LR: 0.00025; Losses [Rec1: 0.043969; Rec2: 0.044711; EE1: 0.132937; EE2: 0.081416; EE3: 0.071238; EE4: 0.045094]; Backprop: 0.6624 sec; Batch: 1.4351 sec
+[TRAIN] Iter[1860]; LR: 0.00025; Losses [Rec1: 0.039259; Rec2: 0.039925; EE1: 0.113093; EE2: 0.081422; EE3: 0.075417; EE4: 0.039019]; Backprop: 1.0995 sec; Batch: 1.8724 sec
+[TRAIN] Iter[1870]; LR: 0.00025; Losses [Rec1: 0.034607; Rec2: 0.033849; EE1: 0.133836; EE2: 0.076465; EE3: 0.064729; EE4: 0.034709]; Backprop: 0.7177 sec; Batch: 1.4858 sec
+[TRAIN] Iter[1880]; LR: 0.00025; Losses [Rec1: 0.034939; Rec2: 0.035403; EE1: 0.107972; EE2: 0.068630; EE3: 0.063202; EE4: 0.035664]; Backprop: 0.7250 sec; Batch: 1.6287 sec
+[TRAIN] Iter[1890]; LR: 0.00025; Losses [Rec1: 0.048218; Rec2: 0.045395; EE1: 0.123420; EE2: 0.097207; EE3: 0.091426; EE4: 0.044171]; Backprop: 0.8334 sec; Batch: 1.6655 sec
+[TRAIN] Iter[1900]; LR: 0.00025; Losses [Rec1: 0.034717; Rec2: 0.036256; EE1: 0.108324; EE2: 0.076829; EE3: 0.067173; EE4: 0.035905]; Backprop: 0.2606 sec; Batch: 0.9956 sec
+Loss at each step:
+0.0534 0.0332 0.0324 0.0323 0.0324 0.0325 0.0325 0.0327 0.0328 0.0329 
+
+[TRAIN] Iter[1910]; LR: 0.00025; Losses [Rec1: 0.034482; Rec2: 0.037369; EE1: 0.099018; EE2: 0.064657; EE3: 0.064040; EE4: 0.037481]; Backprop: 0.8486 sec; Batch: 1.6729 sec
+[TRAIN] Iter[1920]; LR: 0.00025; Losses [Rec1: 0.033118; Rec2: 0.033962; EE1: 0.085087; EE2: 0.060209; EE3: 0.059834; EE4: 0.033957]; Backprop: 0.6541 sec; Batch: 1.4930 sec
+[TRAIN] Iter[1930]; LR: 0.00025; Losses [Rec1: 0.040477; Rec2: 0.044207; EE1: 0.099499; EE2: 0.073053; EE3: 0.068513; EE4: 0.044294]; Backprop: 0.7181 sec; Batch: 1.4639 sec
+[TRAIN] Iter[1940]; LR: 0.00025; Losses [Rec1: 0.057619; Rec2: 0.052746; EE1: 0.154163; EE2: 0.117930; EE3: 0.108899; EE4: 0.053383]; Backprop: 0.5903 sec; Batch: 1.3419 sec
+[TRAIN] Iter[1950]; LR: 0.00025; Losses [Rec1: 0.036549; Rec2: 0.036175; EE1: 0.104510; EE2: 0.078465; EE3: 0.071001; EE4: 0.036205]; Backprop: 0.9151 sec; Batch: 1.6820 sec
+[TRAIN] Iter[1960]; LR: 0.00025; Losses [Rec1: 0.054295; Rec2: 0.054862; EE1: 0.137331; EE2: 0.111601; EE3: 0.105824; EE4: 0.055612]; Backprop: 0.2744 sec; Batch: 1.0189 sec
+[TRAIN] Iter[1970]; LR: 0.00025; Losses [Rec1: 0.047044; Rec2: 0.046315; EE1: 0.111145; EE2: 0.081330; EE3: 0.076347; EE4: 0.046562]; Backprop: 0.9097 sec; Batch: 1.7754 sec
+[TRAIN] Iter[1980]; LR: 0.00025; Losses [Rec1: 0.044333; Rec2: 0.042161; EE1: 0.121662; EE2: 0.089933; EE3: 0.081484; EE4: 0.042803]; Backprop: 0.2919 sec; Batch: 1.0536 sec
+[TRAIN] Iter[1990]; LR: 0.00025; Losses [Rec1: 0.046011; Rec2: 0.044465; EE1: 0.127418; EE2: 0.078657; EE3: 0.068323; EE4: 0.044864]; Backprop: 0.5480 sec; Batch: 1.3817 sec
+[TRAIN] Iter[2000]; LR: 0.00025; Losses [Rec1: 0.032991; Rec2: 0.031675; EE1: 0.110917; EE2: 0.065908; EE3: 0.057545; EE4: 0.031643]; Backprop: 0.7340 sec; Batch: 1.5814 sec
+Loss at each step:
+0.0500 0.0340 0.0315 0.0309 0.0307 0.0306 0.0306 0.0306 0.0306 0.0305 
+
+[TRAIN] Iter[2010]; LR: 0.00025; Losses [Rec1: 0.041590; Rec2: 0.044064; EE1: 0.126744; EE2: 0.085471; EE3: 0.077002; EE4: 0.045040]; Backprop: 0.2878 sec; Batch: 1.0391 sec
+[TRAIN] Iter[2020]; LR: 0.00025; Losses [Rec1: 0.038373; Rec2: 0.041549; EE1: 0.128705; EE2: 0.079307; EE3: 0.071940; EE4: 0.041537]; Backprop: 0.7184 sec; Batch: 1.4780 sec
+[TRAIN] Iter[2030]; LR: 0.00025; Losses [Rec1: 0.044041; Rec2: 0.047451; EE1: 0.109025; EE2: 0.083413; EE3: 0.075872; EE4: 0.048255]; Backprop: 0.7429 sec; Batch: 1.5653 sec
+[TRAIN] Iter[2040]; LR: 0.00025; Losses [Rec1: 0.050425; Rec2: 0.049221; EE1: 0.108005; EE2: 0.079524; EE3: 0.074431; EE4: 0.049600]; Backprop: 0.7298 sec; Batch: 1.6065 sec
+[TRAIN] Iter[2050]; LR: 0.00025; Losses [Rec1: 0.048173; Rec2: 0.046667; EE1: 0.112186; EE2: 0.080717; EE3: 0.076031; EE4: 0.046600]; Backprop: 0.6195 sec; Batch: 1.3951 sec
+[TRAIN] Iter[2060]; LR: 0.00025; Losses [Rec1: 0.044953; Rec2: 0.040735; EE1: 0.127767; EE2: 0.075542; EE3: 0.067193; EE4: 0.041095]; Backprop: 0.7299 sec; Batch: 1.6160 sec
+[TRAIN] Iter[2070]; LR: 0.00025; Losses [Rec1: 0.037560; Rec2: 0.039421; EE1: 0.109170; EE2: 0.069018; EE3: 0.065824; EE4: 0.039452]; Backprop: 0.6010 sec; Batch: 1.3438 sec
+[TRAIN] Iter[2080]; LR: 0.00025; Losses [Rec1: 0.045769; Rec2: 0.044478; EE1: 0.124556; EE2: 0.088225; EE3: 0.083952; EE4: 0.044187]; Backprop: 0.5566 sec; Batch: 1.3234 sec
+[TRAIN] Iter[2090]; LR: 0.00025; Losses [Rec1: 0.034178; Rec2: 0.034453; EE1: 0.106349; EE2: 0.066174; EE3: 0.058192; EE4: 0.033537]; Backprop: 0.6649 sec; Batch: 1.4114 sec
+[TRAIN] Iter[2100]; LR: 0.00025; Losses [Rec1: 0.039952; Rec2: 0.040782; EE1: 0.128711; EE2: 0.075118; EE3: 0.067925; EE4: 0.040736]; Backprop: 0.6337 sec; Batch: 1.5586 sec
+Loss at each step:
+0.0578 0.0406 0.0387 0.0378 0.0375 0.0374 0.0374 0.0374 0.0374 0.0374 
+
+[TRAIN] Iter[2110]; LR: 0.00025; Losses [Rec1: 0.040672; Rec2: 0.043387; EE1: 0.110570; EE2: 0.073268; EE3: 0.068445; EE4: 0.043122]; Backprop: 0.3755 sec; Batch: 1.1506 sec
+[TRAIN] Iter[2120]; LR: 0.00025; Losses [Rec1: 0.050400; Rec2: 0.052443; EE1: 0.118832; EE2: 0.088991; EE3: 0.084601; EE4: 0.052788]; Backprop: 0.8192 sec; Batch: 1.5656 sec
+[TRAIN] Iter[2130]; LR: 0.00025; Losses [Rec1: 0.036599; Rec2: 0.037796; EE1: 0.109373; EE2: 0.070986; EE3: 0.067850; EE4: 0.038053]; Backprop: 0.6591 sec; Batch: 1.5376 sec
+[TRAIN] Iter[2140]; LR: 0.00025; Losses [Rec1: 0.036345; Rec2: 0.045463; EE1: 0.092939; EE2: 0.061901; EE3: 0.060792; EE4: 0.045244]; Backprop: 0.4776 sec; Batch: 1.2398 sec
+[TRAIN] Iter[2150]; LR: 0.00025; Losses [Rec1: 0.036086; Rec2: 0.037366; EE1: 0.111215; EE2: 0.074098; EE3: 0.068442; EE4: 0.037531]; Backprop: 0.7942 sec; Batch: 1.6440 sec
+[TRAIN] Iter[2160]; LR: 0.00025; Losses [Rec1: 0.027795; Rec2: 0.029634; EE1: 0.103907; EE2: 0.053016; EE3: 0.043985; EE4: 0.029954]; Backprop: 0.2783 sec; Batch: 1.0272 sec
+[TRAIN] Iter[2170]; LR: 0.00025; Losses [Rec1: 0.033352; Rec2: 0.033562; EE1: 0.095057; EE2: 0.067002; EE3: 0.062057; EE4: 0.033784]; Backprop: 0.6850 sec; Batch: 1.5723 sec
+[TRAIN] Iter[2180]; LR: 0.00025; Losses [Rec1: 0.034087; Rec2: 0.033870; EE1: 0.077286; EE2: 0.053125; EE3: 0.051823; EE4: 0.033725]; Backprop: 0.6708 sec; Batch: 1.4677 sec
+[TRAIN] Iter[2190]; LR: 0.00025; Losses [Rec1: 0.045093; Rec2: 0.045318; EE1: 0.108612; EE2: 0.075084; EE3: 0.070613; EE4: 0.045256]; Backprop: 0.8258 sec; Batch: 1.6047 sec
+[TRAIN] Iter[2200]; LR: 0.00025; Losses [Rec1: 0.033475; Rec2: 0.031779; EE1: 0.122935; EE2: 0.070543; EE3: 0.060376; EE4: 0.032063]; Backprop: 0.7185 sec; Batch: 1.5827 sec
+Loss at each step:
+0.0579 0.0330 0.0310 0.0305 0.0304 0.0304 0.0304 0.0303 0.0304 0.0304 
+
+[TRAIN] Iter[2210]; LR: 0.00025; Losses [Rec1: 0.040698; Rec2: 0.043106; EE1: 0.104298; EE2: 0.073991; EE3: 0.070746; EE4: 0.043629]; Backprop: 0.7566 sec; Batch: 1.5017 sec
+[TRAIN] Iter[2220]; LR: 0.00025; Losses [Rec1: 0.043318; Rec2: 0.041495; EE1: 0.106049; EE2: 0.072854; EE3: 0.072558; EE4: 0.040954]; Backprop: 0.6367 sec; Batch: 1.4679 sec
+[TRAIN] Iter[2230]; LR: 0.00025; Losses [Rec1: 0.034055; Rec2: 0.035112; EE1: 0.094105; EE2: 0.059881; EE3: 0.056294; EE4: 0.035257]; Backprop: 0.6217 sec; Batch: 1.3847 sec
+[TRAIN] Iter[2240]; LR: 0.00025; Losses [Rec1: 0.038357; Rec2: 0.036779; EE1: 0.101376; EE2: 0.066060; EE3: 0.063563; EE4: 0.036927]; Backprop: 0.4968 sec; Batch: 1.3480 sec
+[TRAIN] Iter[2250]; LR: 0.00025; Losses [Rec1: 0.036922; Rec2: 0.038035; EE1: 0.106211; EE2: 0.075744; EE3: 0.073828; EE4: 0.037895]; Backprop: 0.6577 sec; Batch: 1.4074 sec
+[TRAIN] Iter[2260]; LR: 0.00025; Losses [Rec1: 0.049016; Rec2: 0.047393; EE1: 0.111545; EE2: 0.079673; EE3: 0.075405; EE4: 0.047610]; Backprop: 0.7800 sec; Batch: 1.5338 sec
+[TRAIN] Iter[2270]; LR: 0.00025; Losses [Rec1: 0.038866; Rec2: 0.034612; EE1: 0.092638; EE2: 0.066079; EE3: 0.063463; EE4: 0.034930]; Backprop: 0.7042 sec; Batch: 1.4505 sec
+[TRAIN] Iter[2280]; LR: 0.00025; Losses [Rec1: 0.052869; Rec2: 0.049832; EE1: 0.113987; EE2: 0.081710; EE3: 0.077442; EE4: 0.050324]; Backprop: 0.5432 sec; Batch: 1.4426 sec
+[TRAIN] Iter[2290]; LR: 0.00025; Losses [Rec1: 0.045523; Rec2: 0.044529; EE1: 0.115020; EE2: 0.077492; EE3: 0.072739; EE4: 0.044439]; Backprop: 0.6112 sec; Batch: 1.5224 sec
+[TRAIN] Iter[2300]; LR: 0.00025; Losses [Rec1: 0.028925; Rec2: 0.030123; EE1: 0.104742; EE2: 0.058762; EE3: 0.051420; EE4: 0.030178]; Backprop: 0.4985 sec; Batch: 1.2599 sec
+Loss at each step:
+0.0521 0.0294 0.0271 0.0263 0.0260 0.0258 0.0257 0.0257 0.0256 0.0256 
+
+[TRAIN] Iter[2310]; LR: 0.00025; Losses [Rec1: 0.031905; Rec2: 0.034584; EE1: 0.095652; EE2: 0.062105; EE3: 0.059270; EE4: 0.034802]; Backprop: 0.8018 sec; Batch: 1.6807 sec
+[TRAIN] Iter[2320]; LR: 0.00025; Losses [Rec1: 0.031313; Rec2: 0.033586; EE1: 0.097838; EE2: 0.063217; EE3: 0.058084; EE4: 0.033673]; Backprop: 1.0576 sec; Batch: 1.8767 sec
+[TRAIN] Iter[2330]; LR: 0.00025; Losses [Rec1: 0.044754; Rec2: 0.041335; EE1: 0.087949; EE2: 0.058888; EE3: 0.059807; EE4: 0.041754]; Backprop: 0.6491 sec; Batch: 1.4070 sec
+[TRAIN] Iter[2340]; LR: 0.00025; Losses [Rec1: 0.042471; Rec2: 0.041692; EE1: 0.107458; EE2: 0.080021; EE3: 0.078043; EE4: 0.041660]; Backprop: 0.6180 sec; Batch: 1.5262 sec
+[TRAIN] Iter[2350]; LR: 0.00025; Losses [Rec1: 0.038271; Rec2: 0.040932; EE1: 0.103277; EE2: 0.074331; EE3: 0.069951; EE4: 0.040982]; Backprop: 0.4970 sec; Batch: 1.3343 sec
+[TRAIN] Iter[2360]; LR: 0.00025; Losses [Rec1: 0.034855; Rec2: 0.034430; EE1: 0.090648; EE2: 0.061794; EE3: 0.059697; EE4: 0.034544]; Backprop: 0.7082 sec; Batch: 1.5501 sec
+[TRAIN] Iter[2370]; LR: 0.00025; Losses [Rec1: 0.035271; Rec2: 0.036102; EE1: 0.095221; EE2: 0.063710; EE3: 0.059536; EE4: 0.035699]; Backprop: 0.6893 sec; Batch: 1.4368 sec
+[TRAIN] Iter[2380]; LR: 0.00025; Losses [Rec1: 0.032013; Rec2: 0.033851; EE1: 0.091045; EE2: 0.064304; EE3: 0.062337; EE4: 0.033762]; Backprop: 0.2693 sec; Batch: 1.0131 sec
+[TRAIN] Iter[2390]; LR: 0.00025; Losses [Rec1: 0.057076; Rec2: 0.055925; EE1: 0.118253; EE2: 0.090131; EE3: 0.085874; EE4: 0.056074]; Backprop: 0.5276 sec; Batch: 1.3400 sec
+[TRAIN] Iter[2400]; LR: 0.00025; Losses [Rec1: 0.053108; Rec2: 0.052845; EE1: 0.127574; EE2: 0.093043; EE3: 0.086641; EE4: 0.053396]; Backprop: 0.7316 sec; Batch: 1.4649 sec
+Loss at each step:
+0.0715 0.0551 0.0520 0.0510 0.0505 0.0503 0.0502 0.0502 0.0501 0.0501 
+
+[TRAIN] Iter[2410]; LR: 0.00025; Losses [Rec1: 0.031916; Rec2: 0.033888; EE1: 0.074942; EE2: 0.054332; EE3: 0.053263; EE4: 0.033661]; Backprop: 0.4787 sec; Batch: 1.2398 sec
+[TRAIN] Iter[2420]; LR: 0.00025; Losses [Rec1: 0.024389; Rec2: 0.032533; EE1: 0.082477; EE2: 0.053567; EE3: 0.052658; EE4: 0.032610]; Backprop: 0.6304 sec; Batch: 1.4166 sec
+[TRAIN] Iter[2430]; LR: 0.00025; Losses [Rec1: 0.036377; Rec2: 0.038340; EE1: 0.102920; EE2: 0.065997; EE3: 0.063404; EE4: 0.038433]; Backprop: 0.5090 sec; Batch: 1.4785 sec
+[TRAIN] Iter[2440]; LR: 0.00025; Losses [Rec1: 0.040178; Rec2: 0.040613; EE1: 0.118505; EE2: 0.080656; EE3: 0.074782; EE4: 0.040975]; Backprop: 0.7911 sec; Batch: 1.5485 sec
+[TRAIN] Iter[2450]; LR: 0.00025; Losses [Rec1: 0.048615; Rec2: 0.047791; EE1: 0.117080; EE2: 0.085041; EE3: 0.082027; EE4: 0.048012]; Backprop: 0.6816 sec; Batch: 1.5662 sec
+[TRAIN] Iter[2460]; LR: 0.00025; Losses [Rec1: 0.046410; Rec2: 0.047173; EE1: 0.105648; EE2: 0.079818; EE3: 0.076157; EE4: 0.047747]; Backprop: 0.8029 sec; Batch: 1.5772 sec
+[TRAIN] Iter[2470]; LR: 0.00025; Losses [Rec1: 0.037542; Rec2: 0.038051; EE1: 0.099559; EE2: 0.070368; EE3: 0.067596; EE4: 0.038208]; Backprop: 0.7346 sec; Batch: 1.5692 sec
+[TRAIN] Iter[2480]; LR: 0.00025; Losses [Rec1: 0.047224; Rec2: 0.046754; EE1: 0.112330; EE2: 0.086126; EE3: 0.078519; EE4: 0.048212]; Backprop: 0.8145 sec; Batch: 1.6102 sec
+[TRAIN] Iter[2490]; LR: 0.00025; Losses [Rec1: 0.034674; Rec2: 0.035674; EE1: 0.100311; EE2: 0.068257; EE3: 0.062835; EE4: 0.035622]; Backprop: 0.7543 sec; Batch: 1.6711 sec
+[TRAIN] Iter[2500]; LR: 0.00025; Losses [Rec1: 0.032047; Rec2: 0.031174; EE1: 0.107893; EE2: 0.066400; EE3: 0.060820; EE4: 0.032086]; Backprop: 0.7246 sec; Batch: 1.6352 sec
+Loss at each step:
+0.0509 0.0347 0.0307 0.0298 0.0294 0.0292 0.0291 0.0290 0.0289 0.0288 
+
+[TRAIN] Iter[2510]; LR: 0.00025; Losses [Rec1: 0.037929; Rec2: 0.035680; EE1: 0.102279; EE2: 0.071824; EE3: 0.068682; EE4: 0.036086]; Backprop: 0.7492 sec; Batch: 1.5625 sec
+[TRAIN] Iter[2520]; LR: 0.00025; Losses [Rec1: 0.048119; Rec2: 0.043518; EE1: 0.104578; EE2: 0.070714; EE3: 0.065732; EE4: 0.043523]; Backprop: 0.5178 sec; Batch: 1.2518 sec
+[TRAIN] Iter[2530]; LR: 0.00025; Losses [Rec1: 0.037608; Rec2: 0.039594; EE1: 0.092511; EE2: 0.061601; EE3: 0.055132; EE4: 0.039489]; Backprop: 0.6645 sec; Batch: 1.5358 sec
+[TRAIN] Iter[2540]; LR: 0.00025; Losses [Rec1: 0.037769; Rec2: 0.038148; EE1: 0.096751; EE2: 0.074617; EE3: 0.073359; EE4: 0.038048]; Backprop: 0.2687 sec; Batch: 1.0150 sec
+[TRAIN] Iter[2550]; LR: 0.00025; Losses [Rec1: 0.044910; Rec2: 0.044575; EE1: 0.131086; EE2: 0.093863; EE3: 0.090133; EE4: 0.044742]; Backprop: 0.7239 sec; Batch: 1.5312 sec
+[TRAIN] Iter[2560]; LR: 0.00025; Losses [Rec1: 0.040243; Rec2: 0.043174; EE1: 0.102751; EE2: 0.070837; EE3: 0.067983; EE4: 0.043213]; Backprop: 0.5731 sec; Batch: 1.4291 sec
+[TRAIN] Iter[2570]; LR: 0.00025; Losses [Rec1: 0.034100; Rec2: 0.036546; EE1: 0.083913; EE2: 0.064161; EE3: 0.064173; EE4: 0.036642]; Backprop: 0.7434 sec; Batch: 1.4838 sec
+[TRAIN] Iter[2580]; LR: 0.00025; Losses [Rec1: 0.033839; Rec2: 0.035423; EE1: 0.089815; EE2: 0.067684; EE3: 0.063805; EE4: 0.035635]; Backprop: 0.6217 sec; Batch: 1.4625 sec
+[TRAIN] Iter[2590]; LR: 0.00025; Losses [Rec1: 0.036661; Rec2: 0.035474; EE1: 0.100756; EE2: 0.063265; EE3: 0.057714; EE4: 0.035496]; Backprop: 0.7652 sec; Batch: 1.6217 sec
+[TRAIN] Iter[2600]; LR: 0.00025; Losses [Rec1: 0.044291; Rec2: 0.046350; EE1: 0.123951; EE2: 0.090049; EE3: 0.083508; EE4: 0.047314]; Backprop: 0.6430 sec; Batch: 1.5304 sec
+Loss at each step:
+0.0650 0.0459 0.0430 0.0419 0.0415 0.0412 0.0412 0.0411 0.0411 0.0411 
+
+[TRAIN] Iter[2610]; LR: 0.00025; Losses [Rec1: 0.027731; Rec2: 0.028704; EE1: 0.086657; EE2: 0.052094; EE3: 0.047043; EE4: 0.029120]; Backprop: 0.7488 sec; Batch: 1.5604 sec
+[TRAIN] Iter[2620]; LR: 0.00025; Losses [Rec1: 0.048426; Rec2: 0.047724; EE1: 0.109982; EE2: 0.079609; EE3: 0.075180; EE4: 0.047894]; Backprop: 0.7635 sec; Batch: 1.6092 sec
+[TRAIN] Iter[2630]; LR: 0.00025; Losses [Rec1: 0.029401; Rec2: 0.031217; EE1: 0.090428; EE2: 0.060355; EE3: 0.056909; EE4: 0.031131]; Backprop: 0.6457 sec; Batch: 1.5743 sec
+[TRAIN] Iter[2640]; LR: 0.00025; Losses [Rec1: 0.028444; Rec2: 0.028560; EE1: 0.104755; EE2: 0.057349; EE3: 0.047757; EE4: 0.028354]; Backprop: 0.7907 sec; Batch: 1.6057 sec
+[TRAIN] Iter[2650]; LR: 0.00025; Losses [Rec1: 0.036930; Rec2: 0.039197; EE1: 0.085339; EE2: 0.055524; EE3: 0.053383; EE4: 0.039180]; Backprop: 0.4483 sec; Batch: 1.2225 sec
+[TRAIN] Iter[2660]; LR: 0.00025; Losses [Rec1: 0.033763; Rec2: 0.032679; EE1: 0.109921; EE2: 0.076925; EE3: 0.073117; EE4: 0.032930]; Backprop: 0.7541 sec; Batch: 1.4890 sec
+[TRAIN] Iter[2670]; LR: 0.00025; Losses [Rec1: 0.035942; Rec2: 0.035666; EE1: 0.094972; EE2: 0.068117; EE3: 0.064894; EE4: 0.035790]; Backprop: 0.7350 sec; Batch: 1.5364 sec
+[TRAIN] Iter[2680]; LR: 0.00025; Losses [Rec1: 0.028060; Rec2: 0.028368; EE1: 0.096672; EE2: 0.061728; EE3: 0.056565; EE4: 0.028421]; Backprop: 0.5565 sec; Batch: 1.3436 sec
+[TRAIN] Iter[2690]; LR: 0.00025; Losses [Rec1: 0.032807; Rec2: 0.033554; EE1: 0.098788; EE2: 0.066851; EE3: 0.063091; EE4: 0.033702]; Backprop: 0.2760 sec; Batch: 1.0143 sec
+[TRAIN] Iter[2700]; LR: 0.00025; Losses [Rec1: 0.034618; Rec2: 0.038945; EE1: 0.115028; EE2: 0.063462; EE3: 0.061399; EE4: 0.038949]; Backprop: 0.8137 sec; Batch: 1.6673 sec
+Loss at each step:
+0.0543 0.0355 0.0332 0.0325 0.0321 0.0318 0.0317 0.0317 0.0317 0.0317 
+
+[TRAIN] Iter[2710]; LR: 0.00025; Losses [Rec1: 0.036165; Rec2: 0.036419; EE1: 0.092285; EE2: 0.066464; EE3: 0.063183; EE4: 0.036589]; Backprop: 0.8968 sec; Batch: 1.6411 sec
+[TRAIN] Iter[2720]; LR: 0.00025; Losses [Rec1: 0.039391; Rec2: 0.037879; EE1: 0.102459; EE2: 0.077963; EE3: 0.075172; EE4: 0.038030]; Backprop: 0.6798 sec; Batch: 1.4287 sec
+[TRAIN] Iter[2730]; LR: 0.00025; Losses [Rec1: 0.025627; Rec2: 0.026146; EE1: 0.091026; EE2: 0.053348; EE3: 0.048897; EE4: 0.026488]; Backprop: 0.8393 sec; Batch: 1.6708 sec
+[TRAIN] Iter[2740]; LR: 0.00025; Losses [Rec1: 0.041034; Rec2: 0.042461; EE1: 0.095991; EE2: 0.069923; EE3: 0.069203; EE4: 0.042627]; Backprop: 0.6399 sec; Batch: 1.3852 sec
+[TRAIN] Iter[2750]; LR: 0.00025; Losses [Rec1: 0.036817; Rec2: 0.035770; EE1: 0.085638; EE2: 0.059447; EE3: 0.056083; EE4: 0.035710]; Backprop: 0.7469 sec; Batch: 1.6356 sec
+[TRAIN] Iter[2760]; LR: 0.00025; Losses [Rec1: 0.044621; Rec2: 0.044213; EE1: 0.112946; EE2: 0.086567; EE3: 0.082270; EE4: 0.044652]; Backprop: 0.5806 sec; Batch: 1.3181 sec
+[TRAIN] Iter[2770]; LR: 0.00025; Losses [Rec1: 0.046110; Rec2: 0.046098; EE1: 0.099859; EE2: 0.077307; EE3: 0.074979; EE4: 0.046161]; Backprop: 0.6430 sec; Batch: 1.4123 sec
+[TRAIN] Iter[2780]; LR: 0.00025; Losses [Rec1: 0.049726; Rec2: 0.050139; EE1: 0.120679; EE2: 0.094886; EE3: 0.089137; EE4: 0.050420]; Backprop: 0.6747 sec; Batch: 1.4579 sec
+[TRAIN] Iter[2790]; LR: 0.00025; Losses [Rec1: 0.032998; Rec2: 0.036339; EE1: 0.107169; EE2: 0.057434; EE3: 0.052888; EE4: 0.036576]; Backprop: 0.6401 sec; Batch: 1.5512 sec
+[TRAIN] Iter[2800]; LR: 0.00025; Losses [Rec1: 0.036912; Rec2: 0.037398; EE1: 0.087367; EE2: 0.065873; EE3: 0.063719; EE4: 0.038099]; Backprop: 0.6673 sec; Batch: 1.5469 sec
+Loss at each step:
+0.0529 0.0391 0.0365 0.0352 0.0346 0.0343 0.0342 0.0341 0.0341 0.0341 
+
+[TRAIN] Iter[2810]; LR: 0.00025; Losses [Rec1: 0.025364; Rec2: 0.028804; EE1: 0.078867; EE2: 0.054893; EE3: 0.051470; EE4: 0.028575]; Backprop: 0.6704 sec; Batch: 1.4280 sec
+[TRAIN] Iter[2820]; LR: 0.00025; Losses [Rec1: 0.044567; Rec2: 0.043860; EE1: 0.128392; EE2: 0.089842; EE3: 0.088954; EE4: 0.044474]; Backprop: 0.7600 sec; Batch: 1.5403 sec
+[TRAIN] Iter[2830]; LR: 0.00025; Losses [Rec1: 0.037272; Rec2: 0.035976; EE1: 0.095782; EE2: 0.067937; EE3: 0.065605; EE4: 0.036288]; Backprop: 0.5202 sec; Batch: 1.3626 sec
+[TRAIN] Iter[2840]; LR: 0.00025; Losses [Rec1: 0.042179; Rec2: 0.042421; EE1: 0.098945; EE2: 0.071785; EE3: 0.066636; EE4: 0.042223]; Backprop: 0.7394 sec; Batch: 1.5667 sec
+[TRAIN] Iter[2850]; LR: 0.00025; Losses [Rec1: 0.048700; Rec2: 0.047882; EE1: 0.120672; EE2: 0.083249; EE3: 0.075398; EE4: 0.049458]; Backprop: 0.7833 sec; Batch: 1.5752 sec
+[TRAIN] Iter[2860]; LR: 0.00025; Losses [Rec1: 0.033001; Rec2: 0.034550; EE1: 0.099973; EE2: 0.063962; EE3: 0.061798; EE4: 0.035193]; Backprop: 0.7005 sec; Batch: 1.5487 sec
+[TRAIN] Iter[2870]; LR: 0.00025; Losses [Rec1: 0.035791; Rec2: 0.035967; EE1: 0.104807; EE2: 0.079558; EE3: 0.077926; EE4: 0.035983]; Backprop: 0.6542 sec; Batch: 1.4972 sec
+[TRAIN] Iter[2880]; LR: 0.00025; Losses [Rec1: 0.048967; Rec2: 0.049447; EE1: 0.107828; EE2: 0.086121; EE3: 0.085655; EE4: 0.049628]; Backprop: 0.6611 sec; Batch: 1.4462 sec
+[TRAIN] Iter[2890]; LR: 0.00025; Losses [Rec1: 0.028951; Rec2: 0.030996; EE1: 0.092890; EE2: 0.058725; EE3: 0.052203; EE4: 0.030773]; Backprop: 0.7624 sec; Batch: 1.6656 sec
+[TRAIN] Iter[2900]; LR: 0.00025; Losses [Rec1: 0.040643; Rec2: 0.041597; EE1: 0.103110; EE2: 0.063393; EE3: 0.058208; EE4: 0.041510]; Backprop: 0.3633 sec; Batch: 1.2435 sec
+Loss at each step:
+0.0607 0.0433 0.0395 0.0384 0.0378 0.0376 0.0374 0.0373 0.0372 0.0372 
+
+[TRAIN] Iter[2910]; LR: 0.00025; Losses [Rec1: 0.037056; Rec2: 0.036813; EE1: 0.084787; EE2: 0.063779; EE3: 0.060396; EE4: 0.036888]; Backprop: 0.7083 sec; Batch: 1.4480 sec
+[TRAIN] Iter[2920]; LR: 0.00025; Losses [Rec1: 0.030471; Rec2: 0.031143; EE1: 0.088597; EE2: 0.064849; EE3: 0.061940; EE4: 0.030946]; Backprop: 0.7066 sec; Batch: 1.5029 sec
+[TRAIN] Iter[2930]; LR: 0.00025; Losses [Rec1: 0.041129; Rec2: 0.038913; EE1: 0.105732; EE2: 0.079255; EE3: 0.076236; EE4: 0.038693]; Backprop: 0.7863 sec; Batch: 1.6345 sec
+[TRAIN] Iter[2940]; LR: 0.00025; Losses [Rec1: 0.037257; Rec2: 0.036291; EE1: 0.098469; EE2: 0.069594; EE3: 0.065471; EE4: 0.036627]; Backprop: 0.5815 sec; Batch: 1.3241 sec
+[TRAIN] Iter[2950]; LR: 0.00025; Losses [Rec1: 0.030524; Rec2: 0.030212; EE1: 0.093594; EE2: 0.053603; EE3: 0.051646; EE4: 0.030302]; Backprop: 0.6506 sec; Batch: 1.4329 sec
+[TRAIN] Iter[2960]; LR: 0.00025; Losses [Rec1: 0.040110; Rec2: 0.039390; EE1: 0.101823; EE2: 0.067500; EE3: 0.062570; EE4: 0.039513]; Backprop: 0.6382 sec; Batch: 1.4286 sec
+[TRAIN] Iter[2970]; LR: 0.00025; Losses [Rec1: 0.031738; Rec2: 0.031626; EE1: 0.082325; EE2: 0.061377; EE3: 0.057346; EE4: 0.032001]; Backprop: 0.6714 sec; Batch: 1.4424 sec
+[TRAIN] Iter[2980]; LR: 0.00025; Losses [Rec1: 0.044182; Rec2: 0.045996; EE1: 0.107105; EE2: 0.077298; EE3: 0.074757; EE4: 0.046143]; Backprop: 0.7600 sec; Batch: 1.5185 sec
+[TRAIN] Iter[2990]; LR: 0.00025; Losses [Rec1: 0.042034; Rec2: 0.043551; EE1: 0.089266; EE2: 0.075913; EE3: 0.075152; EE4: 0.043596]; Backprop: 0.7425 sec; Batch: 1.4770 sec
+[TRAIN] Iter[3000]; LR: 0.00025; Losses [Rec1: 0.029728; Rec2: 0.029808; EE1: 0.081367; EE2: 0.051350; EE3: 0.049026; EE4: 0.030061]; Backprop: 0.8816 sec; Batch: 1.7483 sec
+Loss at each step:
+0.0439 0.0306 0.0285 0.0280 0.0278 0.0277 0.0277 0.0277 0.0277 0.0277 
+
+[TRAIN] Iter[3010]; LR: 0.00025; Losses [Rec1: 0.031755; Rec2: 0.034265; EE1: 0.079698; EE2: 0.054105; EE3: 0.052435; EE4: 0.034608]; Backprop: 0.8179 sec; Batch: 1.6620 sec
+[TRAIN] Iter[3020]; LR: 0.00025; Losses [Rec1: 0.037458; Rec2: 0.037767; EE1: 0.088911; EE2: 0.064632; EE3: 0.063193; EE4: 0.037909]; Backprop: 0.5272 sec; Batch: 1.3460 sec
+[TRAIN] Iter[3030]; LR: 0.00025; Losses [Rec1: 0.033110; Rec2: 0.033460; EE1: 0.090447; EE2: 0.065251; EE3: 0.062807; EE4: 0.033056]; Backprop: 0.7249 sec; Batch: 1.4724 sec
+[TRAIN] Iter[3040]; LR: 0.00025; Losses [Rec1: 0.039687; Rec2: 0.039692; EE1: 0.107456; EE2: 0.072039; EE3: 0.068026; EE4: 0.039799]; Backprop: 0.4086 sec; Batch: 1.2262 sec
+[TRAIN] Iter[3050]; LR: 0.00025; Losses [Rec1: 0.043766; Rec2: 0.044397; EE1: 0.103676; EE2: 0.077993; EE3: 0.074702; EE4: 0.044591]; Backprop: 0.7650 sec; Batch: 1.5294 sec
+[TRAIN] Iter[3060]; LR: 0.00025; Losses [Rec1: 0.039908; Rec2: 0.038697; EE1: 0.091017; EE2: 0.063777; EE3: 0.061805; EE4: 0.039381]; Backprop: 0.6644 sec; Batch: 1.6121 sec
+[TRAIN] Iter[3070]; LR: 0.00025; Losses [Rec1: 0.028337; Rec2: 0.026232; EE1: 0.086138; EE2: 0.058936; EE3: 0.054725; EE4: 0.026496]; Backprop: 0.7934 sec; Batch: 1.5451 sec
+[TRAIN] Iter[3080]; LR: 0.00025; Losses [Rec1: 0.037722; Rec2: 0.041056; EE1: 0.085221; EE2: 0.057154; EE3: 0.055738; EE4: 0.041023]; Backprop: 0.6276 sec; Batch: 1.5400 sec
+[TRAIN] Iter[3090]; LR: 0.00025; Losses [Rec1: 0.038883; Rec2: 0.038170; EE1: 0.100363; EE2: 0.071277; EE3: 0.066928; EE4: 0.038441]; Backprop: 0.7693 sec; Batch: 1.5624 sec
+[TRAIN] Iter[3100]; LR: 0.00025; Losses [Rec1: 0.030700; Rec2: 0.032525; EE1: 0.085017; EE2: 0.056012; EE3: 0.054525; EE4: 0.032785]; Backprop: 0.6638 sec; Batch: 1.5166 sec
+Loss at each step:
+0.0465 0.0326 0.0298 0.0289 0.0286 0.0283 0.0282 0.0281 0.0280 0.0280 
+
+[TRAIN] Iter[3110]; LR: 0.00025; Losses [Rec1: 0.040759; Rec2: 0.040004; EE1: 0.102552; EE2: 0.069609; EE3: 0.065653; EE4: 0.040647]; Backprop: 0.6831 sec; Batch: 1.4552 sec
+[TRAIN] Iter[3120]; LR: 0.00025; Losses [Rec1: 0.047048; Rec2: 0.045889; EE1: 0.099627; EE2: 0.077073; EE3: 0.074111; EE4: 0.046408]; Backprop: 0.7706 sec; Batch: 1.5380 sec
+[TRAIN] Iter[3130]; LR: 0.00025; Losses [Rec1: 0.038110; Rec2: 0.039376; EE1: 0.093373; EE2: 0.065499; EE3: 0.063343; EE4: 0.039372]; Backprop: 0.2715 sec; Batch: 1.0295 sec
+[TRAIN] Iter[3140]; LR: 0.00025; Losses [Rec1: 0.037810; Rec2: 0.038696; EE1: 0.096546; EE2: 0.063111; EE3: 0.059756; EE4: 0.038607]; Backprop: 0.6467 sec; Batch: 1.3937 sec
+[TRAIN] Iter[3150]; LR: 0.00025; Losses [Rec1: 0.031813; Rec2: 0.032397; EE1: 0.101295; EE2: 0.066920; EE3: 0.061883; EE4: 0.032686]; Backprop: 0.7704 sec; Batch: 1.5168 sec
+[TRAIN] Iter[3160]; LR: 0.00025; Losses [Rec1: 0.034172; Rec2: 0.036702; EE1: 0.106835; EE2: 0.070654; EE3: 0.065283; EE4: 0.037057]; Backprop: 0.6724 sec; Batch: 1.4222 sec
+[TRAIN] Iter[3170]; LR: 0.00025; Losses [Rec1: 0.034113; Rec2: 0.039720; EE1: 0.099549; EE2: 0.074423; EE3: 0.073763; EE4: 0.039742]; Backprop: 0.6021 sec; Batch: 1.3473 sec
+[TRAIN] Iter[3180]; LR: 0.00025; Losses [Rec1: 0.037161; Rec2: 0.037485; EE1: 0.110760; EE2: 0.086363; EE3: 0.083958; EE4: 0.037754]; Backprop: 0.8637 sec; Batch: 1.8084 sec
+[TRAIN] Iter[3190]; LR: 0.00025; Losses [Rec1: 0.031066; Rec2: 0.034137; EE1: 0.081690; EE2: 0.059910; EE3: 0.057523; EE4: 0.034215]; Backprop: 0.7542 sec; Batch: 1.5269 sec
+[TRAIN] Iter[3200]; LR: 0.00025; Losses [Rec1: 0.034972; Rec2: 0.035204; EE1: 0.078373; EE2: 0.053226; EE3: 0.050701; EE4: 0.035038]; Backprop: 0.5935 sec; Batch: 1.3544 sec
+Loss at each step:
+0.0513 0.0377 0.0345 0.0333 0.0327 0.0324 0.0321 0.0320 0.0319 0.0318 
+
+[TRAIN] Iter[3210]; LR: 0.00025; Losses [Rec1: 0.034084; Rec2: 0.035597; EE1: 0.092633; EE2: 0.066160; EE3: 0.063513; EE4: 0.035825]; Backprop: 0.7237 sec; Batch: 1.5619 sec
+[TRAIN] Iter[3220]; LR: 0.00025; Losses [Rec1: 0.030389; Rec2: 0.031661; EE1: 0.087588; EE2: 0.060348; EE3: 0.057354; EE4: 0.031837]; Backprop: 0.5889 sec; Batch: 1.4387 sec
+[TRAIN] Iter[3230]; LR: 0.00025; Losses [Rec1: 0.029009; Rec2: 0.031250; EE1: 0.085787; EE2: 0.063331; EE3: 0.059278; EE4: 0.031023]; Backprop: 0.8639 sec; Batch: 1.7170 sec
+[TRAIN] Iter[3240]; LR: 0.00025; Losses [Rec1: 0.038337; Rec2: 0.039639; EE1: 0.102742; EE2: 0.075776; EE3: 0.073405; EE4: 0.040052]; Backprop: 0.6760 sec; Batch: 1.4304 sec
+[TRAIN] Iter[3250]; LR: 0.00025; Losses [Rec1: 0.039436; Rec2: 0.041715; EE1: 0.111943; EE2: 0.087510; EE3: 0.083105; EE4: 0.042051]; Backprop: 0.7594 sec; Batch: 1.5379 sec
+[TRAIN] Iter[3260]; LR: 0.00025; Losses [Rec1: 0.036135; Rec2: 0.037260; EE1: 0.090422; EE2: 0.065498; EE3: 0.062501; EE4: 0.037945]; Backprop: 0.6323 sec; Batch: 1.3809 sec
+[TRAIN] Iter[3270]; LR: 0.00025; Losses [Rec1: 0.029988; Rec2: 0.035002; EE1: 0.089896; EE2: 0.057989; EE3: 0.051986; EE4: 0.035452]; Backprop: 0.8936 sec; Batch: 1.7933 sec
+[TRAIN] Iter[3280]; LR: 0.00025; Losses [Rec1: 0.032060; Rec2: 0.037628; EE1: 0.092274; EE2: 0.062697; EE3: 0.058776; EE4: 0.038006]; Backprop: 0.6794 sec; Batch: 1.4580 sec
+[TRAIN] Iter[3290]; LR: 0.00025; Losses [Rec1: 0.036830; Rec2: 0.044704; EE1: 0.109209; EE2: 0.071413; EE3: 0.067253; EE4: 0.044817]; Backprop: 0.7269 sec; Batch: 1.4771 sec
+[TRAIN] Iter[3300]; LR: 0.00025; Losses [Rec1: 0.030350; Rec2: 0.032123; EE1: 0.081661; EE2: 0.065911; EE3: 0.066704; EE4: 0.032229]; Backprop: 0.6011 sec; Batch: 1.3419 sec
+Loss at each step:
+0.0416 0.0324 0.0300 0.0292 0.0288 0.0285 0.0284 0.0283 0.0282 0.0282 
+
+[TRAIN] Iter[3310]; LR: 0.00025; Losses [Rec1: 0.043922; Rec2: 0.046824; EE1: 0.124497; EE2: 0.092745; EE3: 0.088720; EE4: 0.046371]; Backprop: 0.6628 sec; Batch: 1.5185 sec
+./train.sh: line 59: 34880 Terminated              python -u train.py --train ${train} --eval ${eval} --train-mv ${train_mv} --eval-mv ${eval_mv} --encoder-fuse-level ${encoder_fuse_level} --decoder-fuse-level ${decoder_fuse_level} --v-compress --warp --stack --fuse-encoder --bits ${bits} --distance1 ${distance1} --distance2 ${distance2} --max-train-iters 20000 --checkpoint-iters 5000 --eval-iters 4000 --model-dir "model" --batch-size 8 --schedule "10000,12000,14000,16000,18000"
