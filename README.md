@@ -1,4 +1,4 @@
-Swift: Adaptive Video Streaming with Layered Neural Codecs
+Adaptive Video Streaming with Layered Neural Codecs
 ==========================================================
 
 [Mallesham Dasari](), [Kumara Kahatapitiya](), [Samir R. Das](), [Aruna Balasubramanian](), [Dimitris Samaras](). <br />
