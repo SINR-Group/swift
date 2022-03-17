@@ -1,0 +1,89 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+name        => "CAVLC",
+original    => "BUS_352x288_30.yuv",
+width       => 352,
+height      => 288,
+framerate   => 30,
+nbframes    => 30,
+verbosemode => 1,	
+phasemode   => 1,
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+runencode   => 1,
+
+#=======================#
+# Layers  parameters    #
+#=======================#     
+layers      => [
+                #----------#
+                # Layer  0 #
+                #----------#
+                {
+                 width        => 176,
+                 height       => 144,
+                 framerate    =>  15,
+                },
+                #----------#
+                # Layer  1 #
+                #----------#
+                {
+                 width        => 352,
+                 height       => 288,
+                 framerate    =>  30,
+                },
+               ],
+   
+#==========================================================#
+#          Extracting +Decoding parameters  (i.e Tests )   #
+#==========================================================#  
+bitratecheckrange  => 1,
+psnrcheckrange     => 0,
+         
+tests              => [
+                       #----------#
+                       # Test   0 #
+                       #----------#
+                       {
+                        name        => "L0",
+                        mode        => 1,
+                        width       => 176,
+                        height      => 144,
+                        framerate   => 15,
+                        bitrate     => 116,
+                        psnr        => 30.24,
+                        encdecmatch => 1,
+                       },
+                       #----------#
+                       # Test   1 #
+                       #----------#
+                       {
+                        name        => "L1",
+                        mode        => 1,
+                        width       => 352,
+                        height      => 288,
+                        framerate   => 30,
+                        bitrate     => 330,
+                        psnr        => 27.58,
+                        encdecmatch => 1,
+                       },
+                       #----------#
+                       # Test   2 #
+                       #----------#
+                       {
+                        name        => "Temp Base",
+                        mode        => 1,
+                        width       => 352,
+                        height      => 288,
+                        framerate   => 3.75,
+                        bitrate     => 174,
+                        psnr        => 28.35,
+                        encdecmatch => 0,
+                       },
+                      ],
+}
+

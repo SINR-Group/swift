@@ -1,0 +1,74 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+    name 	=> "MGSFragSlice",
+    original 	=> "BUS_352x288_30.yuv",
+    width      	=> 352,
+    height     	=> 288,
+    framerate 	=> 30,
+    nbframes	=> 60,
+    verbosemode => 1,	
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+    runencode	=> 1,
+
+#=======================#
+# Layers  parameters    
+#=======================#     
+    layers       => [
+                      #----------#
+                      # Layer  0 #
+                      #----------#
+                       {
+                        width        => 176,
+                  	height       => 144,
+                  	framerate    =>  15,
+       			},
+                      #----------#
+                      # Layer  1 #
+                      #----------#
+                       {
+                        width        => 176,
+                  	height       => 144,
+                  	framerate    =>  15,
+       			},
+             ],
+   
+#==========================================================#
+#          Extracting +Decoding parameters  (i.e Tests )   #
+#==========================================================#  
+      bitratecheckrange  => 1.,
+      psnrcheckrange     => 0.,
+	
+
+      tests      => [
+                      #----------#
+                      # Test   0 #
+                      #----------#
+                      {
+            		        name => "L0",
+            		        mode => 1,
+            		        width => 176,
+            		        height => 144,
+            		        framerate => 15,
+            		        bitrate => 95,
+            		        psnr => 29.59,
+       		      },
+                      #----------#
+                      # Test   1 #
+                      #----------#
+                      {
+            		        name => "L2",
+            		        mode => 1,
+            		        width => 176,
+            		        height => 144,
+            		        framerate => 15,
+            		        bitrate => 224,
+            		        psnr => 33.58,
+            		        encdecmatch => 1,
+       		      },
+		  ],
+}

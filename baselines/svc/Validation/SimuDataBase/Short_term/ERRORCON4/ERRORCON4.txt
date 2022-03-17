@@ -1,0 +1,135 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+name 	      => "ERRORCON4",
+original 	  => "BUS_352x288_30.yuv",
+width       => 352,
+height      => 288,
+framerate   => 15,
+nbframes    => 100,
+verbosemode => 1,	
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+runencode	      => 1,
+
+packetlossrate	=> 3,
+
+#=======================#
+# Layers  parameters    #
+#=======================#     
+layers      => [
+                #----------#
+                # Layer  0 #
+                #----------#
+                {
+                 width        => 176,
+                 height       => 144,
+                 framerate    =>  15,
+                },
+                #----------#
+                # Layer  1 #
+                #----------#
+                {
+                 width        => 352,
+                 height       => 288,
+                 framerate    =>  15,
+                },
+               ],
+   
+#==========================================================#
+#          Extracting +Decoding parameters  (i.e Tests )   #
+#==========================================================#  
+bitratecheckrange  => 1,
+psnrcheckrange     => 0,
+         
+tests              => [
+                       #----------#
+                       # Test   0 #
+                       #----------#
+                       {
+            		        name => "E1",
+                        mode        => 1,
+                        width       => 352,
+                        height      => 288,
+                        framerate   => 15,
+			                  bitrate     => 571,
+		                  	psnr        => 12.43,
+		                  	packetlossrate	=> 5,
+                        errorconcealment => 1,
+                       },
+                       #----------#
+                       # Test   0_1 #
+                       #----------#
+                       {
+            		        name => "E1_baseLayer",
+                        mode        => 1,
+                        width       => 176,
+                        height      => 144,
+                        framerate   => 15,
+  		                	bitrate     => 119.6256,
+  		                  psnr        => 14.7807,
+  		                  packetlossrate	=> 10,
+                        errorconcealment => 1,
+                        },
+                       #----------#
+                       # Test   1 #
+                       #----------#
+                       {
+            		        name        => "E2",
+                        mode        => 1,
+                        width       => 352,
+                        height      => 288,
+                        framerate   => 15,
+                  			bitrate     => 571,
+                  			psnr        => 12.14,
+                  			packetlossrate	=> 5,
+                        errorconcealment => 2,
+                       }, 
+                       #----------#
+                       # Test 1_1 #
+                       #----------#
+                       {
+            		        name => "E2_baseLayer",
+                        mode        => 1,
+                        width       => 176,
+                        height      => 144,
+                        framerate   => 15,
+                  			bitrate     => 119.6256,
+                  			psnr        => 14.7807,
+                  			packetlossrate	=> 10,
+                        errorconcealment => 2,
+                       },                                             
+                       #----------#
+                       # Test   3 #
+                       #----------#
+                       {
+            		        name => "E3",
+                        mode        => 1,
+                        width       => 352,
+                        height      => 288,
+                        framerate   => 15,
+                  			bitrate     => 571,
+                  			psnr        => 12.14,
+                  			packetlossrate	=> 5,
+                        errorconcealment => 3,
+                       },   
+                       #----------#
+                       # Test   3_1 #
+                       #----------#
+                       {
+            	        	name => "E3_baseLayer",
+                        mode        => 1,
+                        width       => 176,
+                        height      => 144,
+                        framerate   => 15,
+                  			bitrate     => 119.6256,
+                  			psnr        => 14.7807,
+                  			packetlossrate	=> 10,
+                        errorconcealment => 3,
+                       },                                                                      
+                      ],
+}
+

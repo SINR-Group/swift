@@ -1,0 +1,187 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+    name 	=> "T1",
+    original 	=> "BUS_352x288_30.yuv",
+    width      	=> 352,
+    height     	=> 288,
+    framerate 	=> 30,
+    nbframes	=> 100,
+    verbosemode => 1,	
+    phasemode   => 1,
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+    runencode	=> 1,
+    singleloopflag => "-bcip",
+
+#=======================#
+# Layers  parameters    
+#=======================#     
+    layers       => [
+                      #----------#
+                      # Layer  0 #
+                      #----------#
+                       {
+                         width        => 176,
+                  			 height       => 144,
+                  			 framerate    =>  15,
+                  			 bitrate      => 256,
+                  			 bitrateDS    => 0 ,
+		                   },
+		                  #----------#
+                      # Layer  1 #
+                      #----------#
+          		        {
+			width        => 352,
+                  			 height       => 288,
+                  			 framerate    =>  30,
+                  			 bitrate     =>0,
+                  			 bitrateDS   =>0,
+          		         },
+		                  #----------#
+                      # Layer  2 #
+                      #----------#
+            		      {
+			width        => 352,
+                  			 height       => 288,
+                  			 framerate    =>  30,
+                  			 bitrate    =>1536,
+                  			 bitrateDS  =>0,
+            		      }		   
+   		              ],
+   
+#==========================================================#
+#          Extracting +Decoding parameters  (i.e Tests )   #
+#==========================================================#  
+      bitratecheckrange  => 1.,
+      psnrcheckrange     => 0.,
+	
+
+      tests      => [
+		                  #----------#
+                      # Test   0 #
+                      #----------#
+                      {
+            		        name => "Basic",
+            		        mode => 0,
+            		        width => 352,
+            		        height => 288,
+            		        framerate => 30,
+            		        bitrate => 0,
+            		        psnr => 31.87,
+            		      },
+            		      #----------#
+                      # Test   1 #
+                      #----------#
+            		      {
+            		        name => "Basic-Ext",
+            	          mode => 1,
+            		        width => 352,
+            		        height => 288,
+            		        framerate => 30,
+            		        bitrate => 412,
+            		        psnr => 29.01,
+            		      },
+    		              #----------#
+                      # Test   2 #
+                      #----------#
+    		              {
+            		        name => "SNR",
+            	          mode => 1,
+            		        width => 352,
+            		        height => 288,
+            		        framerate => 30,
+            		        bitrate => 658,
+            		        psnr => 30.39,
+            		      },
+		                  #----------#
+                      # Test   3 #
+                      #----------#
+                      {
+            		        name => "SNR2",
+            	          mode => 1,
+            		        width => 352,
+            		        height => 288,
+            		        framerate => 30,
+            		        bitrate => 708,
+            		        psnr => 30.80,
+            		      },
+            		      #----------#
+                      # Test   4 #
+                      #----------#
+                      {
+            		        name => "SNR3",
+            	          mode => 1,
+            		        width => 352,
+            		        height => 288,
+            		        framerate => 30,
+            		        bitrate => 755,
+            		        psnr => 31.10,
+            		      },
+            		      #----------#
+                      # Test   5 #
+                      #----------#
+                      {
+            		        name => "Spatial",
+            	          mode => 1,
+            		        width => 176,
+            		        height => 144,
+            		        framerate => 15,
+            		        bitrate => 0,
+            		        psnr => 29.70,
+            		      },
+            		      #----------#
+                      # Test   6 #
+                      #----------#
+                      {
+            		        name => "Temporal",
+            	          mode => 1,
+            		        width => 352,
+            		        height => 288,
+            		        framerate => 15,
+            		        bitrate => 0,
+            		        psnr => 32.58,
+            		      },
+            		      #----------#
+                      # Test   7 #
+                      #----------#
+                      {
+            		        name => "SNR4",
+            	          mode => 1,
+            		        width => 352,
+            		        height => 288,
+            		        framerate => 30,
+            		        bitrate => 890,
+            		        psnr => 31.87,
+            		      },
+            		      #----------#
+                      # Test   8 #
+                      #----------#
+                      {
+            		        name => "SNR - ",
+            	          mode => 3,
+            		        width => 352,
+            		        height => 288,
+            		        framerate => 30,
+            		        bitrate => 858*0.8,
+            		        psnr => 0,
+            		      },
+            		      #----------#
+                      # Test   9 #
+                      #----------#
+                      {
+            		        name => "Temporal2",
+            	          mode => 1,
+            		        width => 352,
+            		        height => 288,
+            		        framerate => 15,
+            		        bitrate => 0,
+            		        psnr => 31.03,
+          		       },
+		  ],
+}
+
+

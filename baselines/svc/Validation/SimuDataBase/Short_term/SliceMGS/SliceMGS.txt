@@ -1,0 +1,105 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+name 	=> "SliceMGS",
+original 	=> "BUS_352x288_30.yuv",
+width       => 352,
+height      => 288,
+framerate   => 30,
+nbframes    => 50,
+verbosemode => 1,	
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+runencode	     => 1,
+
+#=======================#
+# Layers  parameters    #
+#=======================#     
+layers      => [
+                #----------#
+                # Layer  0 #
+                #----------#
+                {
+                 width        => 352,
+                 height       => 288,
+                 framerate    =>  30,
+                },
+                #----------#
+                # Layer  1 #
+                #----------#
+                {
+                 width        => 352,
+                 height       => 288,
+                 framerate    =>  30,
+                },
+                #----------#
+                # Layer  2 #
+                #----------#
+                {
+                 width        => 352,
+                 height       => 288,
+                 framerate    =>  30,
+                },
+               ],
+   
+#==========================================================#
+#          Extracting +Decoding parameters  (i.e Tests )   #
+#==========================================================#  
+bitratecheckrange  => 1,
+psnrcheckrange     => 0.0,     
+tests              => [
+                       #----------#
+                       #   Test 0  #
+                       #----------#
+                       {
+            		name => "L0",
+                        mode        => 1,
+                        width       => 352,
+                        height      => 288,
+                        framerate   => 30,
+                  	bitrate     => 669,
+                  	psnr        => 30.86,
+                       },                                                                  
+                       #----------#
+                       #   Test 1  #
+                       #----------#
+                       {
+            		name => "L1",
+                        mode        => 1,
+                        width       => 352,
+                        height      => 288,
+                        framerate   => 30,
+                  	bitrate     => 1653,
+                  	psnr        => 35.79,
+                       },                                                                  
+                       #----------#
+                       #   Test 2  #
+                       #----------#
+                       {
+            		name => "L2",
+                        mode        => 1,
+                        width       => 352,
+                        height      => 288,
+                        framerate   => 30,
+                  	bitrate     => 2683,
+                  	psnr        => 38.30,
+            		encdecmatch => 1,
+                       },                                                                  
+                       #----------#
+                       #   Test 3  #
+                       #----------#
+                       {
+            		name => "LX",
+                        mode        => 1,
+                        width       => 352,
+                        height      => 288,
+                        framerate   => 30,
+                  	bitrate     => 1928,
+            		psnr        => 36.17,
+			},
+                      ],
+}
+

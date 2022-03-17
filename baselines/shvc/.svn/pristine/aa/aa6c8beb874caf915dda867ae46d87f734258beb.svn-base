@@ -1,0 +1,25 @@
+FrameSkip                     : 0           # Number of frames to be skipped in input
+FramesToBeEncoded             : 500         # Number of frames to be coded
+PhaseAlignment                : 0           # Sample location alignment between layers (0: zero position aligned, 1: central position aligned)
+Level                         : 4.1
+
+#======== File I/O ===============
+InputFile0                    : Cactus_1920x1080_50.yuv
+FrameRate0                    : 50          # Frame Rate per second
+InputBitDepth0                : 8           # Input bitdepth for layer 0
+SourceWidth0                  : 1920        # Input  frame width
+SourceHeight0                 : 1080        # Input  frame height
+RepFormatIdx0                 : 0           # Index of corresponding rep_format() in the VPS
+IntraPeriod0                  : 48          # Period of I-Frame ( -1 = only first)
+ConformanceMode0              : 1           # conformance mode
+QP0                           : 22
+
+InputFile1                    : Cactus_1920x1080_50.yuv
+FrameRate1                    : 50          # Frame Rate per second
+InputBitDepth1                : 8           # Input bitdepth for layer 1
+SourceWidth1                  : 1920        # Input  frame width
+SourceHeight1                 : 1080        # Input  frame height
+RepFormatIdx1                 : 0           # Index of corresponding rep_format() in the VPS
+IntraPeriod1                  : 48          # Period of I-Frame ( -1 = only first)
+ConformanceMode1              : 1           # conformance mode
+QP1                           : 20

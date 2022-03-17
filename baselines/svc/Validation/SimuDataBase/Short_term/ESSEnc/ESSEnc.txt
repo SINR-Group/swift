@@ -1,0 +1,79 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+name              => "ESSEnc",
+original          => "FOOTBALL_352x288_30.yuv",
+originalwidth     => 352,
+originalheight    => 288,
+originalframerate => 30,
+width             => 352,
+height            => 288,
+framerate         => 15,
+nbframes          => 19,
+verbosemode       => 1,	
+phasemode         => 1,
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+runencode      => 1,
+
+#=======================#
+# Layers  parameters    #
+#=======================#     
+layers      => [
+                #----------#
+                # Layer  0 #
+                #----------#
+                {
+                 width        => 320,
+                 height       => 240,
+                 framerate    =>  15,
+                },
+                #----------#
+                # Layer  1 #
+                #----------#
+                {
+                 width        => 352,
+                 height       => 288,
+                 framerate    =>  15,
+                },
+               ],
+   
+#==========================================================#
+#          Extracting +Decoding parameters  (i.e Tests )   #
+#==========================================================#  
+bitratecheckrange  => 1,
+psnrcheckrange     => 0,
+         
+tests              => [
+                       #----------#
+                       # Test   0 #
+                       #----------#
+                       {
+                        name        => "L0",
+                        mode        => 1,
+                        width       => 320,
+                        height      => 240,
+                        framerate   => 15,
+                        bitrate     => 528,
+                        psnr        => 31.57,
+                        encdecmatch => 0,
+                       },
+                       #----------#
+                       # Test   1 #
+                       #----------#
+                       {
+                        name        => "L1",
+                        mode        => 1,
+                        width       => 352,
+                        height      => 288,
+                        framerate   => 15,
+                        bitrate     => 837,
+                        psnr        => 31.62,
+                        encdecmatch => 1,
+                       },                      
+                      ],
+}
+

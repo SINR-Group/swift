@@ -1,0 +1,144 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+    name 	   => "6.6.7",
+    verbosemode    => 1,	
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+    runencode	=> 0,
+    
+
+#=======================#
+# Layers  parameters    
+#=======================#     
+    layers       => [
+                    ],
+   
+#==========================================================#
+#          Extracting + Decoding parameters  (i.e Tests )  #
+#==========================================================#  
+      tests      => [
+		                  #----------#
+                      # Test   6.6.7.1 #
+                      #----------#
+                      {
+            		        name   => "AVCMA-1",
+            		        mode   => 0,
+            		        width  => 352,
+            		        height => 288,
+            		        bitstreamname => "CVMANL1_TOSHIBA_B.264",
+            		        decodedname   => "CVMANL1_TOSHIBA_B_352x288.yuv",
+            		        origname      => "CVMANL1_TOSHIBA_B_dec.yuv",
+            		        psnr => 99.99,
+            		      },
+            		      #----------#
+                      # Test   6.6.7.2 #
+                      #----------#
+            		      {
+            		        name => "AVCMA-2",
+            		        mode => 0,
+            		        width  => 352,
+            		        height => 288,
+            		        bitstreamname => "CVMANL2_TOSHIBA_B.264",
+            		        decodedname   => "CVMANL2_TOSHIBA_B_352x288.yuv", 
+            		        origname      => "CVMANL2_TOSHIBA_B_dec.yuv",
+            		        psnr => 99.99,
+            		      },
+		                  #----------#
+                      # Test   6.6.7.3 #
+                      #----------#
+                      {
+            		        name   => "AVCMA-3",
+            		        mode   => 0,
+            		        width  => 720,
+            		        height => 480,
+            		        bitstreamname => "CVMA1_Sony_D.jsv",
+            		        decodedname   => "CVMA1_Sony_D_720x480.yuv",
+            		        origname      => "CVMA1_Sony_D.yuv",
+            		        psnr => 99.99,
+            		      },
+		                  #----------#
+                      # Test   6.6.7.4 #
+                      #----------#
+                      {
+            		        name   => "AVCMA-4",
+            		        mode   => 0,
+            		        width  => 352,
+            		        height => 288,
+            		        bitstreamname => "CVMA1_TOSHIBA_B.264",
+            		        decodedname   => "CVMA1_TOSHIBA_B_352x288.yuv",
+            		        origname      => "CVMA1_TOSHIBA_B_dec.yuv",
+            		        psnr => 99.99,
+            		      },
+            		      #----------#
+                      # Test   6.6.7.5 #
+                      #----------#
+                      {
+            		        name   => "AVCMA-5",
+            		        mode   => 0,
+            		        width  => 192,
+            		        height => 128,
+            		        bitstreamname => "CVMAQP2_Sony_G.jsv",
+            		        decodedname   => "CVMAQP2_Sony_G_192x128.yuv",
+            		        origname      => "CVMAQP2_Sony_G.yuv",
+            		        psnr => 99.99,
+            		      },
+            		      #----------#
+                      # Test   6.6.7.6 #
+                      #----------#
+                      {
+            		        name   => "AVCMA-6",
+            		        mode   => 0,
+            		        width  => 192,
+            		        height => 128,
+            		        bitstreamname => "CVMAQP3_Sony_D.jsv ",
+            		        decodedname   => "CVMAQP3_Sony_D_192x128.yuv",
+            		        origname      => "CVMAQP3_Sony_D.yuv",
+            		        psnr => 99.99,
+            		      },
+            		      #----------#
+                      # Test   6.6.7.7 #
+                      #----------#
+                      {
+            		        name   => "AVCMA-7",
+            		        mode   => 0,
+            		        width  => 720,
+            		        height => 480,
+            		        bitstreamname => "CVMAPAQP3_Sony_E.jsv",
+            		        decodedname   => "CVMAPAQP3_Sony_E_720x480.yuv",
+            		        origname      => "CVMAPAQP3_Sony_E.yuv",
+            		        psnr => 99.99,
+            		      },
+            		      #----------#
+                      # Test   6.6.7.8 #
+                      #----------#
+                      {
+            		        name   => "AVCMA-8",
+            		        mode   => 0,
+            		        width  => 720,
+            		        height => 480,
+            		        bitstreamname => "cvmp_mot_mbaff0_full_B.26l",
+            		        decodedname   => "cvmp_mot_mbaff0_full_B_720x480.yuv",
+            		        origname      => "cvmp_mot_mbaff0_full_B_rec.yuv",
+            		        psnr => 99.99,
+            		      },
+            		      #----------#
+                      # Test   6.6.7.9 #
+                      #----------#
+                      {
+            		        name   => "AVCMA-9",
+            		        mode   => 0,
+            		        width  => 720,
+            		        height => 480,
+            		        bitstreamname => "CVMP_MOT_FRM_L31_B.26l",
+            		        decodedname   => "CVMP_MOT_FRM_L31_B_720x480.yuv",
+            		        origname      => "CVMP_MOT_FRM_L31_B_rec.yuv",
+            		        psnr => 99.99,
+          		        },
+		    		    ],
+}
+
+

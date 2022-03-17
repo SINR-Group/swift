@@ -1,0 +1,79 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+    name 	   => "6.6.4",
+    verbosemode    => 1,	
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+    runencode	=> 0,
+    
+
+#=======================#
+# Layers  parameters    
+#=======================#     
+    layers       => [
+                    ],
+   
+#==========================================================#
+#          Extracting + Decoding parameters  (i.e Tests )  #
+#==========================================================#  
+      tests      => [
+		      #----------------#
+                      # Test  6.6.4.1  #
+                      #----------------#
+                      {
+          	        name          => "AVCWP-1",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "CVWP5_TOSHIBA_E.264",
+          	        decodedname   => "CVWP5_TOSHIBA_E_352x288.yuv",
+          	        origname      => "CVWP5_TOSHIBA_E_dec.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #----------------#
+                      # Test  6.6.4.2  #
+                      #----------------#
+                      {
+          	        name          => "AVCWP-2",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "CVWP1_TOSHIBA_E.264",
+          	        decodedname   => "CVWP1_TOSHIBA_E_352x288.yuv",
+          	        origname      => "CVWP1_TOSHIBA_E_dec.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #----------------#
+                      # Test  6.6.4.3  #
+                      #----------------#
+                      {
+          	        name          => "AVCWP-3",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "CVWP2_TOSHIBA_E.264",
+          	        decodedname   => "CVWP2_TOSHIBA_E_352x288.yuv",
+          	        origname      => "CVWP2_TOSHIBA_E_dec.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #----------------#
+                      # Test  6.6.4.4  #
+                      #----------------#
+                      {
+          	        name          => "AVCWP-4",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "CVWP3_TOSHIBA_E.264",
+          	        decodedname   => "CVWP3_TOSHIBA_E_352x288.yuv",
+          	        origname      => "CVWP3_TOSHIBA_E_dec.yuv",
+          	        psnr          => 99.99,
+            	      },
+	          ],
+}
+
+

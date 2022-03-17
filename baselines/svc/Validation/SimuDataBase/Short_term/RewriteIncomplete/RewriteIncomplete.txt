@@ -1,0 +1,88 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+    name 	=> "RewriteIncomplete",
+    original 	=> "BUS_352x288_30.yuv",
+    width      	=> 352,
+    height     	=> 288,
+    framerate 	=> 30,
+    nbframes	=> 30,
+    verbosemode => 1,	
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+    runencode	 => 1,
+    qualitylayer => 1,
+
+#=======================#
+# Layers  parameters    
+#=======================#     
+    layers       => [
+                      #----------#
+                      # Layer  0 #
+                      #----------#
+                       {
+                         width        => 352,
+                  	 height       => 288,
+                  	 framerate    =>  30,
+                       },
+
+		                   #----------#
+                      # Layer  1 #
+                      #----------#
+                       {
+                         width        => 352,
+                  	 height       => 288,
+                  	 framerate    =>  30,
+                     },
+
+		                   #----------#
+                      # Layer  2 #
+                      #----------#
+                       {
+                         width        => 352,
+                  	 height       => 288,
+                  	 framerate    =>  30,
+                     },
+		      #----------#
+   		      ],
+   
+#==========================================================#
+#          Extracting +Decoding parameters  (i.e Tests )   #
+#          mode == 11 decode + rewrite                     #
+#==========================================================#  
+      bitratecheckrange  => 1.,
+      psnrcheckrange     => 0.,
+	
+
+      tests      => [
+		      #----------#
+                      # Test   0 #
+                      #----------#
+                      {
+            	        name => "L2",
+            	        mode => 11,
+            	        width => 352,
+            	        height => 288,
+            	        framerate => 30,
+            	        bitrate => 4029,
+            	        psnr => 38.85,
+            	        encdecmatch => 1,
+            	      },
+            	      #----------#
+                      # Test   1 #
+                      #----------#
+            	      {
+            	        name => "LX",
+            	        mode => 1,
+            	        width => 352,
+            	        height => 288,
+            	        framerate => 30,
+			useql     => 1,
+            	        bitrate => 2000,
+            	        psnr => 31.94,
+            	      },
+		  ],
+}

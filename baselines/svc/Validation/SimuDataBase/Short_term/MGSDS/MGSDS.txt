@@ -1,0 +1,141 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+    name        => "MGSDS",
+    original    => "BUS_352x288_30.yuv",
+    width      	=> 352,
+    height     	=> 288,
+    framerate 	=> 15,
+    nbframes    => 35,
+    verbosemode => 1,	
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+    runencode	=> 1,
+    singleloopflag => "-bcip",
+
+#=======================#
+# Layers  parameters    
+#=======================#     
+    layers       => [
+                      #----------#
+                      # Layer  0 #
+                      #----------#
+                       {
+                         width        => 176,
+                  			 height       => 144,
+                  			 framerate    =>  15,
+                  		 },
+		                  #----------#
+                      #----------#
+                      # Layer  1 #
+                      #----------#
+                       {
+                         width        => 176,
+                  			 height       => 144,
+                  			 framerate    =>  15,
+                  		  },
+		                  #----------#
+                      #----------#
+                      # Layer  2 #
+                      #----------#
+                       {
+                         width        => 176,
+                  			 height       => 144,
+                  			 framerate    =>  15,
+                  		 },
+		                  #----------#
+                      # Layer  3 #
+                      #----------#
+          		        {
+                         width        => 352,
+                  			 height       => 288,
+                  			 framerate    =>  15,
+                       },
+		                  #---------#
+                      # Layer  4 #
+                      #----------#
+          		        {
+                         width        => 352,
+                  			 height       => 288,
+                  			 framerate    =>  15,
+                  		 },
+		                  #----------#
+   		              ],
+   
+#==========================================================#
+#          Extracting +Decoding parameters  (i.e Tests )   #
+#==========================================================#  
+      bitratecheckrange  => 1.,
+      psnrcheckrange     => 0.,
+	
+
+      tests      => [
+		                  #----------#
+                      # Test   0 #
+                      #----------#
+                      {
+            		        name => "test0",
+            		        mode => 1,
+            		        width => 176,
+            		        height => 144,
+            		        framerate => 15,
+            		        bitrate => 264,
+            		        psnr => 34.38,
+            		        encdecmatch => 1,
+            		      },
+            		      #----------#
+                      # Test   1 #
+                      #----------#
+            		      {
+            		        name => "test1",
+            	          mode => 1,
+            		        width => 352,
+            		        height => 288,
+            		        framerate => 15,
+            		        bitrate => 543,
+            		        psnr => 28.30,
+            		        encdecmatch => 1,
+            		      },
+    		              #----------#
+                      # Test   2 #
+                      #----------#
+            		      {
+            		        name => "test2",
+            	          mode => 1,
+            		        width => 176,
+            		        height => 144,
+            		        framerate => 15,
+            		        bitrate => 47,
+            		        psnr => 28.06,
+            		      },
+    		              #----------#
+                      # Test   3 #
+                      #----------#
+            		      {
+            		        name => "test3",
+            	          mode => 1,
+            		        width => 352,
+            		        height => 288,
+            		        framerate => 15,
+            		        bitrate => 309,
+            		        psnr => 26.98,
+				                usesip      => 2,
+            		      },
+    		              #----------#
+                      # Test   4 #
+                      #----------#
+            		      {
+            		        name => "test4",
+            	          mode => 1,
+            		        width => 352,
+            		        height => 288,
+            		        framerate => 15,
+            		        bitrate => 332,
+            		        psnr => 25.95,
+            		      },
+    		              #----------#
+		  ],
+}

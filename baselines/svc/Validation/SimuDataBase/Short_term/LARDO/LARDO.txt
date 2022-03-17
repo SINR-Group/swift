@@ -1,0 +1,80 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+    name                => "LARDO",    
+    original 		=> "BUS_352x288_30.yuv",
+    originalwidth      	=> 352,
+    originalheight     	=> 288,
+    originalframerate 	=> 30,
+    
+    width      		=> 352,
+    height     		 =>288,
+    framerate 	      	=> 30,
+    nbframes		=> 25,   
+    verbosemode 	=> 1,	
+    phasemode   => 1,
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+runencode   => 1,
+
+#=======================#
+# Layers  parameters    #
+#=======================#     
+layers      => [
+                #----------#
+                # Layer  0 #
+                #----------#
+                {
+                 width        => 176,
+                 height       => 144,
+                 framerate    =>  15,
+                },
+                #----------#
+                # Layer  1 #
+                #----------#
+                {
+                 width        => 352,
+                 height       => 288,
+                 framerate    =>  30,
+                },
+                ],
+                 
+#==========================================================#
+#          Extracting +Decoding parameters  (i.e Tests )   #
+#==========================================================#  
+bitratecheckrange  => 1,
+psnrcheckrange     => 0,
+         
+tests              => [
+                       #----------#
+                       # Test   0 #
+                       #----------#
+                       {
+                        name        => "L0",
+                        mode        => 1,
+                        width       => 176,
+                        height      => 144,
+                        framerate   => 15,
+                        bitrate     => 182,
+                        psnr        => 31.19,
+                        encdecmatch => 1,
+                       },
+                       #----------#
+                       # Test   1 #
+                       #----------#
+                       {
+                        name        => "L2",
+                        mode        => 1,
+                        width       => 352,
+                        height      => 288,
+                        framerate   => 30,
+                        bitrate     => 1657,
+                        psnr        => 31.86,
+                        encdecmatch => 1,
+                       },
+                      ],
+}
+

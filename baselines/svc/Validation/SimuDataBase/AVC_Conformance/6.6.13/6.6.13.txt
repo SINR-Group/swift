@@ -1,0 +1,53 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+    name 	   => "6.6.13",
+    verbosemode    => 1,	
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+    runencode	=> 0,
+    
+
+#=======================#
+# Layers  parameters    
+#=======================#     
+    layers       => [
+                    ],
+   
+#==========================================================#
+#          Extracting + Decoding parameters  (i.e Tests )  #
+#==========================================================#  
+      tests      => [
+		      #-----------------#
+                      # Test  6.6.13.1  #
+                      #-----------------#
+                      {
+          	        name          => "AVCCAQP-1",
+          	        mode          => 0,
+          	        width         => 176,
+          	        height        => 144,
+          	        bitstreamname => "CAQP1_Sony_B.jsv",
+          	        decodedname   => "CAQP1_Sony_B_176x144.yuv",
+          	        origname      => "CAQP1_Sony_B.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #-----------------#
+                      # Test  6.6.13.2  #
+                      #-----------------#
+                      {
+          	        name          => "AVCCAQP-2",
+          	        mode          => 0,
+          	        width         => 176,
+          	        height        => 144,
+          	        bitstreamname => "CACQP3_Sony_D.jsv",
+          	        decodedname   => "CACQP3_Sony_D_176x144.yuv",
+          	        origname      => "CACQP3_Sony_D.yuv",
+          	        psnr          => 99.99,
+            	      },
+	          ],
+}
+
+

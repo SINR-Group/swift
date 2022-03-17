@@ -1,0 +1,481 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+    name 	      => "6.6.1",
+    verbosemode => 1,	
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+    runencode	=> 0,
+    
+
+#=======================#
+# Layers  parameters    
+#=======================#     
+    layers       => [ ],
+   
+#==========================================================#
+#          Extracting + Decoding parameters  (i.e Tests )  #
+#==========================================================#  
+      tests      => [
+            		      #---------------#
+                      # Test 6.6.1.1  #
+                      #---------------#
+                      {
+          		        name          => "AVCNL-1",
+          		        mode          => 0,
+          		        width         => 176,
+          		        height        => 144,
+          		        bitstreamname => "NL1_Sony_D.jsv",
+          		        decodedname   => "NL1_Sony_D_176x144.yuv",
+          		        origname      => "NL1_Sony_D.yuv",
+          		        psnr          => 99.99,
+		                  },		                  
+            		      #---------------#
+                      # Test 6.6.1.1  #
+                      #---------------#
+                      {
+          		        name          => "AVCNL-2",
+          		        mode          => 0,
+          		        width         => 176,
+          		        height        => 144,
+          		        bitstreamname => "SVA_NL1_B.264",
+          		        decodedname   => "SVA_NL1_B_rec_176x144.yuv",
+          		        origname      => "SVA_NL1_B_rec.yuv",
+          		        psnr          => 99.99,
+		                  },		                  
+            		      #---------------#
+                      # Test 6.6.1.2  #
+                      #---------------#
+                      {
+          		        name          => "AVCNL-3",
+          		        mode          => 0,
+          		        width         => 176,
+          		        height        => 144,
+          		        bitstreamname => "NL2_Sony_H.jsv",
+          		        decodedname   => "NL2_Sony_H_176x144.yuv",
+          		        origname      => "NL2_Sony_H.yuv",
+          		        psnr          => 99.99,
+		                  },		                  
+            		      #---------------#
+                      # Test 6.6.1.2  #
+                      #---------------#
+                      {
+          		        name          => "AVCNL-4",
+          		        mode          => 0,
+          		        width         => 176,
+          		        height        => 144,
+          		        bitstreamname => "SVA_NL2_E.264",
+          		        decodedname   => "SVA_NL2_E_rec_176x144.yuv",
+          		        origname      => "SVA_NL2_E_rec.yuv",
+          		        psnr          => 99.99,
+		                  },		                  
+            		      #---------------#
+                      # Test 6.6.1.3  #
+                      #---------------#
+                      {
+          		        name          => "AVCBA-1",
+          		        mode          => 0,
+          		        width         => 176,
+          		        height        => 144,
+          		        bitstreamname => "BA1_Sony_D.jsv",
+          		        decodedname   => "BA1_Sony_D_176x144.yuv",
+          		        origname      => "BA1_Sony_D.yuv",
+          		        psnr          => 99.99,
+		                  },		                  
+            		      #---------------#
+                      # Test 6.6.1.4  #
+                      #---------------#
+                      {
+          		        name          => "AVCBA-2",
+          		        mode          => 0,
+          		        width         => 176,
+          		        height        => 144,
+          		        bitstreamname => "SVA_BA1_B.264",
+          		        decodedname   => "SVA_BA1_B_rec_176x144.yuv",
+          		        origname      => "SVA_BA1_B_rec.yuv",
+          		        psnr          => 99.99,
+		                  },		                  
+            		      #---------------#
+                      # Test 6.6.1.5  #
+                      #---------------#
+                      {
+          		        name          => "AVCBA-3",
+          		        mode          => 0,
+          		        width         => 176,
+          		        height        => 144,
+          		        bitstreamname => "BA2_Sony_F.jsv",
+          		        decodedname   => "BA2_Sony_F_176x144.yuv",
+          		        origname      => "BA2_Sony_F.yuv",
+          		        psnr          => 99.99,
+		                  },		                  
+            		      #---------------#
+                      # Test 6.6.1.6  #
+                      #---------------#
+                      {
+          		        name          => "AVCBA-4",
+          		        mode          => 0,
+          		        width         => 176,
+          		        height        => 144,
+          		        bitstreamname => "SVA_BA2_D.264",
+          		        decodedname   => "SVA_BA2_D_rec_176x144.yuv",
+          		        origname      => "SVA_BA2_D_rec.yuv",
+          		        psnr          => 99.99,
+		                  },		                  
+            		      #---------------#
+                      # Test 6.6.1.7  #
+                      #---------------#
+                      {
+          		        name          => "AVCBA-5",
+          		        mode          => 0,
+          		        width         => 176,
+          		        height        => 144,
+          		        bitstreamname => "BA_MW_D.264",
+          		        decodedname   => "BA_MW_D_rec_176x144.yuv",
+          		        origname      => "BA_MW_D_rec.qcif",
+          		        psnr          => 99.99,
+		                  },		                  
+            		      #---------------#
+                      # Test 6.6.1.7  #
+                      #---------------#
+                      {
+          		        name          => "AVCBA-6",
+          		        mode          => 0,
+          		        width         => 176,
+          		        height        => 144,
+          		        bitstreamname => "BANM_MW_D.264",
+          		        decodedname   => "BANM_MW_D_rec_176x144.yuv",
+          		        origname      => "BANM_MW_D_rec.qcif",
+          		        psnr          => 99.99,
+		                  },		                  
+            		      #---------------#
+                      # Test 6.6.1.8  #
+                      #---------------#
+                      {
+          		        name          => "AVCBA-7",
+          		        mode          => 0,
+          		        width         => 352,
+          		        height        => 288,
+          		        bitstreamname => "BA1_FT_C.264",
+          		        decodedname   => "BA1_FT_C_352x288.yuv",
+          		        origname      => "BA1_FT_C.yuv",
+          		        psnr          => 99.99,
+		                  },		                  
+            		      #---------------#
+                      # Test 6.6.1.9  #
+                      #---------------#
+#                      {
+#          		        name          => "AVCBA-8", // not specified in conformance spec.
+#          		        mode          => 0,
+#          		        width         => ???,
+#          		        height        => ???,
+#          		        bitstreamname => "XXX.264",
+#          		        decodedname   => "XXX_???x???.yuv",
+#          		        origname      => "XXX.yuv",
+#          		        psnr          => 99.99,
+#		                  },		                  
+            		      #---------------#
+                      # Test 6.6.1.10  #
+                      #---------------#
+                      {
+          		        name          => "AVCMQ-1",
+          		        mode          => 0,
+          		        width         => 176,
+          		        height        => 144,
+          		        bitstreamname => "NLMQ1_JVC_C.264",
+          		        decodedname   => "NLMQ1_JVC_C_176x144.yuv",
+          		        origname      => "NLMQ1_JVC_C.yuv",
+          		        psnr          => 99.99,
+		                  },		                  
+            		      #---------------#
+                      # Test 6.6.1.11 #
+                      #---------------#
+                      {
+          		        name          => "AVCMQ-2",
+          		        mode          => 0,
+          		        width         => 176,
+          		        height        => 144,
+          		        bitstreamname => "NLMQ2_JVC_C.264",
+          		        decodedname   => "NLMQ2_JVC_C_176x144.yuv",
+          		        origname      => "NLMQ2_JVC_C.yuv",
+          		        psnr          => 99.99,
+		                  },		                  
+            		      #---------------#
+                      # Test 6.6.1.12 #
+                      #---------------#
+                      {
+          		        name          => "AVCMQ-3",
+          		        mode          => 0,
+          		        width         => 176,
+          		        height        => 144,
+          		        bitstreamname => "BAMQ1_JVC_C.264",
+          		        decodedname   => "BAMQ1_JVC_C_176x144.yuv",
+          		        origname      => "BAMQ1_JVC_C.yuv",
+          		        psnr          => 99.99,
+		                  },		                  
+            		      #---------------#
+                      # Test 6.6.1.13 #
+                      #---------------#
+                      {
+          		        name          => "AVCMQ-4",
+          		        mode          => 0,
+          		        width         => 176,
+          		        height        => 144,
+          		        bitstreamname => "BAMQ2_JVC_C.264",
+          		        decodedname   => "BAMQ2_JVC_C_176x144.yuv",
+          		        origname      => "BAMQ2_JVC_C.yuv",
+          		        psnr          => 99.99,
+		                  },		                  
+            		      #---------------#
+                      # Test 6.6.1.14 #
+                      #---------------#
+                      {
+          		        name          => "AVCSL-1",
+          		        mode          => 0,
+          		        width         => 176,
+          		        height        => 144,
+          		        bitstreamname => "SVA_Base_B.264",
+          		        decodedname   => "SVA_Base_B_rec_176x144.yuv",
+          		        origname      => "SVA_Base_B_rec.yuv",
+          		        psnr          => 99.99,
+		                  },		                  
+            		      #---------------#
+                      # Test 6.6.1.15 #
+                      #---------------#
+                      {
+          		        name          => "AVCSL-2",
+          		        mode          => 0,
+          		        width         => 176,
+          		        height        => 144,
+          		        bitstreamname => "SVA_FM1_E.264",
+          		        decodedname   => "SVA_FM1_E_rec_176x144.yuv",
+          		        origname      => "SVA_FM1_E_rec.yuv",
+          		        psnr          => 99.99,
+		                  },		                  
+            		      #---------------#
+                      # Test 6.6.1.16 #
+                      #---------------#
+                      {
+          		        name          => "AVCSQ-1",
+          		        mode          => 0,
+          		        width         => 176,
+          		        height        => 144,
+          		        bitstreamname => "BASQP1_Sony_C.jsv",
+          		        decodedname   => "BASQP1_Sony_C_176x144.yuv",
+          		        origname      => "BASQP1_Sony_C.yuv",
+          		        psnr          => 99.99,
+		                  },		                  
+            		      #---------------#
+                      # Test 6.6.1.17 #
+                      #---------------#
+                      {
+          		        name          => "AVCFM-1",
+          		        mode          => 0,
+          		        width         => 176,
+          		        height        => 144,
+          		        bitstreamname => "FM1_BT_B.h264",
+          		        decodedname   => "FM1_BT_B_176x144.yuv",
+          		        origname      => "FM1_BT_B.yuv",
+          		        psnr          => 99.99,
+		                  },		                  
+            		      #---------------#
+                      # Test 6.6.1.18 #
+                      #---------------#
+                      {
+          		        name          => "AVCFM-2",
+          		        mode          => 0,
+          		        width         => 176,
+          		        height        => 144,
+          		        bitstreamname => "FM2_SVA_C.264",
+          		        decodedname   => "FM2_SVA_C_rec_176x144.yuv",
+          		        origname      => "FM2_SVA_C_rec.yuv",
+          		        psnr          => 99.99,
+		                  },		                  
+            		      #---------------#
+                      # Test 6.6.1.19 #
+                      #---------------#
+                      {
+          		        name          => "AVCFM-3",
+          		        mode          => 0,
+          		        width         => 176,
+          		        height        => 144,
+          		        bitstreamname => "FM1_FT_E.264",
+          		        decodedname   => "FM1_FT_E_176x144.yuv",
+          		        origname      => "FM1_FT_E.yuv",
+          		        psnr          => 99.99,
+		                  },		                  
+            		      #---------------#
+                      # Test 6.6.1.20 #
+                      #---------------#
+                      {
+          		        name          => "AVCCI-1",
+          		        mode          => 0,
+          		        width         => 176,
+          		        height        => 144,
+          		        bitstreamname => "CI_MW_D.264",
+          		        decodedname   => "CI_MW_D_rec_176x144.yuv",
+          		        origname      => "CI_MW_D_rec.qcif",
+          		        psnr          => 99.99,
+		                  },		                  
+            		      #---------------#
+                      # Test 6.6.1.21 #
+                      #---------------#
+                      {
+          		        name          => "AVCCI-2",
+          		        mode          => 0,
+          		        width         => 176,
+          		        height        => 144,
+          		        bitstreamname => "SVA_CL1_E.264",
+          		        decodedname   => "SVA_CL1_E_rec_176x144.yuv",
+          		        origname      => "SVA_CL1_E_rec.yuv",
+          		        psnr          => 99.99,
+		                  },		                  
+            		      #---------------#
+                      # Test 6.6.1.22 #
+                      #---------------#
+                      {
+          		        name          => "AVCCI-3",
+          		        mode          => 0,
+          		        width         => 352,
+          		        height        => 288,
+          		        bitstreamname => "CI1_FT_B.264",
+          		        decodedname   => "CI1_FT_B_352x288.yuv",
+          		        origname      => "CI1_FT_B.yuv",
+          		        psnr          => 99.99,
+		                  },		                  
+            		      #---------------#
+                      # Test 6.6.1.23 #
+                      #---------------#
+                      {
+          		        name          => "AVCFC-1",
+          		        mode          => 0,
+          		        width         => 352,
+          		        height        => 288,
+          		        bitstreamname => "CVFC1_Sony_C.jsv",
+          		        decodedname   => "CVFC1_Sony_C_352x288.yuv",
+          		        origname      => "CVFC1_Sony_C.yuv",
+          		        psnr          => 99.99,
+		                  },		                  
+            		      #---------------#
+                      # Test 6.6.1.24 #
+                      #---------------#
+                      {
+          		        name          => "AVCAUD-1",
+          		        mode          => 0,
+          		        width         => 176,
+          		        height        => 144,
+          		        bitstreamname => "AUD_MW_E.264",
+          		        decodedname   => "AUD_MW_E_rec_176x144.yuv",
+          		        origname      => "AUD_MW_E_rec.qcif",
+          		        psnr          => 99.99,
+		                  },		                  
+            		      #---------------#
+                      # Test 6.6.1.25 #
+                      #---------------#
+                      {
+          		        name          => "AVCMIDR-1",
+          		        mode          => 0,
+          		        width         => 176,
+          		        height        => 144,
+          		        bitstreamname => "MIDR_MW_D.264",
+          		        decodedname   => "MIDR_MW_D_176x144.yuv",
+          		        origname      => "MIDR_MW_D_rec.qcif",
+          		        psnr          => 99.99,
+		                  },		                  
+            		      #---------------#
+                      # Test 6.6.1.26 #
+                      #---------------#
+                      {
+          		        name          => "AVCNRF-1",
+          		        mode          => 0,
+          		        width         => 176,
+          		        height        => 144,
+          		        bitstreamname => "NRF_MW_E.264",
+          		        decodedname   => "NRF_MW_E_rec_176x144.qcif",
+          		        origname      => "NRF_MW_E_rec.qcif",
+          		        psnr          => 99.99,
+		                  },		                  
+            		      #---------------#
+                      # Test 6.6.1.27 #
+                      #---------------#
+                      {
+          		        name          => "AVCMPS-1",
+          		        mode          => 0,
+          		        width         => 176,
+          		        height        => 144,
+          		        bitstreamname => "MPS_MW_A.264",
+          		        decodedname   => "MPS_MW_A_rec_176x144.yuv",
+          		        origname      => "MPS_MW_A_rec.qcif",
+          		        psnr          => 99.99,
+		                  },		                  
+            		      #-----------------#
+                      # Test   6.6.1.28 #
+            		      #-----------------#
+                      {
+          		        name          => "AVCBS-1",
+          		        mode          => 0,
+          		        width         => 176,
+          		        height        => 144,
+          		        bitstreamname => "CVBS3_Sony_C.jsv",
+          		        decodedname   => "CVBS3_Sony_C_176x144.yuv",
+          		        origname      => "CVBS3_Sony_C.yuv",
+          		        psnr => 99.99,
+            		      },
+            		      #-----------------#
+                      # Test   6.6.1.29 #
+            		      #-----------------#
+    		              {
+          		        name          => "AVCBS-2",
+          		        mode          => 0,
+          		        width         => 176,
+          		        height        => 144,
+          		        bitstreamname => "BA3_SVA_C.264",
+          		        decodedname   => "BA3_SVA_C_176x144.yuv",
+          		        origname      => "BA3_SVA_C_rec.yuv",
+          		        psnr          => 99.99,
+          		        },
+            		      #-----------------#
+                      # Test   6.6.1.30 #
+            		      #-----------------#
+                      {
+          		        name          => "AVCBS-3",
+          		        mode          => 0,
+          		        width         => 176,
+          		        height        => 144,
+          		        bitstreamname => "SL1_SVA_B.264",
+          		        decodedname   => "SL1_SVA_B_176x144.yuv",
+          		        origname      => "SL1_SVA_B_rec.yuv",
+          		        psnr          => 99.99,
+            		      },
+            		      #-----------------#
+                      # Test   6.6.1.31 #
+            		      #-----------------#
+                      {
+          		        name          => "AVCBS-4",
+          		        mode          => 0,
+          		        width         => 176,
+          		        height        => 144,
+          		        bitstreamname => "NL3_SVA_E.264",
+          		        decodedname   => "NL3_SVA_E_176x144.yuv",
+          		        origname      => "NL3_SVA_E_rec.yuv",
+          		        psnr          => 99.99,
+            		      },
+            		      #-----------------#
+                      # Test   6.6.1.32 #
+            		      #-----------------#
+                      {
+          		        name          => "AVCBS-5",
+          		        mode          => 0,
+          		        width         => 720,
+          		        height        => 480,
+          		        bitstreamname => "cvmp_mot_frm0_full_B.26l",
+          		        decodedname   => "cvmp_mot_frm0_full_B_720x480.yuv",
+          		        origname      => "cvmp_mot_frm0_full_rec_B.yuv",
+          		        psnr          => 99.99,
+		                  },
+		                ],
+}
+
+

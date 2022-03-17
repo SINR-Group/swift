@@ -1,0 +1,53 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+    name 	   => "6.6.17",
+    verbosemode    => 1,	
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+    runencode	=> 0,
+    
+
+#=======================#
+# Layers  parameters    
+#=======================#     
+    layers       => [
+                    ],
+   
+#==========================================================#
+#          Extracting + Decoding parameters  (i.e Tests )  #
+#==========================================================#  
+      tests      => [
+		      #-----------------#
+                      # Test  6.6.17.1  #
+                      #-----------------#
+                      {
+          	        name          => "AVCCAWP-1",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "CAWP1_TOSHIBA_E.264",
+          	        decodedname   => "CAWP1_TOSHIBA_E_352x288.yuv",
+          	        origname      => "CAWP1_TOSHIBA_E_dec.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #-----------------#
+                      # Test  6.6.17.2  #
+                      #-----------------#
+                      {
+          	        name          => "AVCCAWP-2",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "CAWP5_TOSHIBA_E.264",
+          	        decodedname   => "CAWP5_TOSHIBA_E_352x288.yuv",
+          	        origname      => "CAWP5_TOSHIBA_E_dec.yuv",
+          	        psnr          => 99.99,
+            	      },
+	          ],
+}
+
+

@@ -1,0 +1,76 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+    name 	=> "LTPicsSpatSB",
+    original 	=> "MOBILE_352x288_30.yuv",
+    width      	=> 352,
+    height     	=> 288,
+    framerate 	=> 30,
+    nbframes	=> 130,
+    verbosemode => 1,	
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+    runencode	=> 1,
+
+#=======================#
+# Layers  parameters    
+#=======================#     
+    layers       => [
+                      #----------#
+                      # Layer  0 #
+                      #----------#
+                       {
+                         width        => 176,
+                  			 height       => 144,
+                  			 framerate    =>  15,
+                  			},
+		                  #----------#
+			                #----------#
+                      # Layer  1 #
+                      #----------#
+                       {
+                         width        => 352,
+                  			 height       => 288,
+                  			 framerate    =>  30,
+                  		 },
+   		              ],
+   
+#==========================================================#
+#          Extracting +Decoding parameters  (i.e Tests )   #
+#==========================================================#  
+      bitratecheckrange  => 1.,
+      psnrcheckrange     => 0.,
+	
+
+      tests      => [
+		                  #----------#
+                      # Test   0 #
+                      #----------#
+                      {
+            		        name => "L0",
+            		        mode => 1,
+            		        width => 176,
+            		        height => 144,
+            		        framerate => 7.5,
+            		        bitrate => 146,
+            		        psnr => 34.04,
+            		        encdecmatch => 1,
+            		      },
+            		      #----------#
+                      # Test   1 #
+                      #----------#
+            		      {
+            		        name => "L1",
+            	          mode => 1,
+            		        width => 352,
+            		        height => 288,
+            		        framerate => 30,
+            		        bitrate => 655,
+            		        psnr => 31.03,
+            		        encdecmatch => 1,
+            		      },
+		  ],
+}

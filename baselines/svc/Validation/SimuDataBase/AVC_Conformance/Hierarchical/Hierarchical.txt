@@ -1,0 +1,64 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+    name 	   => "Hierarchical",
+    verbosemode    => 1,	
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+    runencode	=> 0,
+    
+
+#=======================#
+# Layers  parameters    
+#=======================#     
+    layers       => [
+                    ],
+   
+#==========================================================#
+#          Extracting + Decoding parameters  (i.e Tests )  #
+#==========================================================#  
+      tests      => [
+		      #----------#
+          # Test   0 #
+          #----------#
+          {
+		        name   => "HCBP1_HHI_A",
+		        mode   => 0,
+		        width  => 352,
+		        height => 288,
+		        bitstreamname => "HCBP1_HHI_A.264",
+		        decodedname   => "HCBP1_HHI_A_352x288.yuv",
+		        origname      => "HCBP1_HHI_A.yuv",
+		        psnr => 99.99,
+		      },
+		      #----------#
+          # Test   1 #
+          #----------#
+		      {
+		        name => "HCBP2_HHI_A",
+		        mode => 0,
+		        width  => 352,
+		        height => 288,
+		        bitstreamname => "HCBP2_HHI_A.264",
+		        decodedname   => "HCBP2_HHI_A_352x288.yuv", 
+		        origname      => "HCBP2_HHI_A.yuv",
+		        psnr => 99.99,
+		      },
+		      #----------#
+          # Test   2 #
+          #----------#
+          {
+		        name   => "HCMP1_HHI_A",
+		        mode   => 0,
+		        width  => 352,
+		        height => 288,
+		        bitstreamname => "HCMP1_HHI_A.264",
+		        decodedname   => "HCMP1_HHI_A_352x288.yuv",
+		        origname      => "HCMP1_HHI_A.yuv",
+		        psnr => 99.99,
+		      },
+		     ],
+}

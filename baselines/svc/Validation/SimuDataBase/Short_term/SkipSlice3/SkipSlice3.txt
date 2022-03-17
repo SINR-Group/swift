@@ -1,0 +1,78 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+    name 	=> "SkipSlice3",
+    original 	=> "BUS_352x288_30.yuv",
+    width      	=> 352,
+    height     	=> 288,
+    framerate 	=> 30,
+    nbframes	=> 25,
+    verbosemode => 1,	
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+    runencode	=> 1,
+    singleloopflag => "-bcip",
+
+#=======================#
+# Layers  parameters    
+#=======================#     
+    layers       => [
+                      #----------#
+                      # Layer  0 #
+                      #----------#
+                       {
+                         width        => 176,
+                  	 height       => 144,
+                  	 framerate    =>  30,
+                       },
+		      #----------#
+                      # Layer  2 #
+                      #----------#
+                       {
+                         width        => 352,
+                  	 height       => 288,
+                  	 framerate    =>  30,
+                       },
+   		      ],
+   
+#==========================================================#
+#          Extracting +Decoding parameters  (i.e Tests )   #
+#          mode == 11 decode + rewrite                     #
+#==========================================================#  
+      bitratecheckrange  => 1.,
+      psnrcheckrange     => 0.,
+	
+
+      tests      => [
+		      #----------#
+                      # Test   0 #
+                      #----------#
+                      {
+            	        name        => "176x144 30Hz",
+            	        mode        => 1,
+            	        width       => 176,
+            	        height      => 144,
+            	        framerate   => 30,
+            	        bitrate     => 440,
+            	        psnr        => 37.29,
+            	        encdecmatch => 1,
+            	      },
+		      #----------#
+                      # Test   1 #
+                      #----------#
+                      {
+            	        name        => "352x288 30Hz",
+            	        mode        => 1,
+            	        width       => 352,
+            	        height      => 288,
+            	        framerate   => 30,
+            	        bitrate     => 941,
+            	        psnr        => 30.68,
+            	        encdecmatch => 1,
+            	      },
+            	      #----------#    		              
+		  ],
+}

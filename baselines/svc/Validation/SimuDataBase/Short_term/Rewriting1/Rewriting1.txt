@@ -1,0 +1,96 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+    name 	=> "Rewriting1",
+    original 	=> "CREW_704x576_30.yuv",
+    width      	=> 704,
+    height     	=> 576,
+    framerate 	=> 30,
+    nbframes	=> 60,
+    verbosemode => 1,	
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+    runencode	=> 1,
+    singleloopflag => "-bcip",
+
+#=======================#
+# Layers  parameters    
+#=======================#     
+    layers       => [
+                      #----------#
+                      # Layer  0 #
+                      #----------#
+                       {
+                         width        => 352,
+                  	 height       => 288,
+                  	 framerate    =>  30,
+            		       },		                  
+		                  #----------#
+                      # Layer  1 #
+                      #----------#
+                       {
+                         width        => 352,
+                  	 height       => 288,
+                  	 framerate    =>  30,
+             },		                  
+		       #----------#
+		       # Layer  2 #
+		       #----------#
+		       {
+		         width        => 352,
+		         height       => 288,
+		         framerate    =>  30,
+		       },		                  
+   		      ],
+   
+#==========================================================#
+#          Extracting +Decoding parameters  (i.e Tests )   #
+#          mode == 11 decode + rewrite                     #
+#==========================================================#  
+      bitratecheckrange  => 1.,
+      psnrcheckrange     => 0.,
+	
+
+      tests      => [
+		      #----------#
+                      # Test   0 #
+                      #----------#
+                      {
+            		name => "L0",
+            		mode => 1,
+            		width => 352,
+            		height => 288,
+            		framerate => 30,
+            		bitrate => 192,
+            		psnr => 34.19,
+            	      },
+            	      #----------#
+                      # Test   1 #
+                      #----------#
+            	      {
+            		name => "L1",
+            	        mode => 11,
+            		width => 352,
+            		height => 288,
+            		framerate => 30,
+            		bitrate => 545,
+            		psnr => 37.45,            		
+            	       },
+            	      #----------#
+            	      # Test   2 #
+		      #----------#
+		      {
+			name => "L2",
+			mode => 11,
+			width => 352,
+			height => 288,
+			framerate => 30,
+			bitrate => 1063,
+			psnr => 39.61,
+			encdecmatch => 1,
+            	      },
+		  ],
+}

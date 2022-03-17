@@ -1,0 +1,373 @@
+#########################################################
+# check CONFIG parameter
+#########################################################
+
+ifneq ($(CONFIG), LIBRARY)
+ifneq ($(CONFIG), CONSOLE)
+CONFIG_ERR = TRUE
+endif
+endif
+
+#########################################################
+# executables used
+#########################################################
+
+CPP	= g++
+AR	= ar
+LD	= $(CPP)
+
+
+#########################################################
+# output file names and version information
+#########################################################
+
+ifeq ($(CONFIG), LIBRARY)
+# the libraries that can be created
+DEBUG_OUT      = $(LIB_DIR)/lib$(PRJ_NAME)Staticd.a
+DEBUG32_OUT    = $(LIB_DIR)/lib$(PRJ_NAME)Static32d.a
+DEBUG64_OUT    = $(LIB_DIR)/lib$(PRJ_NAME)Static64d.a
+RELEASE_OUT    = $(LIB_DIR)/lib$(PRJ_NAME)Static.a
+RELEASE32_OUT  = $(LIB_DIR)/lib$(PRJ_NAME)Static32.a
+RELEASE64_OUT  = $(LIB_DIR)/lib$(PRJ_NAME)Static64.a
+#
+else 
+ifeq ($(CONFIG), CONSOLE)
+# the executables that can be created
+DEBUG_OUT      = $(BIN_DIR)/$(PRJ_NAME)Staticd
+DEBUG32_OUT    = $(BIN_DIR)/$(PRJ_NAME)Static32d
+DEBUG64_OUT    = $(BIN_DIR)/$(PRJ_NAME)Static64d
+RELEASE_OUT    = $(BIN_DIR)/$(PRJ_NAME)Static
+RELEASE32_OUT  = $(BIN_DIR)/$(PRJ_NAME)Static32
+RELEASE64_OUT  = $(BIN_DIR)/$(PRJ_NAME)Static64
+#
+endif
+endif
+
+
+#########################################################
+# c compiler flags
+#########################################################
+
+# default cpp flags for all configurations
+CPPFLAGS            = -fPIC $(DEFS) -I$(CURDIR)/$(INC_DIR) $(USER_INC_DIRS) -Wall -Wshadow -Wno-reorder -Wno-sign-compare
+#
+# debug cpp flags
+DEBUG_CPPFLAGS      = -g       -ffloat-store -D_DEBUG
+DEBUG32_CPPFLAGS    = -g  -m32 -ffloat-store -D_DEBUG
+DEBUG64_CPPFLAGS    = -g  -m64 -ffloat-store -D_DEBUG
+#
+# release cpp
+RELEASE_CPPFLAGS    = -O3      -ffloat-store -DNDEBUG -Wuninitialized
+RELEASE32_CPPFLAGS  = -O3 -m32 -ffloat-store -DNDEBUG -Wuninitialized
+RELEASE64_CPPFLAGS  = -O3 -m64 -ffloat-store -DNDEBUG -Wuninitialized
+
+
+
+#########################################################
+# linker flags
+#########################################################
+
+# linker flags for all
+ALL_LDFLAGS         = -Wall
+
+ifeq ($(CONFIG), LIBRARY)
+# linker flags for library
+LDFLAGS             = $(ALL_LDFLAGS) -shared
+#
+# debug linker flags for library
+DEBUG_LDFLAGS       = -Wl,-soname,lib$(PRJ_NAME)32d.so.$(VER)
+DEBUG32_LDFLAGS     = -Wl,-soname,lib$(PRJ_NAME)32d.so.$(VER) -m32
+DEBUG64_LDFLAGS     = -Wl,-soname,lib$(PRJ_NAME)64d.so.$(VER) -m64
+#
+# release linker flags for library
+RELEASE_LDFLAGS     = -Wl,-soname,lib$(PRJ_NAME)32.so.$(VER)
+RELEASE32_LDFLAGS   = -Wl,-soname,lib$(PRJ_NAME)32.so.$(VER)  -m32
+RELEASE64_LDFLAGS   = -Wl,-soname,lib$(PRJ_NAME)64.so.$(VER)  -m64
+#
+else
+ifeq ($(CONFIG), CONSOLE)
+# linker flags for console
+LDFLAGS             = $(ALL_LDFLAGS)
+#
+# debug linker flags for console
+DEBUG_LDFLAGS       =
+DEBUG32_LDFLAGS     = -m32
+DEBUG64_LDFLAGS     = -m64
+#
+# release linker flags for console
+RELEASE_LDFLAGS     =
+RELEASE32_LDFLAGS   = -m32
+RELEASE64_LDFLAGS   = -m64
+#
+endif
+endif
+
+
+
+#########################################################
+# objects that have to be created
+#########################################################
+
+# the object types that have to be created      
+DEBUG_OBJS      = $(OBJS:.o=.d.o)
+DEBUG32_OBJS    = $(OBJS:.o=.d32.o)
+DEBUG64_OBJS    = $(OBJS:.o=.d64.o)
+RELEASE_OBJS    = $(OBJS:.o=.r.o)
+RELEASE32_OBJS  = $(OBJS:.o=.r32.o)
+RELEASE64_OBJS  = $(OBJS:.o=.r64.o)
+
+
+#########################################################
+# rules
+#########################################################
+
+# suffixes
+.SUFFIXES: .cpp .d.o .d32.o .d64.o .r.o .r32.o .r64.o 
+
+
+#########################################################
+# c rules
+#########################################################
+
+# Generate dependency files during compilation
+# see also: http://make.paulandlesley.org/autodep.html
+#    2005-01-25 Steffen Kamp (kamp@ient.rwth-aachen.de), RWTH Aachen
+define COMPILE_AND_DEPEND_RELEASE
+        $(CPP) -c -MMD -MF $(OBJ_DIR)/$*.r.d -MT $(OBJ_DIR)/$*.r.o $(CPPFLAGS) $(RELEASE_CPPFLAGS) -o $@ $(CURDIR)/$<
+        @cp $(OBJ_DIR)/$*.r.d $(OBJ_DIR)/$*.r.P; \
+                sed -e 's/#.*//' -e 's/^[^:]*: *//' -e 's/ *\\$$//' \
+                -e '/^$$/ d' -e 's/$$/ :/' < $(OBJ_DIR)/$*.r.d >> $(OBJ_DIR)/$*.r.P; \
+                rm -f $(OBJ_DIR)/$*.r.d
+endef
+define COMPILE_AND_DEPEND_RELEASE32
+        $(CPP) -c -MMD -MF $(OBJ_DIR)/$*.r32.d -MT $(OBJ_DIR)/$*.r32.o $(CPPFLAGS) $(RELEASE32_CPPFLAGS) -o $@ $(CURDIR)/$<
+        @cp $(OBJ_DIR)/$*.r32.d $(OBJ_DIR)/$*.r32.P; \
+                sed -e 's/#.*//' -e 's/^[^:]*: *//' -e 's/ *\\$$//' \
+                -e '/^$$/ d' -e 's/$$/ :/' < $(OBJ_DIR)/$*.r32.d >> $(OBJ_DIR)/$*.r32.P; \
+                rm -f $(OBJ_DIR)/$*.r32.d
+endef
+define COMPILE_AND_DEPEND_RELEASE64
+        $(CPP) -c -MMD -MF $(OBJ_DIR)/$*.r64.d -MT $(OBJ_DIR)/$*.r64.o $(CPPFLAGS) $(RELEASE64_CPPFLAGS) -o $@ $(CURDIR)/$<
+        @cp $(OBJ_DIR)/$*.r64.d $(OBJ_DIR)/$*.r64.P; \
+                sed -e 's/#.*//' -e 's/^[^:]*: *//' -e 's/ *\\$$//' \
+                -e '/^$$/ d' -e 's/$$/ :/' < $(OBJ_DIR)/$*.r64.d >> $(OBJ_DIR)/$*.r64.P; \
+                rm -f $(OBJ_DIR)/$*.r64.d
+endef
+
+define COMPILE_AND_DEPEND_DEBUG
+        $(CPP) -c -MMD -MF $(OBJ_DIR)/$*.d.d -MT $(OBJ_DIR)/$*.d.o $(CPPFLAGS) $(DEBUG_CPPFLAGS) -o $@ $(CURDIR)/$<
+        @cp $(OBJ_DIR)/$*.d.d $(OBJ_DIR)/$*.d.P; \
+                sed -e 's/#.*//' -e 's/^[^:]*: *//' -e 's/ *\\$$//' \
+                -e '/^$$/ d' -e 's/$$/ :/' < $(OBJ_DIR)/$*.d.d >> $(OBJ_DIR)/$*.d.P; \
+                rm -f $(OBJ_DIR)/$*.d.d
+endef
+define COMPILE_AND_DEPEND_DEBUG32
+        $(CPP) -c -MMD -MF $(OBJ_DIR)/$*.d32.d -MT $(OBJ_DIR)/$*.d32.o $(CPPFLAGS) $(DEBUG32_CPPFLAGS) -o $@ $(CURDIR)/$<
+        @cp $(OBJ_DIR)/$*.d32.d $(OBJ_DIR)/$*.d32.P; \
+                sed -e 's/#.*//' -e 's/^[^:]*: *//' -e 's/ *\\$$//' \
+                -e '/^$$/ d' -e 's/$$/ :/' < $(OBJ_DIR)/$*.d32.d >> $(OBJ_DIR)/$*.d32.P; \
+                rm -f $(OBJ_DIR)/$*.d32.d
+endef
+define COMPILE_AND_DEPEND_DEBUG64
+        $(CPP) -c -MMD -MF $(OBJ_DIR)/$*.d64.d -MT $(OBJ_DIR)/$*.d64.o $(CPPFLAGS) $(DEBUG64_CPPFLAGS) -o $@ $(CURDIR)/$<
+        @cp $(OBJ_DIR)/$*.d64.d $(OBJ_DIR)/$*.d64.P; \
+                sed -e 's/#.*//' -e 's/^[^:]*: *//' -e 's/ *\\$$//' \
+                -e '/^$$/ d' -e 's/$$/ :/' < $(OBJ_DIR)/$*.d64.d >> $(OBJ_DIR)/$*.d64.P; \
+                rm -f $(OBJ_DIR)/$*.d64.d
+endef
+
+
+# create release objects
+$(OBJ_DIR)/%.r.o: $(SRC_DIR)/%.cpp
+	$(COMPILE_AND_DEPEND_RELEASE)
+
+$(OBJ_DIR)/%.r.o: $(SRC_DIR1)/%.cpp
+	$(COMPILE_AND_DEPEND_RELEASE)
+
+$(OBJ_DIR)/%.r32.o: $(SRC_DIR)/%.cpp
+	$(COMPILE_AND_DEPEND_RELEASE32)
+
+$(OBJ_DIR)/%.r32.o: $(SRC_DIR1)/%.cpp
+	$(COMPILE_AND_DEPEND_RELEASE32)
+
+$(OBJ_DIR)/%.r64.o: $(SRC_DIR)/%.cpp
+	$(COMPILE_AND_DEPEND_RELEASE64)
+
+$(OBJ_DIR)/%.r64.o: $(SRC_DIR1)/%.cpp
+	$(COMPILE_AND_DEPEND_RELEASE64)
+
+# create debug objects
+$(OBJ_DIR)/%.d.o: $(SRC_DIR)/%.cpp
+	$(COMPILE_AND_DEPEND_DEBUG)
+
+$(OBJ_DIR)/%.d.o: $(SRC_DIR1)/%.cpp
+	$(COMPILE_AND_DEPEND_DEBUG)
+
+$(OBJ_DIR)/%.d32.o: $(SRC_DIR)/%.cpp
+	$(COMPILE_AND_DEPEND_DEBUG32)
+
+$(OBJ_DIR)/%.d32.o: $(SRC_DIR1)/%.cpp
+	$(COMPILE_AND_DEPEND_DEBUG32)
+
+$(OBJ_DIR)/%.d64.o: $(SRC_DIR)/%.cpp
+	$(COMPILE_AND_DEPEND_DEBUG64)
+
+$(OBJ_DIR)/%.d64.o: $(SRC_DIR1)/%.cpp
+	$(COMPILE_AND_DEPEND_DEBUG64)
+
+
+
+#########################################################
+# directory settings
+#########################################################
+
+ifeq ($(CONFIG), LIBRARY)
+# directories that have to be created for a library
+CHECK_DIRS = $(OBJ_DIR) $(LIB_DIR)
+#
+else
+ifeq ($(CONFIG), CONSOLE)
+# directories that have to be created for console and MFC
+CHECK_DIRS = $(OBJ_DIR) $(BIN_DIR)
+#
+endif
+endif
+
+
+#########################################################
+# targets
+#########################################################
+
+all:        check_errors debug   release
+
+all32:      check_errors debug32 release32
+
+all64:      check_errors debug64 release64
+
+debug:      check_errors $(CHECK_DIRS) $(DEBUG_OUT)
+
+debug32:    check_errors $(CHECK_DIRS) $(DEBUG32_OUT)
+
+debug64:    check_errors $(CHECK_DIRS) $(DEBUG64_OUT)
+
+release:    check_errors $(CHECK_DIRS) $(RELEASE_OUT)
+
+release32:  check_errors $(CHECK_DIRS) $(RELEASE32_OUT)
+
+release64:  check_errors $(CHECK_DIRS) $(RELEASE64_OUT)
+
+
+##########################################################
+# check for errors
+##########################################################
+check_errors:
+	@if [ "$(CONFIG_ERR)" = "TRUE" ]; then\
+		echo "Wrong CONFIG parameter specified: $(CONFIG)";\
+		false;\
+	fi
+
+
+##########################################################
+# create directories
+##########################################################
+
+$(OBJ_DIR):
+	@if [ ! -d $(OBJ_DIR) ]; then\
+		mkdir $(OBJ_DIR);\
+	fi
+
+$(LIB_DIR):
+	@if [ ! -d $(LIB_DIR) ]; then\
+		mkdir $(LIB_DIR);\
+	fi
+
+$(BIN_DIR):
+	@if [ ! -d $(BIN_DIR) ]; then\
+		mkdir $(BIN_DIR);\
+	fi
+
+
+
+##########################################################
+# create output files
+##########################################################
+
+ifeq ($(CONFIG), LIBRARY)
+#
+# create static debug out
+$(DEBUG_OUT): $(DEBUG_OBJS)
+	$(AR) -crs $@ $(DEBUG_OBJS)
+
+$(DEBUG32_OUT): $(DEBUG32_OBJS)
+	$(AR) -crs $@ $(DEBUG32_OBJS)
+
+$(DEBUG64_OUT): $(DEBUG64_OBJS)
+	$(AR) -crs $@ $(DEBUG64_OBJS)
+
+#
+# create release debug out
+$(RELEASE_OUT): $(RELEASE_OBJS)
+	$(AR) -crs $@ $(RELEASE_OBJS)
+
+$(RELEASE32_OUT): $(RELEASE32_OBJS)
+	$(AR) -crs $@ $(RELEASE32_OBJS)
+
+$(RELEASE64_OUT): $(RELEASE64_OBJS)
+	$(AR) -crs $@ $(RELEASE64_OBJS)
+
+#
+else
+ifeq ($(CONFIG), CONSOLE)
+#
+# added linked libraries to target prerequisites - $(*_PREREQS) variables - to force relinking when libraries have been rebuilt
+#    2005-01-25 Steffen Kamp (kamp@ient.rwth-aachen.de), RWTH Aachen
+#
+# create static debug out
+$(DEBUG_OUT): $(DEBUG_OBJS) $(DEBUG_PREREQS)
+	$(LD) -o $@ $(LDFLAGS) $(DEBUG_LDFLAGS) $(DEBUG_OBJS) -L$(LIB_DIR) $(USER_LIB_DIRS) $(LIBS) $(DEBUG_LIBS)
+
+$(DEBUG32_OUT): $(DEBUG32_OBJS) $(DEBUG32_PREREQS)
+	$(LD) -o $@ $(LDFLAGS) $(DEBUG32_LDFLAGS) $(DEBUG32_OBJS) -L$(LIB_DIR) $(USER_LIB_DIRS) $(LIBS) $(DEBUG32_LIBS)
+
+$(DEBUG64_OUT): $(DEBUG64_OBJS) $(DEBUG64_PREREQS)
+	$(LD) -o $@ $(LDFLAGS) $(DEBUG64_LDFLAGS) $(DEBUG64_OBJS) -L$(LIB_DIR) $(USER_LIB_DIRS) $(LIBS) $(DEBUG64_LIBS)
+
+#
+# create static release out
+$(RELEASE_OUT): $(RELEASE_OBJS) $(RELEASE_PREREQS)
+	$(LD) -o $@ $(LDFLAGS) $(RELEASE_LDFLAGS) $(RELEASE_OBJS) -L$(LIB_DIR) $(USER_LIB_DIRS) $(LIBS) $(RELEASE_LIBS)
+
+$(RELEASE32_OUT): $(RELEASE32_OBJS) $(RELEASE32_PREREQS)
+	$(LD) -o $@ $(LDFLAGS) $(RELEASE32_LDFLAGS) $(RELEASE32_OBJS) -L$(LIB_DIR) $(USER_LIB_DIRS) $(LIBS) $(RELEASE32_LIBS)
+
+$(RELEASE64_OUT): $(RELEASE64_OBJS) $(RELEASE64_PREREQS)
+	$(LD) -o $@ $(LDFLAGS) $(RELEASE64_LDFLAGS) $(RELEASE64_OBJS) -L$(LIB_DIR) $(USER_LIB_DIRS) $(LIBS) $(RELEASE64_LIBS)
+
+#
+endif
+endif
+
+##########################################################
+# delete all produced files
+##########################################################
+
+clean:
+	/bin/rm -rf $(DEBUG_OUT)
+	/bin/rm -rf $(DEBUG32_OUT)
+	/bin/rm -rf $(DEBUG64_OUT)
+	/bin/rm -rf $(RELEASE_OUT)
+	/bin/rm -rf $(RELEASE32_OUT)
+	/bin/rm -rf $(RELEASE64_OUT)
+	/bin/rm -rf $(OBJ_DIR)
+
+
+##########################################################
+# include dependency files
+##########################################################
+
+-include $(OBJS:.o=.d.P)
+-include $(OBJS:.o=.d32.P)
+-include $(OBJS:.o=.d64.P)
+-include $(OBJS:.o=.r.P)
+-include $(OBJS:.o=.r32.P)
+-include $(OBJS:.o=.r64.P)

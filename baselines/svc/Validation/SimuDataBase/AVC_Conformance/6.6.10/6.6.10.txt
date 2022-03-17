@@ -1,0 +1,66 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+    name 	   => "6.6.10",
+    verbosemode    => 1,	
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+    runencode	=> 0,
+    
+
+#=======================#
+# Layers  parameters    
+#=======================#     
+    layers       => [
+                    ],
+   
+#==========================================================#
+#          Extracting + Decoding parameters  (i.e Tests )  #
+#==========================================================#  
+      tests      => [
+		      #-----------------#
+                      # Test  6.6.10.1  #
+                      #-----------------#
+                      {
+          	        name          => "AVCSE-1",
+          	        mode          => 0,
+          	        width         => 176,
+          	        height        => 144,
+          	        bitstreamname => "CVSE2_Sony_B.jsv",
+          	        decodedname   => "CVSE2_Sony_B_176x144.yuv",
+          	        origname      => "CVSE2_Sony_B-norpt.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #-----------------#
+                      # Test  6.6.10.2  #
+                      #-----------------#
+                      {
+          	        name          => "AVCSE-2",
+          	        mode          => 0,
+          	        width         => 176,
+          	        height        => 144,
+          	        bitstreamname => "CVSE3_Sony_H.jsv",
+          	        decodedname   => "CVSE3_Sony_H_176x144.yuv",
+          	        origname      => "CVSE3_Sony_H-norpt.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #-----------------#
+                      # Test  6.6.10.3  #
+                      #-----------------#
+                      {
+          	        name          => "AVCSE-3",
+          	        mode          => 0,
+          	        width         => 176,
+          	        height        => 144,
+          	        bitstreamname => "CVSEFDFT3_Sony_E.jsv",
+          	        decodedname   => "CVSEFDFT3_Sony_E_176x144.yuv",
+          	        origname      => "CVSEFDFT3_Sony_E-norpt.yuv",
+          	        psnr          => 99.99,
+            	      },
+	          ],
+}
+
+

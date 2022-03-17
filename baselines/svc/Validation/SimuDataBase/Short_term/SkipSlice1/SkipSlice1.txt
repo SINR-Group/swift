@@ -1,0 +1,139 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+    name 	=> "SkipSlice1",
+    original 	=> "BUS_352x288_30.yuv",
+    width      	=> 352,
+    height     	=> 288,
+    framerate 	=> 30,
+    nbframes	=> 25,
+    verbosemode => 1,	
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+    runencode	=> 1,
+    singleloopflag => "-bcip",
+
+#=======================#
+# Layers  parameters    
+#=======================#     
+    layers       => [
+                      #----------#
+                      # Layer  0 #
+                      #----------#
+                       {
+                         width        => 176,
+                  	 height       => 144,
+                  	 framerate    =>  15,
+                       },
+		      #----------#
+                      # Layer  1 #
+                      #----------#
+                       {
+                         width        => 176,
+                  	 height       => 144,
+                  	 framerate    =>  30,
+                       },
+		      #----------#
+                      # Layer  2 #
+                      #----------#
+                       {
+                         width        => 352,
+                  	 height       => 288,
+                  	 framerate    =>  30,
+                       },
+		      #----------#
+                      # Layer  3 #
+                      #----------#
+                       {
+                         width        => 352,
+                  	 height       => 288,
+                  	 framerate    =>  30,
+                       },
+		      #----------#
+                      # Layer  4 #
+                      #----------#
+                       {
+                         width        => 352,
+                  	 height       => 288,
+                  	 framerate    =>  30,
+                       },
+   		      ],
+   
+#==========================================================#
+#          Extracting +Decoding parameters  (i.e Tests )   #
+#          mode == 11 decode + rewrite                     #
+#==========================================================#  
+      bitratecheckrange  => 1.,
+      psnrcheckrange     => 0.,
+	
+
+      tests      => [
+		      #----------#
+                      # Test   0 #
+                      #----------#
+                      {
+            	        name        => "176x144 30Hz",
+            	        mode        => 1,
+            	        width       => 176,
+            	        height      => 144,
+            	        framerate   => 30,
+            	        bitrate     => 340,
+            	        psnr        => 35.34,
+            	        encdecmatch => 1,
+            	      },
+		      #----------#
+                      # Test   1 #
+                      #----------#
+                      {
+            	        name        => "176x144 15Hz with Skip Slices",
+            	        mode        => 1,
+            	        width       => 176,
+            	        height      => 144,
+            	        framerate   => 15,
+            	        bitrate     => 263,
+            	        psnr        => 35.90,
+            	      },
+		      #----------#
+                      # Test   2 #
+                      #----------#
+                      {
+            	        name        => "176x144 15Hz without Skip Slices",
+            	        mode        => 1,
+            	        width       => 176,
+            	        height      => 144,
+            	        framerate   => 15,
+            	        bitrate     => 260,
+            	        psnr        => 35.90,
+            	      },
+		      #----------#
+                      # Test   3 #
+                      #----------#
+                      {
+            	        name        => "352x288 30Hz with Skip Slices",
+            	        mode        => 1,
+            	        width       => 352,
+            	        height      => 288,
+            	        framerate   => 30,
+            	        bitrate     => 1378,
+            	        psnr        => 34.16,
+            	        encdecmatch => 1,
+            	      },
+		      #----------#
+                      # Test   4 #
+                      #----------#
+                      {
+            	        name        => "352x288 30Hz without Skip Slices",
+            	        mode        => 1,
+            	        width       => 352,
+            	        height      => 288,
+            	        framerate   => 30,
+            	        bitrate     => 1360,
+            	        psnr        => 34.16,
+            	        encdecmatch => 1,
+            	      },
+            	      #----------#    		              
+		  ],
+}

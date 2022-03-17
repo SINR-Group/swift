@@ -1,0 +1,615 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+    name 	   => "6.6.21",
+    verbosemode    => 1,	
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+    runencode	=> 0,
+    
+
+#=======================#
+# Layers  parameters    
+#=======================#     
+    layers       => [
+                    ],
+   
+#==========================================================#
+#          Extracting + Decoding parameters  (i.e Tests )  #
+#==========================================================#  
+      tests      => [
+                      #----------#
+                      # Test   6.6.21.1 #
+                      #----------#
+                      {
+          		        name   => "FREH-1",
+          		        mode   => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "FRExt1_Panasonic.avc",
+          		        decodedname   => "FRExt1_Panasonic_352x288.yuv",
+          		        origname      => "FRExt1_Panasonic_rec.yuv",
+          		        psnr => 99.99,
+            		      },
+                      #----------#
+                      # Test   6.6.21.1 #
+                      #----------#
+                      {
+          		        name   => "FREH-28",
+          		        mode   => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "Freh1_B.264",
+          		        decodedname   => "Freh1_B_352x288.yuv",
+          		        origname      => "Freh1_B_dec.yuv",
+          		        psnr => 99.99,
+            		      },
+                      #----------#
+                      # Test   6.6.21.2 #
+                      #----------#
+                      {
+          		        name   => "FREH-2",
+          		        mode   => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "FRExt3_Panasonic.avc",
+          		        decodedname   => "FRExt3_Panasonic_352x288.yuv",
+          		        origname      => "FRExt3_Panasonic_rec.yuv",
+          		        psnr => 99.99,
+            		      },
+                      #----------#
+                      # Test   6.6.21.2 #
+                      #----------#
+                      {
+          		        name   => "FREH-29",
+          		        mode   => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "Freh2_B.264",
+          		        decodedname   => "Freh2_B_352x288.yuv",
+          		        origname      => "Freh2_B_dec.yuv",
+          		        psnr => 99.99,
+            		      },
+                      #----------#
+                      # Test   6.6.21.3 #
+                      #----------#
+                      {
+          		        name   => "FREH-3",
+          		        mode   => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "HCAFR1_HHI.264",
+          		        decodedname   => "HCAFR1_HHI_352x288.yuv",
+          		        origname      => "HCAFR1_HHI.yuv",
+          		        psnr => 99.99,
+            		      },
+            		      #----------#
+                      # Test   6.6.21.3 #
+                      #----------#
+                      {
+          		        name   => "FREH-30",
+          		        mode   => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "freh3.264",
+          		        decodedname   => "freh3_352x288.yuv",
+          		        origname      => "Freh3_dec.yuv",
+          		        psnr => 99.99,
+            		      },
+            		      #----------#
+                      # Test   6.6.21.4 #
+                      #----------#
+		                  {
+          		        name => "FREH-4",
+          		        mode => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "HCAFF1_HHI.264",
+          		        decodedname   => "HCAFF1_HHI_352x288.yuv", 
+          		        origname      => "HCAFF1_HHI.yuv",
+          		        psnr => 99.99,
+            		      },
+            		      #----------#
+                      # Test   6.6.21.4 #
+                      #----------#
+                      {
+          		        name   => "FREH-31",
+          		        mode   => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "freh4.264",
+          		        decodedname   => "freh4_352x288.yuv",
+          		        origname      => "Freh4_dec.yuv",
+          		        psnr => 99.99,
+		                  },
+            		#----------#
+                      # Test   6.6.21.5 #
+                      #----------#
+		                  {
+          		        name => "FREH-5",
+          		        mode => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "HCAMFF1_HHI.264",
+          		        decodedname   => "HCAMFF1_HHI_352x288.yuv", 
+          		        origname      => "HCAMFF1_HHI.yuv",
+          		        psnr => 99.99,
+            		      },
+            		#----------#
+                      # Test   6.6.21.5 #
+                      #----------#
+                      {
+          		        name   => "FREH-32",
+          		        mode   => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "freh5.264",
+          		        decodedname   => "freh5_352x288.yuv",
+          		        origname      => "Freh5_dec.yuv",
+          		        psnr => 99.99,
+		                  },
+            		#----------#
+                      # Test   6.6.21.6 #
+                      #----------#
+		                  {
+          		        name => "FREH-6",
+          		        mode => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "FRExt2_Panasonic.avc",
+          		        decodedname   => "FRExt2_Panasonic_352x288.yuv", 
+          		        origname      => "FRExt2_Panasonic_rec.yuv",
+          		        psnr => 99.99,
+            		      },
+            		#----------#
+                      # Test   6.6.21.6 #
+                      #----------#
+                      {
+          		        name   => "FREH-33",
+          		        mode   => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "freh6.264",
+          		        decodedname   => "freh6_352x288.yuv",
+          		        origname      => "Freh6_dec.yuv",
+          		        psnr => 99.99,
+		                  },
+            		#----------#
+                      # Test   6.6.21.7 #
+                      #----------#
+		                  {
+          		        name => "FREH-7",
+          		        mode => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "FRExt4_Panasonic.avc",
+          		        decodedname   => "FRExt4_Panasonic_352x288.yuv", 
+          		        origname      => "FRExt4_Panasonic_rec.yuv",
+          		        psnr => 99.99,
+            		      },
+            		#----------#
+                      # Test   6.6.21.7 #
+                      #----------#
+                      {
+          		        name   => "FREH-34",
+          		        mode   => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "Freh7_B.264",
+          		        decodedname   => "Freh7_B_352x288.yuv",
+          		        origname      => "Freh7_B_dec.yuv",
+          		        psnr => 99.99,
+		                  },
+            		      #----------#
+                      # Test   6.6.21.8 #
+                      #----------#
+                      {
+          		        name   => "FREH-8",
+          		        mode   => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "HPCANL_BRCM_C.264",
+          		        decodedname   => "HPCANL_BRCM_C_352x288.yuv",
+          		        origname      => "HPCANL_BRCM_C.yuv",
+          		        psnr => 99.99,
+            		      },
+            		      #----------#
+                      # Test   6.6.21.9 #
+                      #----------#
+                      {
+          		        name   => "FREH-9",
+          		        mode   => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "HPCA_BRCM_C.264",
+          		        decodedname   => "HPCA_BRCM_C_352x288.yuv",
+          		        origname      => "HPCA_BRCM_C.yuv",
+          		        psnr => 99.99,
+            		      },
+            		      #----------#
+                      # Test   6.6.21.10 #
+                      #----------#
+                      {
+          		        name   => "FREH-10",
+          		        mode   => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "HPCAFLNL_BRCM_C.264",
+          		        decodedname   => "HPCAFLNL_BRCM_C_352x288.yuv",
+          		        origname      => "HPCAFLNL_BRCM_C.yuv",
+          		        psnr => 99.99,
+            		      },
+            		      #----------#
+                      # Test   6.6.21.11 #
+                      #----------#
+                      {
+          		        name   => "FREH-11",
+          		        mode   => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "HPCAFL_BRCM_C.264",
+          		        decodedname   => "HPCAFL_BRCM_C_352x288.yuv",
+          		        origname      => "HPCAFL_BRCM_C.yuv",
+          		        psnr => 99.99,
+            		      },
+            		#----------#
+                      # Test   6.6.21.12 #
+                      #----------#
+		                  {
+          		        name => "FREH-12",
+          		        mode => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "HCAFR2_HHI.264",
+          		        decodedname   => "HCAFR2_HHI_352x288.yuv", 
+          		        origname      => "HCAFR2_HHI.yuv",
+          		        psnr => 99.99,
+            		      },
+            		#----------#
+                      # Test   6.6.21.12 #
+                      #----------#
+                      {
+          		        name   => "FREH-39",
+          		        mode   => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "Freh12_B.264",
+          		        decodedname   => "Freh12_B_352x288.yuv",
+          		        origname      => "Freh12_B_dec.yuv",
+          		        psnr => 99.99,
+		                  },
+            		#----------#
+                      # Test   6.6.21.13 #
+                      #----------#
+		                  {
+          		        name => "FREH-13",
+          		        mode => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "HCAFR3_HHI.264",
+          		        decodedname   => "HCAFR3_HHI_352x288.yuv", 
+          		        origname      => "HCAFR3_HHI.yuv",
+          		        psnr => 99.99,
+            		      },
+            		#----------#
+                      # Test   6.6.21.13 #
+                      #----------#
+		                  {
+          		        name => "FREH-14",
+          		        mode => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "HCAFR4_HHI.264",
+          		        decodedname   => "HCAFR4_HHI_352x288.yuv", 
+          		        origname      => "HCAFR4_HHI.yuv",
+          		        psnr => 99.99,
+            		      },
+            		#----------#
+                      # Test   6.6.21.13 #
+                      #----------#
+		                  {
+          		        name => "FREH-15",
+          		        mode => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "HPCADQ_BRCM_B.264",
+          		        decodedname   => "HPCADQ_BRCM_B_352x288.yuv", 
+          		        origname      => "HPCADQ_BRCM_B.yuv",
+          		        psnr => 99.99,
+            		      },
+            		#----------#
+                      # Test   6.6.21.14 #
+                      #----------#
+		                  {
+          		        name => "FREH-16",
+          		        mode => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "HPCALQ_BRCM_B.264",
+          		        decodedname   => "HPCALQ_BRCM_B_352x288.yuv", 
+          		        origname      => "HPCALQ_BRCM_B.yuv",
+          		        psnr => 99.99,
+            		      },
+            		#----------#
+                      # Test   6.6.21.15 #
+                      #----------#
+		                  {
+          		        name => "FREH-17",
+          		        mode => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "HPCAMAPALQ_BRCM_B.264",
+          		        decodedname   => "HPCAMAPALQ_BRCM_B_352x288.yuv", 
+          		        origname      => "HPCAMAPALQ_BRCM_B.yuv",
+          		        psnr => 99.99,
+            		      },
+            		#----------#
+                      # Test   6.6.21.16 #
+                      #----------#
+		                  {
+          		        name => "FREH-18",
+          		        mode => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "HPCV_BRCM_A.264",
+          		        decodedname   => "HPCV_BRCM_A_352x288.yuv", 
+          		        origname      => "HPCV_BRCM_A.YUV",
+          		        psnr => 99.99,
+            		      },
+            		#----------#
+                      # Test   6.6.21.17 #
+                      #----------#
+		                  {
+          		        name => "FREH-19",
+          		        mode => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "HPCVNL_BRCM_A.264",
+          		        decodedname   => "HPCVNL_BRCM_A_352x288.yuv", 
+          		        origname      => "HPCVNL_BRCM_A.YUV",
+          		        psnr => 99.99,
+            		      },
+            		#----------#
+                      # Test   6.6.21.18 #
+                      #----------#
+		                  {
+          		        name => "FREH-20",
+          		        mode => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "HPCVFL_BRCM_A.264",
+          		        decodedname   => "HPCVFL_BRCM_A_352x288.yuv", 
+          		        origname      => "HPCVFL_BRCM_A.YUV",
+          		        psnr => 99.99,
+            		      },
+            		#----------#
+                      # Test   6.6.21.19 #
+                      #----------#
+		                  {
+          		        name => "FREH-21",
+          		        mode => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "HPCVFLNL_BRCM_A.264",
+          		        decodedname   => "HPCVFLNL_BRCM_A_352x288.yuv", 
+          		        origname      => "HPCVFLNL_BRCM_A.YUV",
+          		        psnr => 99.99,
+            		      },
+            		#----------#
+                      # Test   6.6.21.20 #
+                      #----------#
+		                  {
+          		        name => "FREH-22",
+          		        mode => 0,
+          		        width  => 720,
+          		        height => 480,
+          		        bitstreamname => "HVLCFI0_Sony_B.264",
+          		        decodedname   => "HVLCFI0_Sony_B_720x480.yuv", 
+          		        origname      => "HVLCFI0_Sony_B.yuv",
+          		        psnr => 99.99,
+            		      },
+            		#----------#
+                      # Test   6.6.21.21 #
+                      #----------#
+		                  {
+          		        name => "FREH-23",
+          		        mode => 0,
+          		        width  => 720,
+          		        height => 480,
+          		        bitstreamname => "HVLCPFF0_Sony_B.264",
+          		        decodedname   => "HVLCPFF0_Sony_B_720x480.yuv", 
+          		        origname      => "HVLCPFF0_Sony_B.yuv",
+          		        psnr => 99.99,
+            		      },
+            		#----------#
+                      # Test   6.6.21.22 #
+                      #----------#
+		                  {
+          		        name => "FREH-24",
+          		        mode => 0,
+          		        width  => 720,
+          		        height => 480,
+          		        bitstreamname => "HVLCMFF0_Sony_B.264",
+          		        decodedname   => "HVLCMFF0_Sony_B_720x480.yuv", 
+          		        origname      => "HVLCMFF0_Sony_B.yuv",
+          		        psnr => 99.99,
+            		      },
+            		#----------#
+                      # Test   6.6.21.23 #
+                      #----------#
+		                  {
+          		        name => "FREH-25",
+          		        mode => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "HPCVMOLQ_BRCM_B.264",
+          		        decodedname   => "HPCVMOLQ_BRCM_B_352x288.yuv", 
+          		        origname      => "HPCVMOLQ_BRCM_B.YUV",
+          		        psnr => 99.99,
+            		      },
+            		#----------#
+                      # Test   6.6.21.24 #
+                      #----------#
+		                  {
+          		        name => "FREH-26",
+          		        mode => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "HPCAMOLQ_BRCM_B.264",
+          		        decodedname   => "HPCAMOLQ_BRCM_B_352x288.yuv", 
+          		        origname      => "HPCAMOLQ_BRCM_B.YUV",
+          		        psnr => 99.99,
+            		      },
+            		#----------#
+                      # Test   6.6.21.25 #
+                      #----------#
+		                  {
+          		        name => "FREH-27",
+          		        mode => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "HPCAQ2LQ_BRCM_B.264",
+          		        decodedname   => "HPCAQ2LQ_BRCM_B_352x288.yuv", 
+          		        origname      => "HPCAQ2LQ_BRCM_B.YUV",
+          		        psnr => 99.99,
+            		      },
+            		#----------#
+                      # Test   6.6.21.26 #
+                      #----------#
+                      {
+          		        name   => "FREH-35",
+          		        mode   => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "freh8.264",
+          		        decodedname   => "freh8_352x288.yuv",
+          		        origname      => "Freh8_dec.yuv",
+          		        psnr => 99.99,
+		                  },
+            		#----------#
+                      # Test   6.6.21.27 #
+                      #----------#
+                      {
+          		        name   => "FREH-36",
+          		        mode   => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "freh9.264",
+          		        decodedname   => "freh9_352x288.yuv",
+          		        origname      => "Freh9_dec.yuv",
+          		        psnr => 99.99,
+		                  },
+            		#----------#
+                      # Test   6.6.21.28 #
+                      #----------#
+                      {
+          		        name   => "FREH-37",
+          		        mode   => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "freh10.264",
+          		        decodedname   => "freh10_352x288.yuv",
+          		        origname      => "Freh10_dec.yuv",
+          		        psnr => 99.99,
+		                  },
+            		#----------#
+                      # Test   6.6.21.29 #
+                      #----------#
+                      {
+          		        name   => "FREH-38",
+          		        mode   => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "freh11.264",
+          		        decodedname   => "freh11_352x288.yuv",
+          		        origname      => "Freh11_dec.yuv",
+          		        psnr => 99.99,
+		                  },
+            		#----------#
+                      # Test   6.6.21.30 #
+                      #----------#
+                      {
+          		        name   => "FREH-40",
+          		        mode   => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "HCHP1_HHI_B.264",
+          		        decodedname   => "HCHP1_HHI_B_352x288.yuv",
+          		        origname      => "HCHP1_HHI_B.yuv",
+          		        psnr => 99.99,
+		                  },
+            		#----------#
+                      # Test   6.6.21.30 #
+                      #----------#
+                      {
+          		        name   => "FREH-41",
+          		        mode   => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "HCHP2_HHI_A.264",
+          		        decodedname   => "HCHP2_HHI_A_352x288.yuv",
+          		        origname      => "HCHP2_HHI_A.yuv",
+          		        psnr => 99.99,
+		                  },
+            		#----------#
+                      # Test   6.6.21.31 #
+                      #----------#
+                      {
+          		        name   => "FREH-42",
+          		        mode   => 0,
+          		        width  => 720,
+          		        height => 576,
+          		        bitstreamname => "HCHP3_HHI_A.264",
+          		        decodedname   => "HCHP3_HHI_A_720x576.yuv",
+          		        origname      => "HCHP3_HHI_A.yuv",
+          		        psnr => 99.99,
+		                  },
+            		#----------#
+                      # Test   6.6.21.32 #
+                      #----------#
+                      {
+          		        name   => "FREH-43",
+          		        mode   => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "FREXT01_JVC_D.264",
+          		        decodedname   => "FREXT01_JVC_D_352x288.yuv",
+          		        origname      => "FREXT01_JVC_D.yuv",
+          		        psnr => 99.99,
+		                  },
+            		#----------#
+                      # Test   6.6.21.33 #
+                      #----------#
+                      {
+          		        name   => "FREH-44",
+          		        mode   => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "FREXT02_JVC_C.264",
+          		        decodedname   => "FREXT02_JVC_C_352x288.yuv",
+          		        origname      => "FREXT02_JVC_C.yuv",
+          		        psnr => 99.99,
+		                  },
+
+            		#----------#
+                      # Test   6.6.21.34 #
+                      #----------#
+                      {
+          		        name   => "FREH-45",
+          		        mode   => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "FRExt_MMCO4_Sony_B.264",
+          		        decodedname   => "FRExt_MMCO4_Sony_B_352x288.yuv",
+          		        origname      => "FRExt_MMCO4_Sony_B.yuv",
+          		        psnr => 99.99,
+		                  },
+
+
+    		    ],
+}
+
+

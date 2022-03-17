@@ -1,0 +1,58 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+name              => "MVC",
+original          => "MOBILE_352x288_30.yuv",
+originalwidth     => 352,
+originalheight    => 288,
+originalframerate => 30,
+width             => 176,
+height            => 144,
+framerate         => 30,
+nbframes          => 253,
+verbosemode       => 1,	
+phasemode         => 1,
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+runencode   => 1,
+
+#=======================#
+# Layers  parameters    #
+#=======================#     
+layers      => [
+                #----------#
+                # Layer  0 #
+                #----------#
+                {
+                 width        => 176,
+                 height       => 144,
+                 framerate    =>  30,
+                },
+               ],
+   
+#==========================================================#
+#          Extracting +Decoding parameters  (i.e Tests )   #
+#==========================================================#  
+bitratecheckrange  => 1,
+psnrcheckrange     => 0,
+         
+tests              => [
+                       #----------#
+                       # Test   0 #
+                       #----------#
+                       {
+                        name        => "Rec",
+                        mode        => 0,
+                        width       => 176,
+                        height      => 144,
+                        framerate   => 30,
+                  			bitrate     => 100,
+                  			psnr        => 30.20,
+                        encdecmatch => 1,
+                       },
+                      ],
+}
+

@@ -1,0 +1,122 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+    name 	=> "ScalingMatrix",
+    original 	=> "CREW_704x576_60.yuv",
+    width      	=> 704,
+    height     	=> 576,
+    framerate 	=> 60,
+    nbframes	=> 40,
+    verbosemode => 1,	
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+    runencode	=> 1,
+    singleloopflag => "-bcip",
+
+#=======================#
+# Layers  parameters    
+#=======================#     
+    layers       => [
+                      #----------#
+                      # Layer  0 #
+                      #----------#
+                       {
+                         width        => 352,
+                  	 height       => 288,
+                  	 framerate    =>  30,
+                       },
+
+		      #----------#
+                      # Layer  1 #
+                      #----------#
+                       {
+                         width        => 352,
+                  	 height       => 288,
+                  	 framerate    =>  30,
+                       },
+
+		      #----------#
+                      # Layer  2 #
+                      #----------#
+                       {
+                         width        => 704,
+                  	 height       => 576,
+                  	 framerate    =>  30,
+                       },
+
+		      #----------#
+                      # Layer  3 #
+                      #----------#
+                       {
+                         width        => 704,
+                  	 height       => 576,
+                  	 framerate    =>  30,
+                       },
+		      #----------#
+   		      ],
+   
+#==========================================================#
+#          Extracting +Decoding parameters  (i.e Tests )   #
+#          mode == 11 decode + rewrite                     #
+#==========================================================#  
+      bitratecheckrange  => 1.,
+      psnrcheckrange     => 0.,
+	
+
+      tests      => [
+		      #----------#
+                      # Test   0 #
+                      #----------#
+                      {
+            	        name => "L0",
+            	        mode => 1,
+            	        width => 352,
+            	        height => 288,
+            	        framerate => 30,
+            	        bitrate => 439,
+            	        psnr => 36.35,
+            	      },
+            	      #----------#
+                      # Test   1 #
+                      #----------#
+            	      {
+            	        name => "L1",
+            	        mode => 11,
+            	        width => 352,
+            	        height => 288,
+            	        framerate => 30,
+            	        bitrate => 970,
+            	        psnr => 38.75,
+            	        encdecmatch => 1,
+            	      },
+            	      #----------#
+                      # Test   2 #
+                      #----------#
+            	      {
+            	        name => "L2",
+            	        mode => 1,
+            	        width => 704,
+            	        height => 576,
+            	        framerate => 30,
+            	        bitrate => 1315,
+            	        psnr => 36.39,
+            	      },
+            	      #----------#
+                      # Test   3 #
+                      #----------#
+            	      {
+            	        name => "L3",
+            	        mode => 1,
+            	        width => 704,
+            	        height => 576,
+            	        framerate => 30,
+            	        bitrate => 2574,
+            	        psnr => 38.13,
+            	        encdecmatch => 1,
+            	      },
+            	      #----------#    		              
+		  ],
+}

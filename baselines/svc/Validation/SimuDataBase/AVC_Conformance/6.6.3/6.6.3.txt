@@ -1,0 +1,183 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+    name 	   => "6.6.3",
+    verbosemode    => 1,	
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+    runencode	=> 0,
+    
+
+#=======================#
+# Layers  parameters    
+#=======================#     
+    layers       => [
+                    ],
+   
+#==========================================================#
+#          Extracting + Decoding parameters  (i.e Tests )  #
+#==========================================================#  
+      tests      => [
+		      #----------------#
+                      # Test  6.6.3.1  #
+                      #----------------#
+                      {
+          	        name          => "AVCMR-1",
+          	        mode          => 0,
+          	        width         => 176,
+          	        height        => 144,
+          	        bitstreamname => "MR1_BT_A.h264",
+          	        decodedname   => "MR1_BT_A_176x144.yuv",
+          	        origname      => "MR1_BT_A.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #----------------#
+                      # Test  6.6.3.2  #
+                      #----------------#
+                      {
+          	        name          => "AVCMR-2",
+          	        mode          => 0,
+          	        width         => 176,
+          	        height        => 144,
+          	        bitstreamname => "MR2_TANDBERG_E.264",
+          	        decodedname   => "MR2_TANDBERG_E_176x144.yuv",
+          	        origname      => "MR2_TANDBERG_E.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #----------------#
+                      # Test  6.6.3.3  #
+                      #----------------#
+                      {
+          	        name          => "AVCMR-3",
+          	        mode          => 0,
+          	        width         => 176,
+          	        height        => 144,
+          	        bitstreamname => "MR3_TANDBERG_B.264",
+          	        decodedname   => "MR3_TANDBERG_B_176x144.yuv",
+          	        origname      => "MR3_TANDBERG_B.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #----------------#
+                      # Test  6.6.3.4  #
+                      #----------------#
+                      {
+          	        name          => "AVCMR-4",
+          	        mode          => 0,
+          	        width         => 176,
+          	        height        => 144,
+          	        bitstreamname => "MR4_TANDBERG_C.264",
+          	        decodedname   => "MR4_TANDBERG_C_176x144.yuv",
+          	        origname      => "MR4_TANDBERG_C.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #----------------#
+                      # Test  6.6.3.5  #
+                      #----------------#
+                      {
+          	        name          => "AVCMR-5",
+          	        mode          => 0,
+          	        width         => 176,
+          	        height        => 144,
+          	        bitstreamname => "MR5_TANDBERG_C.264",
+          	        decodedname   => "MR5_TANDBERG_C_176x144.yuv",
+          	        origname      => "MR5_TANDBERG_C.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #----------------#
+                      # Test  6.6.3.6  #
+                      #----------------#
+                      {
+          	        name          => "AVCMR-6",
+          	        mode          => 0,
+          	        width         => 176,
+          	        height        => 144,
+          	        bitstreamname => "MR1_MW_A.264",
+          	        decodedname   => "MR1_MW_A_176x144.yuv",
+          	        origname      => "MR1_MW_A_rec.qcif",
+          	        psnr          => 99.99,
+            	      },
+		      #----------------#
+                      # Test  6.6.3.7  #
+                      #----------------#
+                      {
+          	        name          => "AVCMR-7",
+          	        mode          => 0,
+          	        width         => 176,
+          	        height        => 144,
+          	        bitstreamname => "MR2_MW_A.264",
+          	        decodedname   => "MR2_MW_A_176x144.yuv",
+          	        origname      => "MR2_MW_A_rec.qcif",
+          	        psnr          => 99.99,
+            	      },
+		      #----------------#
+                      # Test  6.6.3.8  #
+                      #----------------#
+                      {
+          	        name          => "AVCMR-8",
+          	        mode          => 0,
+          	        width         => 192,
+          	        height        => 128,
+          	        bitstreamname => "MR6_BT_B.h264",
+          	        decodedname   => "MR6_BT_B_192x128.yuv",
+          	        origname      => "MR6_BT_B.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #----------------#
+                      # Test  6.6.3.8  #
+                      #----------------#
+                      {
+          	        name          => "AVCMR-9",
+          	        mode          => 0,
+          	        width         => 192,
+          	        height        => 128,
+          	        bitstreamname => "MR7_BT_B.h264",
+          	        decodedname   => "MR7_BT_B_192x128.yuv",
+          	        origname      => "MR7_BT_B.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #----------------#
+                      # Test  6.6.3.9  #
+                      #----------------#
+                      {
+          	        name          => "AVCMR-10",
+          	        mode          => 0,
+          	        width         => 192,
+          	        height        => 128,
+          	        bitstreamname => "MR8_BT_B.h264",
+          	        decodedname   => "MR8_BT_B_192x128.yuv",
+          	        origname      => "MR8_BT_B.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #----------------#
+                      # Test  6.6.3.10  #
+                      #----------------#
+                      {
+          	        name          => "AVCMR-11",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "HCBP1_HHI_A.264",
+          	        decodedname   => "HCBP1_HHI_A_352x288.yuv",
+          	        origname      => "HCBP1_HHI_A.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #----------------#
+                      # Test  6.6.3.10  #
+                      #----------------#
+                      {
+          	        name          => "AVCMR-12",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "HCBP2_HHI_A.264",
+          	        decodedname   => "HCBP2_HHI_A_352x288.yuv",
+          	        origname      => "HCBP2_HHI_A.yuv",
+          	        psnr          => 99.99,
+            	      },
+	          ],
+}
+
+

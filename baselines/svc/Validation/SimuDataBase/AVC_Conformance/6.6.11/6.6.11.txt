@@ -1,0 +1,235 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+    name 	   => "6.6.11",
+    verbosemode    => 1,	
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+    runencode	=> 0,
+    
+
+#=======================#
+# Layers  parameters    
+#=======================#     
+    layers       => [
+                    ],
+   
+#==========================================================#
+#          Extracting + Decoding parameters  (i.e Tests )  #
+#==========================================================#  
+      tests      => [
+		                  #----------#
+                      # Test   6.6.11.1 #
+                      #----------#
+                      {
+          		        name   => "AVCCANL-1",
+          		        mode   => 0,
+          		        width  => 176,
+          		        height => 144,
+          		        bitstreamname => "CANL1_TOSHIBA_G.264",
+          		        decodedname   => "CANL1_TOSHIBA_G_176x144.yuv",
+          		        origname      => "CANL1_TOSHIBA_G_dec.yuv",
+          		        psnr => 99.99,
+            		      },
+            		      #----------#
+                      # Test   6.6.11.2 #
+                      #----------#
+		                  {
+          		        name => "AVCCANL-2",
+          		        mode => 0,
+          		        width  => 176,
+          		        height => 144,
+          		        bitstreamname => "CANL1_Sony_E.jsv",
+          		        decodedname   => "CANL1_Sony_E_176x144.yuv", 
+          		        origname      => "CANL1_Sony_E.yuv",
+          		        psnr => 99.99,
+            		      },
+            		      #----------#
+                      # Test   6.6.11.3 #
+                      #----------#
+                      {
+          		        name   => "AVCCANL-3",
+          		        mode   => 0,
+          		        width  => 176,
+          		        height => 144,
+          		        bitstreamname => "CANL2_Sony_E.jsv",
+          		        decodedname   => "CANL2_Sony_E_176x144.yuv",
+          		        origname      => "CANL2_Sony_E.yuv",
+          		        psnr => 99.99,
+            		      },
+            		      #----------#
+                      # Test   6.6.11.4 #
+                      #----------#
+                      {
+          		        name   => "AVCCANL-4",
+          		        mode   => 0,
+          		        width  => 176,
+          		        height => 144,
+          		        bitstreamname => "CANL3_Sony_C.jsv",
+          		        decodedname   => "CANL3_Sony_C_176x144.yuv",
+          		        origname      => "CANL3_Sony_C.yuv",
+          		        psnr => 99.99,
+            		      },
+            		      #----------#
+                      # Test   6.6.11.5 #
+                      #----------#
+                      {
+          		        name   => "AVCCANL-5",
+          		        mode   => 0,
+          		        width  => 176,
+          		        height => 144,
+          		        bitstreamname => "CANL1_SVA_B.264",
+          		        decodedname   => "CANL1_SVA_B_176x144.yuv",
+          		        origname      => "CANL1_SVA_B_rec.yuv",
+          		        psnr => 99.99,
+            		      },
+            		      #----------#
+                      # Test   6.6.11.6 #
+                      #----------#
+                      {
+          		        name   => "AVCCANL-6",
+          		        mode   => 0,
+          		        width  => 176,
+          		        height => 144,
+          		        bitstreamname => "CANL2_SVA_B.264",
+          		        decodedname   => "CANL2_SVA_B_176x144.yuv",
+          		        origname      => "CANL2_SVA_B_rec.yuv",
+          		        psnr => 99.99,
+            		      },
+            		      #----------#
+                      # Test   6.6.11.7 #
+                      #----------#
+                      {
+          		        name   => "AVCCANL-7",
+          		        mode   => 0,
+          		        width  => 176,
+          		        height => 144,
+          		        bitstreamname => "CANL3_SVA_B.264",
+          		        decodedname   => "CANL3_SVA_B_176x144.yuv",
+          		        origname      => "CANL3_SVA_B_rec.yuv",
+          		        psnr => 99.99,
+            		      },
+            		      #----------#
+                      # Test   6.6.11.8 #
+                      #----------#
+                      {
+          		        name   => "AVCCANL-8",
+          		        mode   => 0,
+          		        width  => 176,
+          		        height => 144,
+          		        bitstreamname => "CANL4_SVA_B.264",
+          		        decodedname   => "CANL4_SVA_B_176x144.yuv",
+          		        origname      => "CANL4_SVA_B_rec.yuv",
+          		        psnr => 99.99,
+            		      },	 
+            		      #----------#
+                      # Test   6.6.11.9 #
+                      #----------#
+                      {
+          		        name   => "AVCCABA-1",
+          		        mode   => 0,
+          		        width  => 176,
+          		        height => 144,
+          		        bitstreamname => "CABA1_Sony_D.jsv",
+          		        decodedname   => "CABA1_Sony_D_176x144.yuv",
+          		        origname      => "CABA1_Sony_D.yuv",
+          		        psnr => 99.99,
+            		      },
+            		      #----------#
+                      # Test   6.6.11.10 #
+                      #----------#
+            		      {
+            		      name => "AVCCABA-2",
+            		      mode => 0,
+            		      width  => 176,
+            		      height => 144,
+            		      bitstreamname => "CABA2_Sony_E.jsv",
+            		      decodedname   => "CABA2_Sony_E_176x144.yuv", 
+            		      origname      => "CABA2_Sony_E.yuv",
+            		      psnr => 99.99,
+            		      },
+            		      #----------#
+                      # Test  6.6.11.11 #
+                      #----------#
+                      {
+          		        name   => "AVCCABA-3",
+          		        mode   => 0,
+          		        width  => 176,
+          		        height => 144,
+          		        bitstreamname => "CABA3_Sony_C.jsv",
+          		        decodedname   => "CABA3_Sony_C_176x144.yuv",
+          		        origname      => "CABA3_Sony_C.yuv",
+          		        psnr => 99.99,
+            		      },
+            		      #----------#
+                      # Test  6.6.11.12 #
+                      #----------#
+                      {
+          		        name   => "AVCCABA-4",
+          		        mode   => 0,
+          		        width  => 176,
+          		        height => 144,
+          		        bitstreamname => "CABA3_TOSHIBA_E.264",
+          		        decodedname   => "CABA3_TOSHIBA_E_176x144.yuv",
+          		        origname      => "CABA3_TOSHIBA_E_dec.yuv",
+          		        psnr => 99.99,
+            		      },
+            		      #----------#
+                      # Test  6.6.11.13 #
+                      #----------#
+                      {
+          		        name   => "AVCCABA-5",
+          		        mode   => 0,
+          		        width  => 176,
+          		        height => 144,
+          		        bitstreamname => "CABA1_SVA_B.264",
+          		        decodedname   => "CABA1_SVA_B_176x144.yuv",
+          		        origname      => "CABA1_SVA_B_rec.yuv",
+          		        psnr => 99.99,
+            		      },
+            		      #----------#
+                      # Test  6.6.11.14 #
+                      #----------#
+                      {
+          		        name   => "AVCCABA-6",
+          		        mode   => 0,
+          		        width  => 176,
+          		        height => 144,
+          		        bitstreamname => "CABA2_SVA_B.264",
+          		        decodedname   => "CABA2_SVA_B_176x144.yuv",
+          		        origname      => "CABA2_SVA_B_rec.yuv",
+          		        psnr => 99.99,
+            		      },
+            		      #----------#
+                      # Test  6.6.11.15 #
+                      #----------#
+                      {
+          		        name   => "AVCCABA-7",
+          		        mode   => 0,
+          		        width  => 176,
+          		        height => 144,
+          		        bitstreamname => "CABA3_SVA_B.264",
+          		        decodedname   => "CABA3_SVA_B_176x144.yuv",
+          		        origname      => "CABA3_SVA_B_rec.yuv",
+          		        psnr => 99.99,
+            		      },
+            		      #----------#
+                      # Test  6.6.11.16 #
+                      #----------#
+                      {
+          		        name   => "AVCCABA-8",
+          		        mode   => 0,
+          		        width  => 176,
+          		        height => 144,
+          		        bitstreamname => "camp_mot_frm0_full.26l",
+          		        decodedname   => "camp_mot_frm0_full_176x144.yuv",
+          		        origname      => "camp_mot_frm0_full_rec.yuv",
+          		        psnr => 99.99,
+		                  }
+    		    ],
+}
+
+

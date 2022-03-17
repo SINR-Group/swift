@@ -1,0 +1,76 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+name        => "LCMB",
+original    => "CREW_704x576_60.yuv",
+width       => 704,
+height      => 576,
+framerate   => 60,
+nbframes    => 120,
+verbosemode => 1,	
+phasemode   => 1,
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+runencode   => 1,
+
+#=======================#
+# Layers  parameters    #
+#=======================#     
+layers      => [
+                #----------#
+                # Layer  0 #
+                #----------#
+                {
+                 width        => 176,
+                 height       => 144,
+                 framerate    =>  15,
+                },
+                #----------#
+                # Layer  1 #
+                #----------#
+                {
+                 width        => 352,
+                 height       => 288,
+                 framerate    =>  30,
+                },
+               ],
+   
+#==========================================================#
+#          Extracting +Decoding parameters  (i.e Tests )   #
+#==========================================================#  
+bitratecheckrange  => 1,
+psnrcheckrange     => 0,
+         
+tests              => [
+                       #----------#
+                       # Test   0 #
+                       #----------#
+                       {
+                        name        => "L0",
+                        mode        => 1,
+                        width       => 176,
+                        height      => 144,
+                        framerate   => 15,
+                        bitrate     => 49,
+                        psnr        => 32.90,
+                        encdecmatch => 1,
+                       },
+                       #----------#
+                       # Test   1 #
+                       #----------#
+                       {
+                        name        => "L1",
+                        mode        => 1,
+                        width       => 352,
+                        height      => 288,
+                        framerate   => 30,
+                        bitrate     => 120,
+                        psnr        => 31.56,
+                        encdecmatch => 1,
+                       },
+                      ],
+}
+

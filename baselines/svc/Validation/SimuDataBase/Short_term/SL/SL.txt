@@ -1,0 +1,55 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+    name 	=> "SL",
+    original 	=> "MOBILE_352x288_30.yuv",
+    width      	=> 352,
+    height     	=> 288,
+    framerate 	=> 30,
+    nbframes	=> 50,
+    verbosemode => 1,	
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+    runencode	=> 1,
+    singleloopflag => "-bcip",
+
+#=======================#
+# Layers  parameters    
+#=======================#     
+    layers       => [
+                      #----------#
+                      # Layer  0 #
+                      #----------#
+                       {
+                        width        => 352,
+                  	height       => 288,
+                  	framerate    =>  30,
+       			},
+             ],
+   
+#==========================================================#
+#          Extracting +Decoding parameters  (i.e Tests )   #
+#==========================================================#  
+      bitratecheckrange  => 1.,
+      psnrcheckrange     => 0.,
+	
+
+      tests      => [
+                      #----------#
+                      # Test   0 #
+                      #----------#
+                      {
+            		        name => "SL",
+            		        mode => 1,
+            		        width => 352,
+            		        height => 288,
+            		        framerate => 30,
+            		        bitrate => 1056,
+            		        psnr => 33.75,
+            		        encdecmatch => 1,
+       		      },
+		  ],
+}

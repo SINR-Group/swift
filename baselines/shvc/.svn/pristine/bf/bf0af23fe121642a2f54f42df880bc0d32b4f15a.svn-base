@@ -1,0 +1,26 @@
+InheritCodingStruct1              : -1
+MaxTidIlRefPicsPlus10         : 4           # max_tid_il_ref_pics_plus1 for layer0
+
+#Layer0 prediction structure
+
+Frame1:  B    8   1        0.442    0            0              0           4                2         -8 -9                  0
+Frame2:  B    4   2        0.3536   0            0              1           4                3         -4 -5  4               0
+Frame3:  B    2   3        0.3536   0            0              2           4                4         -2 -3  2 6             0
+Frame4:  B    1   4        0.68     0            0              3           4                5         -1 -2  1 3 7           0
+Frame5:  B    3   4        0.68     0            0              3           4                4         -1 -2  1 5             0
+Frame6:  B    6   3        0.3536   0            0              2           4                4         -2 -3 -4 2             0
+Frame7:  B    5   4        0.68     0            0              3           4                4         -1 -2  1 3             0
+Frame8:  B    7   4        0.68     0            0              3           4                3         -1 -2  1               0
+
+
+#Layer1 prediction structure
+
+Layer1Frame1:  B    8   1        0.442    0            0              0           4                1         -8                     0
+Layer1Frame2:  B    4   2        0.3536   0            0              1           4                2         -4  4                  0
+Layer1Frame3:  B    2   3        0.3536   0            0              2           4                3         -2  2  6               0  
+Layer1Frame4:  B    1   4        0.68     0            0              3           4                4         -1  1  3 7             0 
+Layer1Frame5:  B    3   4        0.68     0            0              3           4                3         -1  1  5               0
+Layer1Frame6:  B    6   3        0.3536   0            0              2           4                3         -2 -4  2               0
+Layer1Frame7:  B    5   4        0.68     0            0              3           4                3         -1  1  3               0
+Layer1Frame8:  B    7   4        0.68     0            0              3           4                2         -1  1                  0
+

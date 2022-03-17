@@ -1,0 +1,53 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+    name 	   => "6.6.14",
+    verbosemode    => 1,	
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+    runencode	=> 0,
+    
+
+#=======================#
+# Layers  parameters    
+#=======================#     
+    layers       => [
+                    ],
+   
+#==========================================================#
+#          Extracting + Decoding parameters  (i.e Tests )  #
+#==========================================================#  
+      tests      => [
+		      #-----------------#
+                      # Test  6.6.14.1  #
+                      #-----------------#
+                      {
+          	        name          => "AVCCASL-1",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "CABAST3_Sony_E.jsv",
+          	        decodedname   => "CABAST3_Sony_E_352x288.yuv",
+          	        origname      => "CABAST3_Sony_E.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #-----------------#
+                      # Test  6.6.14.2  #
+                      #-----------------#
+                      {
+          	        name          => "AVCCASL-2",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "CABASTBR3_Sony_B.jsv",
+          	        decodedname   => "CABASTBR3_Sony_B_352x288.yuv",
+          	        origname      => "CABASTBR3_Sony_B.yuv",
+          	        psnr          => 99.99,
+            	      },
+	          ],
+}
+
+

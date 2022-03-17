@@ -1,0 +1,66 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+    name 	   => "6.6.19",
+    verbosemode    => 1,	
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+    runencode	=> 0,
+    
+
+#=======================#
+# Layers  parameters    
+#=======================#     
+    layers       => [
+                    ],
+   
+#==========================================================#
+#          Extracting + Decoding parameters  (i.e Tests )  #
+#==========================================================#  
+      tests      => [
+		                  #----------#
+                      # Test   6.6.19.1 #
+                      #----------#
+                      {
+              		       name   => "AVCCAPA-1",
+              		       mode   => 0,
+              		       width  => 720,
+              		       height => 480,
+              		       bitstreamname => "Sharp_MP_PAFF_2.jvt",
+              		       decodedname   => "Sharp_MP_PAFF_2_720x480.yuv",
+              		       origname      => "Sharp_MP_PAFF_2_rec.yuv",
+              		       psnr => 99.99,
+            		      },
+            		      #----------#
+                      # Test   6.6.19.2 #
+                      #----------#
+            		      {
+            		        name => "AVCCAPA-2",
+            		        mode => 0,
+            		        width  => 352,
+            		        height => 288,
+            		        bitstreamname => "CAPA1_TOSHIBA_B.264",
+            		        decodedname   => "CAPA1_TOSHIBA_B_352x288.yuv", 
+            		        origname      => "CAPA1_TOSHIBA_B_dec.yuv",
+            		        psnr => 99.99,
+            		      },
+		                  #----------#
+                      # Test   6.6.19.3 #
+                      #----------#
+                      {
+            		        name   => "AVCCAPA-3",
+            		        mode   => 0,
+            		        width  => 720,
+            		        height => 480,
+            		        bitstreamname => "camp_mot_picaff0_full.26l",
+            		        decodedname   => "camp_mot_picaff0_full_720x480.yuv",
+            		        origname      => "camp_mot_picaff0_full_rec.yuv",
+            		        psnr => 99.99,
+		                  },
+		                ],
+}
+
+

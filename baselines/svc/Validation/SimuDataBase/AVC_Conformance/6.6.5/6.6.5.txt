@@ -1,0 +1,182 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+    name 	   => "6.6.5",
+    verbosemode    => 1,	
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+    runencode	=> 0,
+
+#=======================#
+# Layers  parameters    
+#=======================#     
+    layers       => [
+                    ],
+   
+#==========================================================#
+#          Extracting + Decoding parameters  (i.e Tests )  #
+#==========================================================#  
+      tests      => [
+                  	#----------#
+                      # Test   6.6.5.1 #
+                      #----------#
+                      {
+          		        name   => "AVCFI-1",
+          		        mode   => 0,
+          		        width  => 720,
+          		        height => 480,
+          		        bitstreamname => "CVNLFI1_Sony_C.jsv",
+          		        decodedname   => "CVNLFI1_Sony_C_720x480.yuv",
+          		        origname      => "CVNLFI1_Sony_C.yuv",
+          		        psnr => 99.99,
+            		      },
+            		      #----------#
+                      # Test   6.6.5.2 #
+                      #----------#
+		                  {
+          		        name => "AVCFI-2",
+          		        mode => 0,
+          		        width  => 720,
+          		        height => 480,
+          		        bitstreamname => "CVNLFI2_Sony_H.jsv",
+          		        decodedname   => "CVNLFI2_Sony_H_720x480.yuv", 
+          		        origname      => "CVNLFI2_Sony_H.yuv",
+          		        psnr => 99.99,
+            		      },
+            		      #----------#
+                      # Test   6.6.5.3 #
+                      #----------#
+                      {
+          		        name   => "AVCFI-3",
+          		        mode   => 0,
+          		        width  => 720,
+          		        height => 480,
+          		        bitstreamname => "Sharp_MP_Field_1_B.jvt",
+          		        decodedname   => "Sharp_MP_Field_1_B_720x480.yuv",
+          		        origname      => "Sharp_MP_Field_1_rec_B.yuv",
+          		        psnr => 99.99,
+            		      },
+            		      #----------#
+                      # Test   6.6.5.4 #
+                      #----------#
+                      {
+          		        name   => "AVCFI-4",
+          		        mode   => 0,
+          		        width  => 720,
+          		        height => 480,
+          		        bitstreamname => "Sharp_MP_Field_2_B.jvt",
+          		        decodedname   => "Sharp_MP_Field_2_B_720x480.yuv",
+          		        origname      => "Sharp_MP_Field_2_rec_B.yuv",
+          		        psnr => 99.99,
+            		      },
+            		      #----------#
+                      # Test   6.6.5.5 #
+                      #----------#
+                      {
+          		        name   => "AVCFI-5",
+          		        mode   => 0,
+          		        width  => 720,
+          		        height => 480,
+          		        bitstreamname => "Sharp_MP_Field_3_B.jvt",
+          		        decodedname   => "Sharp_MP_Field_3_B_720x480.yuv",
+          		        origname      => "Sharp_MP_Field_3_rec_B.yuv",
+          		        psnr => 99.99,
+		              },
+            		      #----------#
+                      # Test   6.6.5.6 #
+                      #----------#
+                      {
+          		        name   => "AVCFI-6",
+          		        mode   => 0,
+          		        width  => 720,
+          		        height => 480,
+          		        bitstreamname => "CVFI1_Sony_D.jsv",
+          		        decodedname   => "CVFI1_Sony_D_720x480.yuv",
+          		        origname      => "CVFI1_Sony_D.yuv",
+          		        psnr => 99.99,
+		              },
+            		      #----------#
+                      # Test   6.6.5.7 #
+                      #----------#
+                      {
+          		        name   => "AVCFI-7",
+          		        mode   => 0,
+          		        width  => 720,
+          		        height => 480,
+          		        bitstreamname => "CVFI2_Sony_H.jsv",
+          		        decodedname   => "CVFI2_Sony_H_720x480.yuv",
+          		        origname      => "CVFI2_Sony_H.yuv",
+          		        psnr => 99.99,
+		              },
+            		      #----------#
+                      # Test   6.6.5.8 #
+                      #----------#
+                      {
+          		        name   => "AVCFI-8",
+          		        mode   => 0,
+          		        width  => 192,
+          		        height => 128,
+          		        bitstreamname => "FI1_Sony_E.jsv",
+          		        decodedname   => "FI1_Sony_E_192x128.yuv",
+          		        origname      => "FI1_Sony_E.yuv",
+          		        psnr => 99.99,
+		              },
+            		      #----------#
+                      # Test   6.6.5.9 #
+                      #----------#
+                      {
+          		        name   => "AVCFI-9",
+          		        mode   => 0,
+          		        width  => 720,
+          		        height => 480,
+          		        bitstreamname => "CVFI1_SVA_C.264",
+          		        decodedname   => "CVFI1_SVA_C_720x480.yuv",
+          		        origname      => "CVFI1_SVA_C_rec.yuv",
+          		        psnr => 99.99,
+		              },
+            		      #----------#
+                      # Test   6.6.5.10 #
+                      #----------#
+                      {
+          		        name   => "AVCFI-10",
+          		        mode   => 0,
+          		        width  => 720,
+          		        height => 480,
+          		        bitstreamname => "CVFI2_SVA_C.264",
+          		        decodedname   => "CVFI2_SVA_C_720x480.yuv",
+          		        origname      => "CVFI2_SVA_C_rec.yuv",
+          		        psnr => 99.99,
+		              },
+            		      #----------#
+                      # Test   6.6.5.11 #
+                      #----------#
+                      {
+          		        name   => "AVCFI-11",
+          		        mode   => 0,
+          		        width  => 720,
+          		        height => 480,
+          		        bitstreamname => "cvmp_mot_fld0_full_B.26l",
+          		        decodedname   => "cvmp_mot_fld0_full_B_720x480.yu+v",
+          		        origname      => "cvmp_mot_fld0_full_B_rec.yuv",
+          		        psnr => 99.99,
+		              },
+		              #----------#
+                      # Test   6.6.5.12 #
+                      #----------#
+                      {
+          		        name   => "AVCFI-12",
+          		        mode   => 0,
+          		        width  => 720,
+          		        height => 480,
+          		        bitstreamname => "CVMP_MOT_FLD_L30_B.26l",
+          		        decodedname   => "CVMP_MOT_FLD_L30_B_720x480.yuv",
+          		        origname      => "CVMP_MOT_FLD_L30_B_rec.yuv",
+          		        psnr => 99.99,
+		              },		              
+		    ],
+}
+
+

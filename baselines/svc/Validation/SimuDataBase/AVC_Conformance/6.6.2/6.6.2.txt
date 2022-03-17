@@ -1,0 +1,53 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+    name 	   => "6.6.2",
+    verbosemode    => 1,	
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+    runencode	=> 0,
+    
+
+#=======================#
+# Layers  parameters    
+#=======================#     
+    layers       => [
+                    ],
+   
+#==========================================================#
+#          Extracting + Decoding parameters  (i.e Tests )  #
+#==========================================================#  
+      tests      => [
+		                  #----------#
+                      # Test   6.6.2.1 #
+                      #----------#
+                      {
+          		        name   => "AVCPCM-1",
+          		        mode   => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "CVPCMNL1_SVA_C.264",
+          		        decodedname   => "CVPCMNL1_SVA_C_352x288.yuv",
+          		        origname      => "CVPCMNL1_SVA_C_rec.yuv",
+          		        psnr => 99.99,
+            		      },
+            		      #----------#
+                      # Test   6.6.2.1 #
+                      #----------#
+		                  {
+          		        name => "AVCPCM-2",
+          		        mode => 0,
+          		        width => 1280,
+          		        height => 720,
+          		        bitstreamname => "CVPCMNL2_SVA_C.264",
+          		        decodedname   => "CVPCMNL2_SVA_C_1280x720.yuv", 
+          		        origname      => "CVPCMNL2_SVA_C_rec.yuv",
+          		        psnr => 99.99,
+		                  },
+    		          ],
+}
+
+

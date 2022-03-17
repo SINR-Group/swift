@@ -1,0 +1,2105 @@
+﻿[Currently, all validation scripts work except for those that use error concealment features.]
+
+
+Known bugs:
+  currently all known/reported bugs have been fixed,
+  but the missing features below need to be implemented
+
+Missing features:
+- support of field pictures in scalable configurations in encoder
+  (currently only correctly supported in single-layer coding)
+- adding of remaining profile/level constraints in encoder
+  (add checks in decoder?)
+- error detection & concealment 
+  (without the restriction to two layers and 
+  fixed prediction structures that was found
+  in the previously implemented version)
+
+Further desirable improvements:
+- support GOP structures with non-dyadic prediction structures
+- combination of MGS and CGS coding
+- higher flexibility of "MGS vector mode"
+- if feasible, support of slice data partitioning
+- support of large file sizes (>4GB)
+- setting of IROI parameters in scalability info SEI and IROI-based extraction
+
+
+
+JSVM_9_19_14 -> JSVM_9_19_15
+============================
+changes:
+- fix for macroblock type derivation in inter-layer prediction
+
+
+
+JSVM_9_19_13 -> JSVM_9_19_14
+============================
+changes:
+- changes by Dolby for 3d multiplexing
+  - add fractional-pixel sub-sampling support for layer 0 (the base layer) for both SbS
+    and aB frame-compatible formats
+  - updated software manual that includes a full description of the new parameters 
+    as well as instructions on how they affect each other, especially with 
+    respect to properly using fractional-pixel sub-sampling
+
+
+
+JSVM_9_19_12 -> JSVM_9_19_13
+============================
+changes:
+- changes by Dolby for supporting 3d multiplexing (for MFC standardization):
+  - see macro DOLBY_ENCMUX_ENABLE (enabled by default)
+  - sample config files are in folder jsvm\JSVM\H264Extension\data\Dolby_3DMux
+  - note: additional encoding parameters are not described in the JSVM software manual
+
+
+
+JSVM_9_19_11 -> JSVM_9_19_12
+============================
+changes:
+- addition of project and solution files for Visual Studio 10
+- fixes for incomplete layer representations regarding the availability
+  of intra neighbours and deblocking (for special cases)
+
+
+
+JSVM_9_19_10 -> JSVM_9_19_11
+============================
+changes:
+- corrected deblocking filter strength derivation for SpatialResolutionChangeFlag = 1 and I_BL macroblocks
+  (using transform coefficient levels instead of scaled transform coefficients)
+
+
+
+JSVM_9_19_9 -> JSVM_9_19_10
+===========================
+changes:
+- corrected resampling from frame (frame_mbs_only_flag=1) to bottom field    [already in JSVM_9_19_10_BETA]
+- corrected decoding of incomplete layer representations (for special cases) [already in JSVM_9_19_10_BETA]
+- corrected residual resampling from field to frame (frame_mbs_only_flag=1)
+- corrected construction of non-available samples for resampling from a field
+- corrected construction of non-available samples for resampling from a non-MbAff frame
+- corrected motion resampling from field pictures
+- corrected handling of layer representatons where some (but not all) slices have no_inter_layer_pred_flag = 1
+- some minor encoder only corrections
+
+
+JSVM_9_19_8 -> JSVM_9_19_9
+==========================
+changes:
+- enable proposed deblocking filter modification (VCEG-AN10_r3) by default
+  (can be disabled by setting PROPOSED_DEBLOCKING_APRIL2010 equal to 0)
+
+
+JSVM_9_19_7 -> JSVM_9_19_8
+==========================
+changes:
+- fix that prevents overflow when ScaledRefLayerPic[Width|Height]InSamples is >= 65536
+- fix that prevents an assertion for parsing of reversed/unspecified NAL units
+- fix for buffer allocation if enhancement layer is greater than base layer
+- proposed deblocking filter modification (VCEG-AN10_r3) as option per compiler flag
+  PROPOSED_DEBLOCKING_APRIL2010 (disabled by default)
+
+
+JSVM_9_19_6 -> JSVM_9_19_7
+==========================
+changes:
+- correction of maximum buffer size (for cases the base layer picture is larger than the enhancement layer picture)
+- correction of cropping (for CGS cases with negative ScaledRefLayerLeftOffset and/or ScaledRefLayerTopOffset)
+
+
+JSVM_9_19_5 -> JSVM_9_19_6
+==========================
+changes:
+- fix for motion upsampling with very large resolution ratios
+- minor fix for deblocking of multiple slices with different deblocking parameters
+- correct order of layer information in SVC VUI extension
+
+
+JSVM_9_19_4 -> JSVM_9_19_5
+==========================
+changes:
+- fix for packet trace mode of extractor
+- fix for checking of scaling matrices
+- fix of deblocking for multiple slices with different deblocking parameters
+
+
+JSVM_9_19_3 -> JSVM_9_19_4
+==========================
+changes:
+- corrections related to parsing with scan_idx_start != 0 and/or scan_idx_end != 15
+
+
+JSVM_9_19_2 -> JSVM_9_19_3
+==========================
+changes:
+- prevent overflow in position calculation equations
+- relax constraint on presence of scalable SEI for bitstream extractor
+
+
+JSVM_9_19_1 -> JSVM_9_19_2
+==========================
+changes:
+- checking whether base_mode_flag equal to 1 is allowed when
+  constrained_intra_upsampling_flag is equal to 1
+
+
+JSVM_9_19 -> JSVM_9_19_1
+========================
+changes:
+- correction of position calculation (clipping) in intra-inter combination process
+
+
+JSVM_9_18 -> JSVM_9_19
+======================
+changes:
+- correction of scaling matrix selection
+- support of 2nd chroma QP offset
+- support of monochrome High profile decoding
+- correction of slice group change cycle parsing
+- remove assertion when non-supported SEIs are received
+- correction of MMCO 3 for field pictures
+- correction of POC setting for MMCO 5
+- correction of NumClockTS setting
+- correction of profile_level_idc setting in SEI (reported on 29.10.2009 by Thomas Gambier)
+- correction of POC mode 2 decoding (reported on 11.09.2009 by Emmanuel Weber and later by Danny Hong)
+- correction of residual condition for 8x8 blocks (reported on 07.09.2009 by Shivakumar Udupa)
+- correction of VLC parsing for MGS fragments (reported on 23.09.2009 by Stefan Eckard)
+- correction of residual data handling in inter-intra combination (reported on 28.09.2009 by Stefan Eckard)
+- correction of loop filter conditions (reported on 24.09.2009 by Stefan Eckard)
+- removed unnecessary deblocking (reported on 01.07.2009 by Steve Gordon)
+- correction of rate output for PAFF (reported on 09.07.2009 by Rashad Jillani)
+- correction of reference chroma QP setting in rewrite mode (reported on 09.07.2009 by Shinjan Tiwary)
+- correction of SPS setting for MGS enhancements of spatial layers (reported on 11.09.2009 by Stefan Eckard)
+- correction of decoding of incomplete layer representation in rewrite mode
+
+
+
+JSVM_9_18 -> JSVM_9_18_1
+========================
+changes:
+- remove compiler errors for gcc 4.4.0 (provided by Marc-Antoine Arnaud)
+- bug fix: prevent decoder crash for IDR pictures with no_output_of_prior_pics_flag = 1 in middle of a stream
+- bug fix: prevent segmentation fault when accessing layer information in xChangeScalableSEIMesssage()
+- bug fix: use correct resampling parameters in motion resampling when a layer 
+           with ESS=2 and MGS refinement is present (provided by Haixia Shi)
+- bug fix: correct inference of residual_prediction_flag for SKIP macroblocks outside cropping window
+
+added validation scripts:
+- ESS2PlusMGS
+
+
+
+JSVM_9_17 -> JSVM_9_18
+======================
+Decoder (and encoder) corrections
+- added clipping after residual accumulation (G.8.5.3)
+- corrections of CAVLC coding/parsing for "coefficient slices" with nC>7
+- corrections of CAVLC coding/parsing for "coefficient slices" for DC coeff. arrays
+- corrected inference of residual_prediction_flag for skipped macroblocks
+- corrected coding/parsing of reference indices
+  (when adaptive_base_mode_flag is not equal to adaptive_motion_prediction_flag)
+- corrected NAL unit parsing when last byte in stream is an emulation prevention byte
+- corrected FMO mode 6 (for single-layer coding)
+- some fixes related to SEI messages
+- adding/correcting SNR scalability for MbAff frames
+  (with and without inter-layer cropping rectangle)
+
+Encoder only corrections and additions
+- adaptation of adaptive_base_mode_flag in SNR scalable coding,
+  when selected levels can violate the constraint
+  on the maximum number of motion vectors
+- added support for slices with MbAff coding 
+- new config file parameters for independently selecting
+  inter-layer mode, motion, and residual prediction
+- new config file parameter for specifying minimum level
+- corrected NAL unit order (all SEI messages at beginning of an access unit)
+- corrected order of SEI message (buffering period must be sent at the beginning of an AU)
+- corrected writing of Integrity check SEI (when layers with different frames rates are present)
+- corrected writing of nested PicTiming SEIs (only when the corresponding temporal layer is present)
+- corrected setting of dpb_output_delay (for hierarchical prediction structures,
+  including low-delay configurations)
+- option for disabling MMCO commands
+
+General improvements / added features
+- support of gcc 4.3.3
+- support of 64 bit operating systems
+- workspace for VC9 (including 64 bit configurations)
+- bit stream extractor fix (allows gap in layer_id values in scalable SEI)
+- software manual update/correction
+- restructuring of encoding process (significant simplification), including
+  - motion estimation, motion compensation, and coding are done in one stage
+    (former multi-stage processing for non-key picture was removed)
+  - no subsequent estimation of prediction mode and residual
+  - only one function for encoding a macroblock
+  - using same functions for "key" and "non-key" pictures (and all slice types)
+  - using same functions for coding with and without "slices"
+- improvement/correction of encoder/decoder trace files
+  (trace files can now be compared and should be identical)
+- resolving of some memory issues (e.g. memory leaks)
+
+
+JSVM_9_16 -> JSVM_9_17
+======================
+- Newly added feature: multi-layer lambda selection algorithm (JVT-AD021) 
+
+
+JSVM_9_15 -> JSVM_9_16
+======================
+- Bug fix related to the calculation of the priority layer maximum bitrate.
+- Fix for memory leak in SEI code
+- Fix for calculating packet sizes in bitstream extractor
+- Fix for setting POC when receiving an MMCO 5
+- Fixes in encoder control for InterLayerPred = 1
+- Fix for parsing (inferring) residual_prediction_flag
+
+
+JSVM_9_14 -> JSVM_9_15
+======================
+- correction of temporal Id in packet trace files
+- correction of padding before intra upsampling for Mbaff frames (near top & bottom border)
+- correction of residual prediction (residual of intra MBs is not used for residual prediction)
+- correction of derivation of SpatialResolutionChangeFlag and RestrictedSpatialResolutionChangeFlag
+- correction of typo in motion vector scaling (when cropping parameters change)
+- correction of derivation of sub-macroblock modes in inter-layer motion prediction
+- correction of chroma location calculation for the inter-intra combination process
+- correction of transform coefficient scaling in AVC rewriting mode
+- correction of derivation of maximum slice size (encoder only)
+- additional encoder checks for not supported combinations of parameters
+- correction of encoder control for InterLayerPred equal to 1
+- temporally disabling the writing of parameters in scalable info SEI that causes encoder crashes
+  (this will be re-enabled in the future when a bug fix has been implemented, see below)
+
+Known bugs:
+- bug in calculation of m_aadMaxBitrate[][] - fix will be provided by Nokia
+  (argument of setPriorityLayerInfoPresentFlag() should be changed from false to true after the bug fix)
+- incorrect setting of dpb_output_delay
+- correction of SNR scalability with Mbaff frames (currently this is considered as spatial scalability in the software)
+
+Missing features:
+- support of field pictures in scalable configurations in encoder (currently only correctly supported in single-layer coding)
+- adding of remaining profile/level constraints in encoder (add checks in decoder?)
+- decoder support for AVC rewrite mode in connection with incomplete layer representations (as adopted at the Geneva meeting in April 2008) 
+- error detection & concealment (without the restriction to two layers and fixed prediction structures that was found in the previously implemented version)
+
+Further desireable improvements: 
+- general improvement of encoder structure, including
+    - using same functions for P and B pictures ("key" and "non-key" pictures)
+    - using same functions for "slice mode"
+    - using same functions for "IROI"
+    - combine "motion estimation", "motion compensation", and "residual encoding"
+- support of more flexible encoder configurations, including
+    - GOP structures with non-dyadic prediction structures
+    - combination of MGS and CGS coding
+    - higher flexibility of "MGS vector mode"
+    - if feasible, support of slice data partitioning
+
+
+
+JSVM_9_13_1 -> JSVM_9_14
+========================
+- direct 8x8 inference for inter-layer motion prediction in B slices (see JVT-AB010)
+- removal of copyright headers from source files and adding an extra file with copyright information
+
+
+JSVM_9_13 -> JSVM_9_13_1
+========================
+- encoder fix for combining slices (only SliceMode 1) with so-called MGS fragments
+- removal of extra (non-required) coding path for IROI's
+- correction of validation scripts using slices
+  (the SliceMode and SliceArgument variables have been moved from the main
+   configuration files to the layer config files in JSVM_9_13)
+
+
+
+JSVM_9_12_2 -> JSVM_9_13
+========================
+- correct setting of level_idc in encoder
+- correction of scaling matrix support in decoder
+- new encoder options for scaling matrices
+- new encoder option for 8x8 transform (removal of FRExt parameter)
+- IPCM support in decoder (including for SNR scalability)
+- encoder option for forcing IPCM macroblocks (for debugging purposes)
+- correction of prefix NAL unit syntax
+- removal of filler prefix NAL units (no longer supported in draft standard)
+- added support for Level 1b
+- fix of MCTF preprocessor
+- fix of FixedQPEncoder
+- fix in residual upsampling (item 47 of JVT-AA025r1)
+- fix for derivation of intra prediction modes in AVC rewrite mode
+- fix in derivation of RestrictedSpatialResolutionChangeFlag (item 33 of JVT-AA025r1)
+- fix in loop filter (for interlaced with I_BL mode)
+- fix in condition for transmission of slice_group_change_cycle (item 51 of JVT-AA025r1)
+- fix for padding before intra upsampling in Mbaff scenarios
+- fix for SVC direct mode (in layers with DQId > 0)
+- update (rewrite) of DPB implementation (+ required changes in encoder)
+- modification of coding order in encoder, in particular (but not only) for low-delay
+  (in low-delay configs, we know have a correct low-delay coding order)
+- fixes for field pictures (in base layer)
+- encoder support for high-delay P pictures
+- configurability of profile
+- implementation of (most) profile constraints in encoder
+- implementation of some additional level constraints in encoder including
+	- maximum number of motion vectors
+	- disabling bi-prediction for blocks smaller than 8x8
+	- maximum slice size in Scalable Baseline and Scalable High
+	- interlaced support
+	- support of CABAC and 8x8 in scalable Baseline
+- support of long-term pictures in decoder (not extensively tested yet)
+- support of SVC encoding with long-term pictures
+- removal of "SCALING_FACTOR_HACK", which resulted in different QP cascading for QCIF
+  (note: due to this change, the rate/PSNR points in validation scripts that include
+         QCIF resolutions might have been significantly changed)
+- addition of new validation scripts
+- correction of validation scripts (options not supported in SVC have been removed)
+
+
+
+JSVM_9_12_1 -> JSVM_9_12_2
+==========================
+
+-Bug fix related to the inter-layer deblocking filter process.
+
+
+
+JSVM_9_12 -> JSVM_9_12_1
+========================
+
+- Alignment between "SVC levels" text (clause G.10.2) and software related to the level idc computation
+
+- Changes to trace file high-level syntax elements so as to be aligned with the SVC spec :
+constrained_set0_flag -> constraint_set0_flag 
+constrained_set1_flag -> constraint_set1_flag 
+constrained_set2_flag -> constraint_set2_flag 
+constrained_set3_flag -> constraint_set3_flag 
+interlayer_deblocking_filter_control_present_flag  -> inter_layer_deblocking_filter_control_present_flag 
+chroma_phase_x_plus1 -> chroma_phase_x_plus1_flag 
+base_chroma_phase_x_plus1 -> seq_ref_layer_chroma_phase_x_plus1_flag 
+base_chroma_phase_y_plus1 -> seq_ref_layer_chroma_phase_y_plus1 
+scaled_base_left_offset -> seq_scaled_ref_layer_left_offset 
+scaled_base_top_offset -> seq_scaled_ref_layer_top_offset 
+scaled_base_right_offset -> seq_scaled_ref_layer_right_offset 
+scaled_base_bottom_offset -> seq_scaled_ref_layer_bottom_offset 
+deblocking_filter_parameters_present_flag -> deblocking_filter_control_present_flag 
+
+- Very minor changes in the software manual
+
+
+
+JSVM_9_11 -> JSVM_9_12
+======================
+
+several bug fixes and corrections, including
+    - correction of resampling for intra (interlaced, constrained intra upsampling)
+    - correction of resampling for residual (interlaced)
+    - correction of resampling for motion data (interlaced)
+    - correction of bit rate specification in SEI message (Nokia)
+    - correction of CABAC parsing for new SVC syntax elements
+
+addition of new validation scripts
+
+
+JSVM_9_10 -> JSVM_9_11
+======================
+
+1) newly added features
+    - rate control for the base layer
+
+JSVM_9_10_DEVEL3 -> JSVM_9_10
+=============================
+
+NOTE:  Error concealment at the decoder has been removed.
+NOTE2: The project files for VS 6 and VS 7 are not up-to-date. Only the
+       project files for VS 8 and the makefiles for Linux are up-to-date.
+
+1) newly added features
+    - correction of loop filter operation
+    - implementation of two-stage modes in loop filter (idc=3 and 6)
+    - correction (update) of position calculation in residual resampling
+    - correction (update) of position calculation in motion resampling
+    - correction (update) of motion vector scaling
+    - correction (update) of intra-inter prediction mode
+    - correction (update) of AVC rewrite mode with multiple slice groups
+
+2) bug fixing: some bug fixes at different places
+
+3) addition of new validation scripts
+
+NOTE: THE CURRENT SOFTWARE SHOULD BE FURTHER IMPROVED (volunteers are required!)
+-----------------------------------------------------
+    - error detection and concealment code has been removed - it need to be added in a more general way
+      (all validation scripts that simulate packet losses fail)
+    - further checking of match between text and software is required
+    - I_BL macroblocks should be implemented
+    - long-term reference pictures should be implemented
+
+
+
+JSVM_9_10_DEVEL2 -> JSVM_9_10_DEVEL3
+====================================
+
+NOTE: This is a version in development. Error concealment at the decoder has been removed.
+
+1) newly added features
+    - re-implementation of temporal direct mode
+    - implementation of SVC skipped slices (slice_skip_flag = 1)
+    - support of non-complete layer representations (slices missing) 
+      for quality_id > 0 in decoder (no error concealment - this is
+      allowed in conforming bit streams)
+
+2) bug fixing: many bug fixes at different places
+
+3) addition of new validation scripts
+
+NOTE: THE CURRENT SOFTWARE NEEDS FURTHER IMPROVEMENT
+----------------------------------------------------
+    - error detection and concealment code has been removed - it need to be added in a more general way
+      (all validation scripts that simulate packet losses fail)
+    - some known mismatches between software and text need to be fixed
+    - some further checking of match between text and software is required
+
+
+JSVM_9_10_DEVEL -> JSVM_9_10_DEVEL2
+===================================
+
+NOTE: This is a version in development. Some features have been removed.
+
+1) bug fixing: many bug fixes at different places, including
+    - fixing of interlaced support
+    - fixing of slice implementation in combination with other features
+    - fixing of rewriting support
+
+2) modification of validation scripts
+    - correction to some interlaced scripts
+      (upsample parameters for encoding were different than downsampling parameters)
+    - clean up: removal of unsupported variables
+    - clean up: removal of terms "MCTF" and "FGS"
+    - add several new validation scripts that test combination of features
+      that haven't been sufficiently testes before (and didn't work for many cases)
+
+NOTE: THE CURRENT SOFTWARE NEEDS FURTHER IMPROVEMENT
+----------------------------------------------------
+    - temporal direct mode currently not supported due to the removal of the 2nd "base layer" decoder
+      (all validation scripts for AVC bitstreams that use the temporal direct mode fail)
+    - error detection and concealment code has been removed - it need to be added in a more general way
+      (all validation scripts that simulate packet losses fail)
+    - some further checking of match between text and software is required
+
+
+JSVM_9_9 -> JSVM_9_10_DEVEL
+===========================
+
+NOTE: This is a version in development. Some features have been removed and other features have to be fixed.
+
+1) correction of syntax, including
+    - SPS and subset SPS
+    - correction of handling of subset SPS
+    - correction of prefix header syntax
+    - correction of slice header syntax
+    - correction of IDR picture support
+
+2) removing of features that are not supported in the standard
+   (mainly decoder clean-up)
+    - RCDO, 4-tap upsampling filters
+    - FGS
+    - fragmented NAL units
+
+3) major rewrite of decoder (simplification, code improvement)
+    - removing of additional "base layer decoder" in class H264AVCDecoder
+    - clean up of processing order in decoder
+    - clean processing of access units in decoder
+    - general improvement, simplifications of main decoder classes
+      (H264AVCDecoderLibTest,H264AVCDecoder,LayerDecoder,...)
+
+NOTE: THE CURRENT SOFTWARE NEEDS FURTHER IMPROVEMENT
+----------------------------------------------------
+    - temporal direct mode currently not supported due to the removal of the 2nd "base layer" decoder
+      (all validation scripts for AVC bitstreams that use the temporal direct mode fail)
+    - error detection and concealment code has been removed - it need to be added in a more general way
+      (all validation scripts that simulate packet losses fail)
+    - interlaced features need to be corrected
+      (corresponding validation scripts fails)
+    - some other issues (need to be debugged)
+
+
+
+[Note (Jerome): For the time being, the following validation scripts "fail":
+FMO, IROI, HRD, MLQL, NonRequired, RPIC,LCFG4_I2I ]
+
+JSVM_9_7 -> JSVM_9_8
+========================
+Date         : October 15, 2007
+Authors      : Hao Zhang, Alex Eleftheriadis (Vidyo Inc, formerly Layered Media Inc.) + Jerome Vieron (Thomson R&D France) 
+Contributions: JVT-W062
+
+Changes:
+- Implement Tl0DepRep SEI for the layers where dId = 0 and qId = 0.
+  Change the name of tl0_pic_idx to tl0_dep_rep_idx. 
+- Removal of codes related to tl0_pic_idx in previous versions.
+- Add the effective_idr_pic_id syntax into the new Tl0DepRep SEI. 
+  Its value is set in the slice header of IDR pictures.
+- Very minor changes related to PAff parameter
+
+JSVM_9_6 -> JSVM_9_7
+========================
+Date         : October 10, 2007
+Authors      : Siping Tao, He Ci(USTC)
+Contributions: JVT-X046 JVT-X032
+
+Changes:
+- Integration of JVT-X046
+- Add a validation script SLICE
+- Add Subset SPS
+- Add Temproal Layer Switching Point SEI 
+- Modify ReduKeyPic validation script
+- Bug fix relate to Redundant Picture
+- Update syntax of the following SEIs:
+  Scalability information SEI
+  Non-required layer representation SEI
+  Priority layer information SEI
+- Removal of RCDO validation scripts
+
+
+
+JSVM_9_5 -> JSVM_9_6
+========================
+Date         : September 19, 2007 
+Authors      : Jerome Vieron (Thomson R&D France) 
+Contributions: JVT-W025
+
+Changes:
+- Many Bug fixes related to Interlaced (mainly related to Field coding)
+- Removal of flags as adopted in JVT-W025
+
+
+JSVM_9_4 -> JSVM_9_5
+========================
+Date         : September 04, 2007 
+Authors      : Nathalie Cammas (Orange-France Telecom R&D) + Jerome Vieron (Thomson)
+Contributions: JVT-W137
+
+Changes:
+- Quality layer SEI syntax implementation/updating
+- Fixes related to dead substreams 
+-> changes can be find by searching tags MGS_FIX_FT_09_2007 and DS_FIX_FT_09_2007.
+
+- Removal of all the data structure related to Smoothed Ref
+- Removal of all the data structure related to Closed Loop option
+- Many validation scripts have been repaired etsome have been removed:
+-BaseId: fix a bug in encoder, add discardable features in CGS mode, modify the script so as to extract discardable stream or not, adjust PSNR since FGS refinements have been removed
+-CAVLC: adjust PSNR since FGS refinements have been removed
+-ChromaLPoff: adjust PSNR since FGS refinements have been removed
+-EIDR: adjust PSNR since FGS refinements have been removed
+-QLNALPid: needs MGS, adjust test configuration
+-QLSEI: needs MGS, adjust test configuration
+-RCDO: adjust PSNR since FGS refinements have been removed
+-SIP: adjust PSNR since FGS refinements have been removed
+-SLoop: adjust PSNR since FGS refinements have been removed
+-T1: adjust PSNR since FGS refinements have been removed, modify configuration to replace FGS with MGS for SNR extraction test, fix a bug in extractor
+-T3: adjust PSNR since FGS refinements have been removed, modify configuration to replace FGS with MGS for SNR extraction test
+-Add a validation script MGSDS for the use of discardable stream with MGS
+-Add a validation script QLMGSFragments
+
+
+
+
+JSVM_9_3 -> JSVM_9_4
+========================
+Date         : Aug 16
+Authors      : Jiancong Luo (Thomson) + Jerome Vieron (Thomson)
+Contributions: JVT-W064
+
+Changes:
+- Added seven bitstream restriction indicators in scalability info SEI.
+
+- Removal of FGSSubbandEncoder*.* files
+- Removal of adpative filtering features ([JVT-V074])
+- Removal of all data related to FGS in FixedQPEncoder
+- Removal of all data related to FGS in Perl scripts (not in validation scripts...)
+
+
+JSVM_9_2 -> JSVM_9_3
+========================
+Date         : Aug 9
+Authors      : Xianglin Wang, Justin Ridge (Nokia)
+Contributions: JVT-W030, JVT-W123
+
+Changes:
+- Added block merging process under ESS according to JVT-W030.
+- Added in encoder the mechanism according to JVT-W123 for avoiding potential 
+  artifacts due to residual prediction in ESS. 
+
+JSVM_9_1 -> JSVM_9_2
+========================
+Date         : Aug 6
+Authors      : Heiner Kirchhoffer
+Contributions: JVT-W090
+
+Changes:
+- Removal of FGS, SmoothedReferences
+- Integration of MGS fragments
+
+Notes: Validation scripts need to be updated to reflect the removal of FGS.
+
+
+JSVM_9 -> JSVM_9_1
+========================
+Date        : June 25
+Authors      : Siping Tao, Ci He, Weixing Wan, Qiu Shen, Hui Liu, Yi Guo (USTC)
+Contributions: JVT-W046, JVT-W047, JVT-W048, JVT-W049, JVT-W051,JVT-W052, JVT-W053
+
+Changes:
+- Modification of syntax structure in slice header and sequence parameter sets. (JVT-W046)
+- Addition of syntax elements in NAL unit header and scalable SEI message. (JVT-W047)
+- Modification of syntax in prefix NAL unit and slice header. (JVT-W048)
+- Implementation of redundant picture property SEI message, added of one script for 
+  JVT-W049 named "ReduKeyPic". (JVT-W049)
+- Modification of syntax in scalable SEI message. (JVT-W051)
+- Implementation of Integrity-Check SEI message. (JVT-W052)
+- Modification of syntax in scalable SEI message. (JVT-W053)
+- bug-fixes: minor bug-fix related to IDR
+
+Notes: changes could be found by searching "JVT-WXXX" which corresponds to contributions
+
+JSVM_8_12 -> JSVM_8_13
+========================
+Date        : May 09, 2007
+Author      : Jiancong Luo (Thomson)
+Contribution: JVT-V068
+
+Changes:
+- 27 files are modified and 6 files are added.
+- added Buffering Period SEI, Picture Timing SEI, AVC Temporal HRD SEI.
+- modified nesting scalable SEI.
+- added VUI in SPS.
+- added HSS and HRD, including time calculation and writting of HRD parameters and timing 
+  information in VUI and writing of the Buffering Period SEI, Picture Timing SEI, AVC 
+  Temporal HRD SEI and nesting scalable SEI containing Buffering Period SEI and 
+  Picture Timing SEI for SVC layers.
+- Added options to the encoder.cfg file to enable HRD.
+
+Notes:
+1.Currently, only each HRD only support one scheduler, i.e. cpb_cnt_minus1 = 0. 
+  For the HRD parameters, the BitRate and CpbSize of each scheduler are derived from 
+  Table A-1 and Table A-2 based on the level and HRD type.
+2.Changes can be found by searching "// JVT-V068"  
+
+JSVM_8_11 -> JSVM_8_12
+======================
+Date        : May 18, 2007
+Author      : Andrew Segall, Jie Zhao (Sharp)
+Contribution: JVT-V035
+
+Changes:
+
+- Added project files/make files for standalone SVC to AVC bitstream rewriter, 
+- Modified decoder source files to bypass decoding when SHARP_AVC_REWRITE_OUTPUT is defined.
+- Minor bugfixes for transform domain prediction (whether coefficient levels or values)
+
+
+JSVM_8_10 -> JSVM_8_11
+======================
+Date        : May 15, 2007
+Author      : Daniele Alfonso (STMicroelectronics)
+Contribution: JVT-V079
+
+Changes:
+
+- Added low-complexity macroblock mode decision method (for base layer only).
+
+
+JSVM_8_9 -> JSVM_8_10
+======================
+Date        : Apr 20, 2007
+Author      : Andrew Segall, Jie Zhao (Sharp)
+Contribution: 
+
+Changes:
+
+- Converted residual prediction from spatial domain to transform domain
+- Modified Linux makefile to generate 32bit binary (S. Kamp, RWTH)
+
+
+JSVM_8_8 -> JSVM_8_9
+======================
+Date        : March 19, 2007
+Author      : Qiu Shen(USTC)
+
+Changes:
+
+- Add prefix unit before the NAL unit of the first AVC slice, and change suffix unit to be after the other NAL unit of AVC slice.
+- Minor bug fixes related to ESS
+
+
+JSVM_8_7 -> JSVM_8_8
+======================
+Date        : March 10, 2007
+Author      : Andrew Segall, Jie Zhao (Sharp)
+Contribution: JVT-V035
+
+Changes:
+
+- Add SVC to AVC bitstream rewriting ability
+- Bug fixes for GCC 4.x
+
+
+
+JSVM_8_6 -> JSVM_8_7
+======================
+Date        : March 2, 2007
+Author      : Jones He (Freescale)
+Contribution: JVT-V032
+
+Changes:
+
+- Extend the "disable_deblocking_filter_idc" to 3 and 4 for disabling chroma deblocking 
+  filter in enhanced layer while keeping luma processing per values 0 and 2, respectively
+- Bug fix (missing initialisation) in UvlcReader.cpp (Provided by Heiner Kirchhoffer / HHI)
+
+
+
+JSVM_8_5 -> JSVM_8_6
+========================
+Date        : Feb 26, 2007
+Author      : N. Cammas (Orange-France Telecom R&D), J. Vieron (Thomson R&D)
+Contribution: JVT-V058
+
+Changes:
+
+- Add a useSmoothedRef flag in slice header
+- Many bug fixes related to Interlaced + others
+- Only "6.6.21" validation test (in the AVC_Conformance set) would NOT have to be run !!!
+
+
+
+JSVM_8_4 -> JSVM_8_5
+========================
+Date        : Feb 20, 2007
+Authors     : Chengjie Tu (Microsoft), Shankar Regunathan (Microsoft), H. Schwarz (HHI)
+Contribution: JVT-V090, JVT-V074
+
+Changes:
+
+- added 4 tap direct motion compensation interpolation for luma (as a configurable encoder option)
+- added flexible 4-tap upsampling filters (as an option controlled by the preprocessing flag _JVTV074_)
+- bug fix for SKIP mode in hierarchical P pictures
+- added encoder option: explicit QP cascading mode
+- renamed "MVCMode" to "AVCMode", made it compatible with H.264/AVC
+
+
+
+JSVM_8_3 -> JSVM_8_4
+========================
+
+Date        : Feb 17, 2007
+Author      : H. Schwarz (HHI)
+Contribution: JVT-V126
+
+Changes:
+
+- MGS key picture coding
+- options for MGS encoder control
++ bug fixes
+
+
+
+JSVM_8_2 -> JSVM_8_3
+========================
+
+Date        : Feb 14, 2007
+Author      : H. Schwarz (HHI)
+Contribution: JVT-V125
+
+Changes:
+
+- added H.241/RCDO compatible encoding mode
++ bug fixes
+
+
+
+JSVM_8_1 -> JSVM_8_2
+======================
+
+Improved Error Resilience using Frame Index in NAL Header Extension for SVC
+
+Date: Feb 8, 2007
+Authors: Hao Zhang, Alex Eleftheriadis (Layered Media, Inc.), Jerome Vieron (Thomson R&D)
+Contribution: JVT-V088
+
+Changes:
+
+- Removed the picture index (tl0_pic_idx) from the "NAL unit header SVC extension" to the 
+  "slice layer in scalable extension". (Note that this field was previously called 
+  tl0_frame_idx.)
+- Extended the usage of picture index values from the base layer (dependency_id and 
+  quality_level equal to 0) to all spatial and quality scalability layers in the lowest 
+  temporal level.
+
+Note: The changes above can be found by searching "JVT-V088".
+  
+- Interlaced bug fixes(downconvert and Loopfilter)  
+    
+
+
+JSVM_8_0_1 -> JSVM_8_1
+========================
+
+Date        : Feb 7, 2007
+Author      : K. Lee (Samsung)
+Contribution: JVT-T037
+
+Changes:
+
+- Only MbEncoder.cpp is modified (see JVT-T037)
+
+
+JSVM_8_0 -> JSVM_8_0_1
+========================
+
+Date   : Feb 6, 2007
+Authors: C. Chevance V. Bottreau and, J. Vieron (Thomson)
+
+Changes:
+
+- Many memory leaks fixing (extractor, decoder)
+- FixedQPEncoder has been improved. Many new "interesting" features has been added. (cf. Software manual)
+- New encoding command line options (already present in configuration files) have been added.
+- Long-term interlaced validation scripts have been modified in order to be run in an acceptable time slot...;-)
+- Renaming of .Net 2005 "vcproj" and "sln" files. The new name are "*_vc8.vcproj" and "*_vc8.sln". 
+- Software manual was updated.
+
+
+JSVM_7_13 -> JSVM_8_0
+========================
+
+Date  : Feb 1, 2007
+Author: C. Chevance, E. Francois and, J. Vieron (Thomson)
+
+Changes:
+
+- Few bug fixes related to the interlaced implementation (downconvert, variables initialization...)
+- Many memory fixes (uninitialized memory read, memory leaks, etc.). Thanks to Ye Yan for the help! 
+- There are many remaining leaks...TODO
+- Validation scripts related to interlaced have been slightly  modified
+- .Net 2005 "vcproj" and "sln" files have been added
+
+
+JSVM_7_12_1 -> JSVM_7_13
+========================
+
+Date  : Jan. 11, 2007
+Author: C. Chevance, E. Francois, V. Bottreau and, J. Vieron (Thomson)
+Contributions : JVT-S018
+
+Changes:
+
+- 134 files have been modified  
+- MBAFF tools are now supported on both Base and Enhancement layers
+- Inter-layer Progressive/Interlace scalability based on the use of a "Virtual Base Layer" is also implemented
+- The DownConvertStatic tool has been modified to support the resampling of both Interlaced or Progressive material. The "resample_mode" option has been added.
+
+Regarding the Validation scripts:
+- Around 35 files have been added 
+- AVC_Conformance: 3 MBAFF validation test sets using the MBAFF AVC conformance bitstreams are provided (6.6.2, 6.6.7, 6.6.18 and, 6.6.20)
+- Short_term: 4 validation tests emulating the 4 scenarios defined in the CE on interlaced coding are provided (CFG1_P2I, CFG2_I2P,CFG3_I2P,CFG4_I2I) 
+In these scenarios, small "gop" size are considered and CABAC/CAVLC coding is used         
+- Long_term: 4 validation tests emulating the 4 scenarios defined in the CE on interlaced coding are provided (LCFG1_P2I, LCFG2_I2P, LCFG3_I2P, LCFG4_I2I) 
+Cfg1 -> cfg4 supported 
+
+- We added a directory called "422_to_420fullres": which contains the source code of the SD 422 to 420 conversion tool proposed in [VCEG-059]. ]. 
+This tool has to be used to generate the input sequence for validation tests (XCFG1_P2I and XCFG4_I2I) related to Interlaced material. 
+The way to use it is explained both in the Software Manual and in the associated Readme.txt file. 
+
+
+Notes: 
+1) The main changes are tagged "TMM_INTERLACE". However, there are too many modifications within the code so that, we didn't add a tag for each change. 
+2) Field Picture coding is not fully supported...Moreover features like Bottom-first coding are not yet supported.
+
+
+JSVM_7_12 -> JSVM_7_12_1
+========================
+
+Date  : Jan. 02, 2007
+Author: J. Vieron (Thomson)
+
+
+Changes:
+
+- There was a mismatch between the JSVM text and the software regarding the INTRA blocks (4x4 or/and 8x8) replacement during the Inter-layer Prediction process. 
+
+
+
+
+JSVM_7_11 -> JSVM_7_12
+======================
+
+Date: Dec. 19, 2006 
+Author: Hao Zhang and Alex Eleftheriadis (Layered Media), J. Vieron (Thomson)
+Contribution: JVT-U160
+
+Changes:
+
+- Separate flags are added into the slice header to signal use of base mode selection, residual prediction and motion prediction, separately from adaptive prediction. 
+- Only syntax changes are integrated in the current version. R-D optimization is not changed and the default values of these new flags are set in such ways
+that the R-D performance stays the same. Therefore, arbitrary settings of these flags will not result in the expected performance.
+
+Note: The changes can be located by searching 'U160'.
+
+-EIDR Bug fixes related to IntraPeriod vs IDRPeriod (provided by shenqiu). 
+
+-Temporal level nesting flag default value is now set to 0  (J. Vieron).
+-Very minor: Remove of remaining AGS parts in cfg files of validation scripts (J. Vi�on).
+
+
+
+
+
+JSVM_7_10 -> JSVM_7_11
+=====================
+
+Date: Dec. 16, 2006 
+Author: Yan Ye, Yiliang Bao (Qualcomm)
+Contributions: JVT-U125, JVT-U126
+
+Changes:
+
+- Integration of cycle aligned fragments for FGS layer according 
+  to JVT-U125. Also simplified FGS layer syntaxes by grouping 
+  some syntaxes into a macroblock header. 
+- Implemented the low-complexity smoothed reference scheme
+  according to JVT-U126.
+
++ MGS fixes provided by Nathalie Cammas
++ fixes of conditions for motion_prediction_flag_lX
+
+
+
+JSVM_7_9 -> JSVM_7_10
+=====================
+
+Date: Dec. 2, 2006 
+Author: Xianglin Wang, Justin Ridge (Nokia)
+Contributions: JVT-U129, JVT-U130
+
+Changes:
+
+- Integration of JVT-U129,"Separation markers for FGS color 
+  components". Added corresponding SEI message.
+- Implemented the improved inter-layer prediction mechanism
+  for ESS according to JVT-U130.
+
++ bug fix for Intra_BL mode in CGS by H. Schwarz
+  (I_BL for CGS was broken since version JSVM_7_7)
+
+
+
+JSVM_7_8 -> JSVM_7_9
+=====================
+
+Date: Nov. 28, 2006 
+Author: Heiko Schwarz (HHI)
+Contributions: Software re-structuring
+
+Main goal: Change the encoder structure from GOP-based
+           processing the AU-based processing, in order to
+  1) provide more logical coder structure
+  2) enable more flexible encoding structures (in future)
+  2) use enhancement layer refereneces for optimizing
+     base layer encoding (in future)
+
+Comments:
+  - only very high level changes
+  - only a first step for an improved encoder structure
+  - things that should be done in future
+    + combine function for encoding non-key pictures in
+      a single function (as for key pictures)
+    + single function for encoding both key and non-key
+      pictures
+    + remove all GOP-related processing in class
+      MCTFEncoder (rename that class!)
+    + use class similar to PicEncoder for encoding an
+      access unit (AU) of a picture
+
+
+JSVM_7_7 -> JSVM_7_8
+=====================
+
+Date: Nov. 28, 2006 
+Authors: Heiko Schwarz (HHI), Mathias Wien (RWTH Aachen)
+Contributions: Bug fixes
+
+Changes:
+
+1) remove X11 library from Linux makefiles
+2) add command line parameter "-meqplp" for adjusting lambda for key pictures
+3) correct usage of QP values in FixedQpEncoder
+4) changes "\" to "/" in specifying motion file path in FixedQpEncoder
+5) Corrected reading of priority_id in H264AVCPacketAnalyser::process()
+
+6) Decoder fixes for MGS, the old implementation has following problems
+   - it crashed when MGS enhancement layer were partially discarded
+   - wrong reference picture for motion compensation were used
+     for partially truncated MGS enhancement layers
+     (after first problem was fixed)
+7) Added two additional tests in MGS valaidation script for
+   partially truncated MGS layers
+
+
+JSVM_7_6 -> JSVM_7_7
+=====================
+
+Date: Nov. 27, 2006 
+Authors: Yi Guo, Qiu Shen, Hui Liu (USTC)
+Contributions: JVT-U106, JVT-S035
+
+Changes:
+
+1. Integration of JVT-U106 "discardable data adaptation:
+   Behaviour at slice boundaries" (you can find these changes by searching "JVT-U106")
+   (a) Add function xConstrainedIntraUpsampling() in MCTFEncoder and MCTFDecoder
+       to treat slice boundaries as picture boundaries when processing upsampling
+       slice by slice.
+2. Bug-fix of JVT-S035 (You can find these changes by searching "bug-fix 11/16/06")
+   Changes: Do code cleaning of Scalability SEI message part
+
+3. Scalable SEI clean-up
+   (a) Delete Comments and unsued member functions and variables
+   (b) Merge some functions into fewer ones with similar parts.
+   (c) Delete 4 files ScalableModifyCode.cpp&.h, ScalableTestCode.cpp&.h
+       Add    2 files ScalableModifyCode.cpp&.h, into project BitstreamExtractor.
+
+4. Bug fixes:
+   -Modify some extracting functions considering affect with each other.
+   -Rewrite scalability SEI message in every method for further use.
+
+
+JSVM_7_5 -> JSVM_7_6
+====================
+
+Date      : Nov. 17, 2006
+Author    : Hao Zhang, Alex Eleftheriadis (Layered Media) and, Adrian Guede-Lewis (Simecom)
+Contrib   : JVT-U085, JVT-U116
+
+Changes:
+
+- Temporal level nesting flag was added into the scalability Information SEI message (JVT-U085). 
+The value is set via the -tlnest command line option, or the TLNestingFlag configuration file
+parameter. The default value is 1 (set).
+
+- extension_flag and extension byte for frame indices added in SVC NAL unit header, for suffix 
+NAL units (JVT-U116). The feature is enabled via the -tlidx command line option, or the
+TLFrameIdxEnable configuration file parameter. The default value is 0 (no extension).
+
+Note: The changes can be located by searching for "U085" and "U116".
+
+
+Bug fixes: 
+
+-Splitting the Loop filtering and the border extension processes. There was a msimatch 
+between the text and the software (In LoopFilter.cpp)
+- Bug fixes regarding the usage of not reconstructed neighboring Inter MBs in the filtering process (In LoopFilter.cpp)
+
+Note: These fixes can be found by searching  "agl@simecom".
+
+
+JSVM_7_4 -> JSVM_7_5
+====================
+
+Date      : Nov. 10, 2006
+Author	  : Andrew Segall (Sharp)
+Contrib   : JVT-U042 
+
+Changes:
+
+- Reduced filter length for luma upsampling (JVT-U042).
+
+
+
+JSVM_7_3 -> JSVM_7_4
+====================
+
+Date      : Nov. 9, 2006
+Author	  : Heiner Kirchhoffer (HHI)
+Contrib   : JVT-U082
+
+Changes:
+
+- Integration of JVT-U082 'Improved CABAC for PR slices'. New CABAC context models
+for the coding of refinement symbols in FGS were added and the derivation
+of the CABAC context models for the coding of refinement symbols was modified.
+
+
+
+JSVM_7_2 -> JSVM_7_3
+====================
+
+Date      : Nov. 9, 2006
+Author	  : Seung-Wook Park (LG)
+Contrib   : JVT-U090
+
+Changes:
+
+- Modification of syntax structure for 'store_base_rep_flag' according to JVT-U090
+
+
+
+JSVM_7_1 -> JSVM_7_2
+====================
+
+Date      : Nov. 8, 2006
+Author	  : Jizheng XU(Microsoft)
+Contrib   : JVT-U067
+
+Changes:
+
+- Modify position calculation for upsampling according to JVT-U067
+
+
+
+JSVM_6_8_2 -> JSVM_7_1
+======================
+
+Cleaning + bug fixes
+
+Date      : Nov. 07, 2006
+Authors   : N. Cammas and J. Vieron
+Contrib   : JVT-T054
+
+Changes:
+
+-Removal of many duplicated methods related to JVT-T054.
+-Cleaning of various part related to JVT-T054 integration and to Fragment NAL part.
+-Bug fixes related to a mismatch between text and software in the SPS: parameters are written in a wrong order. 
+The calls to xWriteFrext()/xReadFrext() methods have just been displaced (cf //bug fix JV 07/11/06)
+
+
+
+JSVM_6_8_2 -> JSVM_7_0
+======================
+
+Date      : Nov. 06, 2006
+Author    : J. Vieron  (on behalf of Manu Mathew, Shen Qiu and, Liu Hui)
+
+Changes:
+
+-Bug fixes in QLAssigner: temporal level reading from suffix NAL unit missing (cf tag "//{suffix TL read"  in QLAssigner.cpp)
+-Bug fixes in Extractor:  loop on MAX_FGS_LAYERS (cf tag "//bug fix JV 02/11/06" in Extractor.cpp)
+-Fixes for Software manual regarding the -mqp, -rqp and -lqp command line parameters. lqp or rqp, and not mqp, specify the MeQPLP parameter.
+
+
+JSVM_6_8_1 -> JSVM_6_8_2
+========================
+
+Date	    : Oct. 12, 2006
+Author	  : J. Vieron (on behalf of Tae Meon Bae, Burak Gorkemli, Masschelein Bart and, Bottreau Vincent)
+
+Changes:
+
+-Bug fixes related error concealment parameters setting
+-Bug fix related to FGSMotion without FGS slices 
+-Bug fixes for gcc 4.1 compilation
+-FixedQPEncoder (if mode QP and residual QP are equal in the cfg, they evolves similarly for the first 5 iterations
+then it is fixed to the latest value, otherwise mode Qp value will not change during iterations)
+
+
+JSVM_6_8 -> JSVM_6_8_1
+======================
+
+Date	    : Sep. 25, 2006
+Author	  : J. Vieron (on behalf of K. Xie, Shen Qiu, N. Cammas, X. Wang, H. Schwarz and F. Leleannec)
+
+Changes:
+
+- Add 4 new validation scripts for error concealment + minor bug fixes 
++ add of a dummy PacketLossSimulator in the Validation directory. Please read the JSVM Software manual !! (K. Xie),
+- IDR option bug fixes (see //bug-fix shenqiu EIDR) (Shenqiu),
+- Bug fixes related to JVT-T054 (N. Cammas),
+- Bug fixes related to AR-FGS  (X. Wang),
+- Bug fix related to FGSMotion (H. Schwarz),  
+- Bug fix related to QualityLevelAssigner tool when GOP size is equal to 1 (F. Leleannec)
+
+
+
+JSVM_6_7 -> JSVM_6_8
+====================
+
+Date	    : Sep. 11, 2006
+Author	  : Kai Xie (Thomson)
+
+Changes:
+
+- Bug fixes for error concealment
+- Bug fixes (very minor) related to the usage of FGS and FGS motion refinement (check consistency)
+
+
+
+JSVM_6_6 -> JSVM_6_7
+====================
+
+Date	    : Sep. 05, 2006
+Author	    : Reichel, Julien (GE Security)
+Contribution: JVT-T083
+
+Changes:
+
+- Modified Nal Header (3 bytes)
+- Modified Slice header
+- Removed the notion of KeyPicture, and replaced it by UseBasePrediction and StoreBaseRepresentation
+- Added additional controls for the inter-layer deblocking filter.
+
+Fixes: 
+
+- Partial fixes for the trace files
+- Some test configurations had to be slightly modified
+
+
+JSVM_6_5 -> JSVM_6_6
+====================
+
+Nesting SEI message
+
+Date	    : Aug. 28, 2006
+Author	    : Shenqiu, Liuhui, Guoyi (USTC)
+Contribution: JVT-T073
+
+Changes:
+
+- add nesting SEI message including scene information SEI message (JVT-T073)
+
+Fixes:
+
+- LARDO bug fixes (//Bug_Fix JVT-R057 0806)
+- Suffix NAL unit bug fixes, and BaseLayerMode 0. A lot of test configurations updated. (//bug-fix suffix)
+- Use of temporal_level from suffix NAL units in bitstream extraction (bugfix)
+
+
+JSVM_6_4 -> JSVM_6_5
+====================
+
+Date	      : Aug. 11, 2006
+Author	    : N. Cammas (Orange-FT)
+Contribution: JVT-T054
+
+Changes:
+
+- enable SNR enhancement coded using EI, EP or EB slices
+- add -keepf option to BitStreamExtractorStatic
+
+Fixes: 
+
+- FragCABAC, FragVLC test configuration
+
+
+JSVM_6_3 -> JSVM_6_4
+====================
+
+Date        : Aug. 4, 2006
+Author      : T. M. Bae (ICU)
+Contribution: JVT-T058
+
+Changes:
+
+- Inter-layer motion prediction using FGS refined motion
+
+Fixes:
+
+- remove forced multi-loop decoding flag in MCTFDecoder::xDecodeBaseRepresentation() (M. Wien, suggested by V. Bottreau)
+- updated Validation tests to use correct upsampling method (V. Bottreau)
+- updated Software Manual regarding dyadic downsampling with ESS and configuration (V. Bottreau, M. Wien)
+
+
+JSVM_6_2 -> JSVM_6_3
+====================
+
+De-interleaving of 8x8 coefficients in FGS
+
+Date        : July 28, 2006
+Author      : J. Ridge (Nokia)
+Contribution: JVT-T089
+
+Changes:
+
+- De-interleave 8x8 coefficients to be processed as 4 4x4's
+- Consolidation of significance pass routines in CABAC/CAVLC
+
++ DownConvert.inl fix provided by Shijun Sun (M. Wien)
+
+
+JSVM_6_1 -> JSVM_6_2
+====================
+
+Modification for grouping of refinement coefficients
+
+Date        : July 26, 2006
+Author      : M. Shima (TI)
+Contribution: JVT-T067
+
+Changes:
+
+- Addition of refinement coefficients prescanning on encoder side
+- Removal of possible random memory access on decoder side
+- Minor modifications for "FragVLC" test
+
++ ARFGS fixes provided by Steffen Kamp (integrated by H.Schwarz)
++ removal of some Linux warnings (H. Schwarz)
+
+
+JSVM_5_12_1 -> JSVM_6_1
+=======================
+
+Independent Parsing + Removal of AGS
+
+Date        : July 24, 2006
+Author      : H. Schwarz
+Contribution: JVT-T079
+
+Changes:
+
+- independent parsing as only possibility
+- removal of AGS
+- removal of multi-loop decoding mode
+
+
+
+JSVM_5_12 -> JSVM_5_12_1
+========================
+
+Bug fixes
+
+Date        : July 17, 2006
+Author      : J. Vieron (on behalf of S. Kamp, Y.Bao and H. Schwarz)
+
+Changes:
+
+- FGS (CBP 8x8) bug fixes 
+- ARFGS bug fixes
+- QP setting fix ("-mqp" command line parameter)  
+
+
+
+JSVM_5_11 -> JSVM_5_12
+======================
+
+Extended Spatial Scalability (new implementation)
+
+Date         : July 10, 2006   
+Author       : J. Vieron
+Contribution : JD6
+
+Changes:
+
+- File MbData.cpp was rewritten to support the new way of achieving ESS (i.e. inter-layer motion prediction)
+- Minor changes in downconvert*.* files
+
+
+JSVM_5_10 -> JSVM_5_11
+======================
+
+ROI Extraction & FMO in Progressive Refinement Slice
+
+Date         : July 04, 2006
+Author       : Tae Meon Bae 
+Contribution : JVT-Q077, JVT-P113
+
+Changes:
+
+- FMO in FGS for  encoder/decoder
+- Bitstream extraction with roi_id
+- Bitstream extraction with FMO
+ 
+Note:
+- Added the parameter "-r" to Bitstream extraction to extract ROI in the bitstream.
+  
+- FMO is working with FGS layer. the "macroblock to slice group map" is same for FGS and base quality layer.
+  Decoder can handle a drop of a slice group when FMO enabled bitstream is decoded.
+  Bitstream extractor is modified to handle FMO enabled bitstream. But bitstream guarantees correct bitrate control when the numbers of slice group of each layer is the same.
+
+===================================
+IROI signaling in Scalable Info SEI 
+
+Date: July 01, 2006
+Author: M.H. Lee
+Contribution: JVT-S054
+
+Changes:
+
+- Support IROI coding in Progressive Refinement Slice
+
+Note: The changes above can be found by searching "JVT-S054 (2)".
+
+
+
+
+JSVM_5_9 -> JSVM_5_10
+=====================
+
+Multi Layer Quality Layers
+
+Date         : June 24, 2006.
+Author       : Manu Mathew <manu.mathew@samsung.com>
+Contribution : JVT-S043
+
+Changes:
+
+- Added the parameter "-mlql" to Quality Level Assigner. If this parameter is used, 
+  the quality level assigner will estimate quality layer Ids that are optimal for the top layer.
+  This may improve the top layer(dependency_id) PSNR when the extractor truncates the bitstream using the option "-ql".
+
+Note: If Quality level assigner uses the option -mlql, bitstream extraction using "-ql" may 
+  result in the removal/truncation of some of the lower layer's(dependency_id's) FGS layers 
+  even before all the FGS layers of a higher layer(dependency_id) are completely removed.
+
+- Added the parameter "-qlord" to Bitstream Extractor. This parameter can be used to 
+  simulate normal(ordered) quality layer extraction even if multi layer quality layer assignment was done.
+  With this option, a lower layer's(dependency_id's) FGS packets are removed only aftre all the upper layer's
+  FGS packets have been removed.
+
+- The main changes can be found by searching for JVT-S043.
+
+
+JSVM_5_8 -> JSVM_5_9
+====================
+
+Position calculation for SVC upsampling & Frame-based selected inter-layer pred
+
+Date          : June 20, 2006
+Authors       : Ji-Zheng Xu   Khai Zhang
+Contributions : JVT-S067 and JVT-S051 
+
+Changes:
+
+- Implementing the SIP dynamic programming algorithm (JVT-S051) as an new project: SIPAnalyser.
+- Added "EncSIPFile" in encoder.cfg. The encoder can encode consulting to the SIP decision results file.
+- The encoder can output bits information used by SIPAnalyser.
+- The extractor can discard packets selectively by setting the additional option "-sip".
+- Implementing JVT-S067
+
+Note: The changes above can be found by searching "JVT-S051".
+
+-Bug fixes. (Can be found by searching "BUG FIX Kai Zhang")
+
+
+
+JSVM_5_7 -> JSVM_5_8
+====================
+
+IROI signaling in Scalable Info SEI 
+
+Date: June 1, 2006
+Author: M.H. Lee
+Contribution: JVT-S054
+
+Changes:
+
+- Read IROI parameters in cfg files
+- writing and reading  of IROI slice division info in Scalable Info SEI
+- Coding of multiple slices according to IROI slice division info
+
+Note: The changes above can be found by searching "JVT-S054".
+
+
+
+JSVM_5_6_1 -> JSVM_5_7
+======================
+
+Improved Management of Scalability Information using Control Operations 
+
+Date: May 28, 2006
+Authors: Hao Zhang, Alex Eleftheriadis (Layered Media, Inc.)
+Contribution: JVT-S080
+
+Changes:
+
+- Added "scalability_info_layers_not_present" and "scalability_info_dependency_change" SEI messages.
+- Enabled transmission of these two messages when layers are extracted in the bitstream extrator. 
+  The default behavior, however, of transmitting a modified scalability_info SEI message has been 
+  retained, rather than transmitting the original scalability_info followed by a scalability_info_layers_not_present
+  message. This alternative behavior can be enabled by setting the compile-time flag UPDATE_SEI_MESSAGE
+  to 0 in Extractor.h. 
+
+Note: The changes above can be found by searching "JVT-S080 LMI". 
+
+
+JSVM_5_6 -> JSVM_5_6_1
+======================
+
+Cleaning: Bug fixing and warnings removal
+
+Date: May 23, 2006
+Author: J. Vieron (on behalf of S. Kamp and H. Kirchoffer)
+
+Changes:
+
+- Unused/Uninitialized variables methods
+- Shadowing variables 
+- Bug fixes for the handling of the AR-FGS parameters 
+- Bug fix in Extractor.cpp regarding the assignment of uiShrinkSize  
+
+
+JSVM_5_5 -> JSVM_5_6
+====================
+
+High-level syntax change & scalability info SEI plus
+
+Date: May 22, 2006
+Authors: Shujie Liu, Qiu Shen, Hui Liu (USTC)
+Contributions: JVT-S035/S036/S038/S040
+
+Changes: 
+
+- Added "MMCOBaseEnable" and "SuffixUnitEnable" in encoder.cfg
+- Syntax changes in nal_unit_header_svc_extension header and slice header
+- Added detection of suffix nal unit in the decoder
+- Added MMCO & sliding window operation for base representations
+- Some syntax changes of scalability info SEI message
+
+Note: The changes above can be found by searching "JVT-S036 lsj". 
+ 
+- Minor Bug fixes (QLAssigner + Encoder Trace)
+
+
+JSVM_5_4 -> JSVM_5_5
+====================
+
+Simplification of Up-sampling process of IntraBL Mode
+
+Date: May 15, 2006
+Authors: C. Zhang (Zhejiang Univ.)
+Contribution: JVT-S055
+
+Changes:
+
+Use 2-tap bilinear up-sampling filters for chroma.
+
+
+JSVM_5_3 -> JSVM_5_4
+====================
+
+Cleaning: mainly Memory leaks fixing + warnings removal
+
+Date: May 13, 2006
+Authors: J. Vieron (Thomson), S. Kamp (RWTH), B. Maschelein (IMEC)
+
+Changes:
+
+- Several Memory leaks fixing 
+- Uninitialized variables
+- Shadowing variables 
+- Removal of unused variables, methods
+
+
+JSVM_5_2 -> JSVM_5_3
+====================
+
+FGS improvements for VLC
+
+Date: May 09, 2006
+Authors: Yan Ye (Qualcomm)
+Contribution: JVT-S066/S058/S031
+
+Changes:
+
+- modified coding order (Justin Ridge, Nokia)
+- improvements to FGS for VLC (S066)
+- VLC selector for 4x4 transform blocks (S058)
+- Modified VLC for refinement pass (S031)
+- FGS Scan Vector fixes (N. Cammas- France-Telecom)
+
+
+JSVM_5_1 -> JSVM_5_2
+====================
+
+Unification of FGS
+
+Date: April 27, 2006
+Authors: Justin Ridge (Nokia), Nathalie Cammas (France Telecom R&D)
+Contribution: JVT-S077
+
+Changes:
+
+- Convert "regular" FGS to subband approach
+- Remove specific routines for AR-FGS ordering (now a single method)
+- Add "vector mode" coefficient ordering in FGS
+- Tidy-up: removed unused variables and parameters from FGS
+- Added some checks to the FGS decoder to avoid "empty" cycles and unnecessary initMb calls
+
+
+
+Bug fixes & software manual improvements
+
+Date: April 28, 2006
+Author: Heiko Schwarz (in behalf of Martin Winken & Jerome Vieron)
+
+Changes:
+
+- bug-fix for real single-loop decoding at the decoder side (Martin Winken)
+- bug-fix for validation scripts (Jerome Vieron)
+- update of software manual regarding validation scripts (Jerome Vieron)
+- update of software manual regrading error concealment (Chen Ying)
+- re-implementing the packet trace option for the bit-stream extractor (Heiko Schwarz)
+- update of software manula regrading the packet trace option (Heiko Schwarz)
+- added parameter MeQPLP for controlling ME/MD of key pictures - no effect by default (Heiko Schwarz)
+
+
+
+JSVM_5_0 -> JSVM_5_1
+====================
+
+Skip mode for SVC slice data
+Independent parsing (as option in software)
+MCTF pre-processing
+Remove MCTF and open-loop coding from encoder
+Software manual
+
+Date: April 24, 2006
+Author: Heiko Schwarz (Fraunhofer HHI)
+Contribution: JVT-S068, JVT-S069, JVT-S070, JVT group decision
+
+Changes:
+
+- added skip mode for SVC NAL units
+- added independent parsing as software option
+  - it is disables by default
+  - can be enabled by the layer configuration parameter "IndependentParsing"
+    or by the command line parameters "-ipars" and "-aip"
+- removed MCTF and open-loop coding from encoder
+- added a MCTF pre-processing tool
+- added following command line parameters to the encoder:
+  "-org", "-rec", "-ec", "-vlc", "-cabac"
+- removed following parameters from layer configuration file
+  "UseIntra", "AdaptiveQP", "UpdateStep"
+- slightly redefined parameter "ClosedLoop"
+  -> value 0 now also specifies closed-loop coding
+
+
+
+JSVM_5_0 == JSVM_4_12
+=====================
+
+no changes
+
+
+
+JSVM_4_11 -> JSVM_4_12
+======================
+
+Redundant Pictures
+
+Date: April 14, 2006
+Authors: Jie Jia, HaeKwang Kim, HaeChul Choi, JaeGon Kim ( Sejong Univ. / ETRI )
+Contribution: JVT-Q054
+
+Changes:
+
+1) Add "UseRedundantSlc" in layer config file.
+2) With UseRedundantSlc = 1 in layer config file (enable coding redundant picture), one redundant picture will be encoded for each primary
+ coded picture without FGS picture.
+3) In the decoding process, detection of the redundant coded picture has been added. When the primary coded picture has been decoded
+ correctly, the redundant one will not be decoded, or else, the redundant one will be decoded.
+( The current redundant picture tool does not support multiple slices per picture for the time being. )
+
+Note: The changes can be found by searching JVT-Q054 tag. 
+
+4) Bug fixes related to LA-RDO (can be found by searching "Bug _Fix JVT-R057" in GopEncoder.h and CreaterH264AVCEncoder.cpp).
+
+
+JSVM_4_10 ->JSVM_4_11 
+===================== 
+
+SVC frame loss concealment
+
+Date: April 12, 2006
+Authors: Y. Chen, K. Xie, J. Boyce , J. Vieron (Thomson)
+Contribution: JVT-Q046
+  
+Changes: 
+
+1. Add argument [-ec n] in the decoder command line, enabling Error Concealment algorithm selection. The following values 
+are supported for n: 1: BLSKIP;  2: RU; 3: Frame copy; 4: Temporal Direct; 5: Frame Level Frame Copy. 
+Only support AVC Compliant base layer (i.e. BaseLayerMode = 1 in encoder.cfg) 
+ 
+2. Temporal Direct Error Concealment mode  
+   1) Some methods in MbDataAccesss  
+   2) initMbTDEnhance() in MbDataCtrl 
+   3) getDistScaleFactorVirtual() in sliceheader 
+ 
+3. MMCO and RPLR 
+   1) setDefaultMmcoBuffer() in sliceheaderbase to generate MMCO commands for a missing slice 
+   2) readSliceHeaderVirtual() will use the above function and will also generate necessary RPLR 
+   commands for a missing slice.  
+ 
+4. Detect missing packets 
+   Currently we use the hierarchical B picture GOP Structure to do the packet loss detection 
+   and to generate some information for a virtual packet which was lost.  
+   Most of the work is done in checkSliceGap(). And other related process is in H264AVCDecoder 
+   and NALUnitParser. 
+   Do not support slice fragment currently   
+
+5. Virtual Packet decoding 
+  1) getTrueSlice() will be frequently used to separate processes between a correctly received 
+     packet and a virtual packet. 
+  2) getPrdRefListsFromBase() will get the base layer reference list sizes and RPLR commands for
+     enhancement layer.  
+  3) one of the error concealment methods will be invoked in xDecodeBaseRepresentation() for 
+     spatial scalable packet decoding 
+  4) xProcessSliceVirtual() corresponding to xProcessSlice() will give a virtual slice decoding
+     for a lost packet. 
+  5) A FGS packet will be handled as lost if its lower quality level packet is lost 
+  6) readSliceHeaderVirtual() will give almost all the slice header level syntax elements for a 
+     lost packet.  
+  7) readVirtual() in SliceReader will process a parser for all virtual MBs in a lost packet.  
+  8) readVirtual() in MbParser will handle the MB level error concealment process (A virtual parser
+     to set the modes etc)for TD, FC and BLSKIP methods. 
+  9) processVirtual() give base layer error concealment process for TD and FC (A virtual decoding 
+     process to get the reconstructed picture for a lost packet) 
+ 10) New function to support decoding bit-stream group. One bit-stream can be wrapped several 
+     times with an END_OF_STREAM NAL among them for the error resiliency tests. nCount in H264AVCDecoderLibTest.cpp 
+     should be adjusted. 
+
+Note: All the modifications above can be found by searching TMM_EC tag.
+
+
+6. Bug fix in Extractor.cpp (provided by S. Kamp [kamp@ient.rwth-aachen.de]) to enable a correct truncation of
+    the FGS packets.
+
+7. Bug fix in MbData.cpp (provided by J. Vieron [jerome.vieron@thomson.net]) on the ESS part.
+
+8. Add definition of _JSVM_VERSION_ (i.e. preprocessor command: #define _JSVM_VERSION "4.11") in CommonDefs.h. 
+   This define shall specify the current version of the JSVM software. The files BitstreamExtractor.cpp, H264AVCEncoderLibTest.cpp 
+   and H264AVCDecoderLibTest.cpp are modified accordingly.
+
+
+
+
+JSVM_4_9 -> JSVM_4_10
+=====================
+
+Loss-aware rate-distortion optimization integration
+Improvement to the implementation of non-required picture SEI message
+
+Date: April 08, 2006 
+Authors: Yi Guo, Qiu Shen
+Contributions: JVT-R057 and JVT-Q066
+
+Changes:
+
+1. LA-RDO (you can find these changes by search "JVT-R057 LA-RDO")
+   1) Add the channel propagation distortion to the RD-cost in the mode decision functions.
+   2) Add the calculation of the distortion map in the following functions: encodeIntra(),encodeInterP() 
+      and estimatePrediction().  
+   
+2. NonRequired (you can find these changes by search "JVT-Q066 (06-04-08)")
+   1) Change the uiLayer of NonRequired SEI in Extractor::xAnalyse().
+   2) Change the condition of set bkeep in Extractor::xExtractLayerLevel().
+   3) Change the initial value of NonRequired SEI in SEI::NonRequiredSei::NonRequiredSei().
+   4) Set and Write NonRequired SEI in MCTFEncoder::xEncodeLowPassPictures() and MCTFEncoder::xEncodeHighPassPictures().
+   5) Set the flag of Writting NonRequired SEI in H264AVCEncoder::xProcessGOP().
+   6) Add the m_pcNonRequiredSei to class H264AVCENCODERLIB_API AccessUnit.
+   7) Add "NonRequiredEnable" in encoder.cfg.
+   8) Add "IDRPeriod" which should be integral times of GOP size in layer0(1,2..).cfg.
+
+3. Bug-fix (You can find the changes by search "BUG_FIX Shenqiu (06-04-08)")
+
+JSVM_4_8 -> JSVM_4_9
+====================
+
+Decoder-side improvement for FGS with motion refinement 
+
+Date: March 28, 2006
+Author: M. Winken (HHI)
+
+Changes:
+
+1) only single-motion compensation at decoder side
+2) bug fix for open-loop coding
+
+
+
+JSVM_4_7 -> JSVM_4_8
+====================
+
+Cleaning of DownConvert 
+
+Date: March 27, 2006
+Authors: P. Dagois and J. Vieron (Thomson)
+
+Changes:
+
+1) main.cpp (DownConvert): Cleaning of DownConvert Tool to make it easier to use.
+2) DownConvert.h: Cleaning of unused functions + re-organization.
+3) Removal of "DownConvertTmm.inl" file
+4) Addition of a new file "DownConvertTools.inl"
+    This file contains all the functions that are only used in the DownConvertStatic Tool .
+5) DownConvertStatic.vcproj: "DownConvertTmm.inl" is replaced by "DownConvertTools.inl"
+6) DownConvert.inl contains now only the functions specific to the JSVM software (upsampling methods) 
+    as well as the common functions between the DownConvertStatic Tool and the JSVM software.
+7) main.cpp (PSNR): Removal of "spatial resampling" (i.e. call to downconvert methods) in PSNR tool.
+8) PSNRStatic.vcproj: Removal of "DownConvert.h"
+9) Validation scripts (New Version 0.0.4): Modified in order to use new tools. Re-indent with spaces.
+
+
+
+JSVM_4_6 -> JSVM_4_7
+====================
+
+EIDR, 
+Non-required picture SEI message (Bug fix), 
+Bitstream extractor bug fix
+
+Date: March 26, 2006
+Authors: Qiu Shen, Hui Liu, Ye-Kui Wang, Houqiang Li
+Contributions: JVT-R053 and JVT-Q066 
+
+Changes:
+
+1. EIDR (you can find these changes by search "EIDR JVT-Q065")
+1)	Delete the part of POC reset of IDR in PocCalculator::calculatePoc() / setPoc()
+2)	Set m_bUnusedForRef in IntFrame::copyAll() / copy()
+3)	Move xClearOutputAll() for IDR from DecodedPicBuffer::xStorePicture() to DecodedPicBuffer::initCurrDPBUnit()
+4)	Make a decision of whether add the picture to reference list in MCTFEncoder::xEncodeLowPassSignal()
+5)	Init m_bUnusedForRef of m_papcFrame in MCTFEncoder::xInitGOP()
+6)	Change the process of get reference list and reference picture number in 	Encoder::xGetPredictionLists() /  		xGetBQPredictionLists() / xGetCLRecPredictionLists	() / xGetFrameNumList()
+7)	Change the mode decision process according to the size of reference list and BLSkip mode enable flag in 			MbEncoder::encodeInterP() / estimatePrediction()
+8)	Decide whether BLSkip mode can be used in EncoderCodingParameter::xReadFromFile()
+
+2. NonRequired (you can find these changes by search "NonRequired JVT-Q066")
+1)	Add a parameter of m_uiNonRequiredPic in H264AVCDecoder::initPacket() / CreaterH264AVCDecoder::initPacket() 
+
+3. Bitstream Extractor(you can find these changes by searching "// BUG_FIX liuhui")
+1) Modify scalability SEI message information
+2) Add the minimum layer bitrate information in display
+3) Fix some potential bugs
+
+
+
+JSVM_4_5 -> JSVM_4_6
+====================
+
+Adaptive motion refinement for FGS
+FGS processing in transform domain
+
+Date: March 22, 2006
+Author: Martin Winken, Heiko Schwarz (HHI)
+Contribution: JVT-R022
+
+Changes:
+
+1) Added motion estimation to RQFGSSubbandEncoder, using new function
+   RQFGSEncoder::xMotionEstimation()
+2) Mode decision for FGS is done in new function MbEncoder::encodeFGS(),
+   which evaluates R-D costs for the inter macroblock modes as well as
+   for simply requantizing the residual using the same prediction signal
+   (new function MbEncoder::xEstimateFGSSkip())
+3) Baselayer residual for inter-layer prediction is now stored in
+   IntFrame* FGSCoder::m_pcBaseLayerSbb and added in RQFGSEncoder::reconstruct(),
+   so the calls to MCTFEncoder::xAddBaseLayerResidual() in MCTFEncoder::xEncodeFGSLayer()
+   have been removed.
+4) FGS motion data are encoded in RQFGSEncoder::xEncodingFGS()/xEncodingSubbandFGS()
+   using new functions RQFGSEncoder::xEncodeMotionData(), MbCoder::encodeMotion()
+5) Decoding of FGS motion data is done in RQFGSDecoder::xDecodingFGS()/xDecodingSubbandFGS()
+   using new functions RQFGSDecoder::xDecodeMotionData(), MbParser::readMotion()
+6) At the decoder motion-compensated prediction using FGS motion data is done in
+   MCTFDecoder/H264AVCDecoder::xReconstructLastFGS()
+7) Inter-layer motion prediction uses Base Quality motion data which is stored in
+   MbData::{m_eMbModeBase,m_aBlkModeBase,m_apcMbMotionDataBase}
+
+8) FGS processing in transform domain (JVT decision)
+
+
+
+JSVM_4_4 -> JSVM_4_5
+====================
+
+Simplified VLC update integration
+
+date: march 19, 2006
+author: Masato Shima (TI)
+contribution: JVT-R021
+
+changes:
+
+1) Addition of VLC updating function at the end of macroblock iteration
+  * FGSSubbandDecoder.cpp: placing function calls of "m_pcSymbolReader->RQupdateVlcTable()"
+  * UvlcReader.cpp       : adding definition of "UvlcReader::RQupdateVlcTable()"
+  * FGSSubbandEncoder.cpp: placing function calls of "m_pcSymbolWriter->RQupdateVlcTable()"
+  * UvlcWriter.cpp       : adding definition of "UvlcWriter::RQupdateVlcTable()"
+
+  * Minor changes (function declaration or so) in the following files
+    - CabacReader.h
+    - MbSymbolReadIf.h
+    - UvlcReader.h
+    - CabacWriter.h
+    - MbSymbolWriteIf.h
+    - UvlcWriter.h
+
+2) Removal of old VLC updating function
+  * UvlcReader.cpp: removal of "UcBitGrpReader::xUpdate()"
+  * UvlcWriter.cpp: removal of "UcBitGrpWriter::xUpdate()"
+
+3) Minor modification to build with VC6.0
+  * MbEncoder.cpp
+  * FGSSubbandDecoder.cpp
+
+
+
+JSVM_4_3 -> JSVM_4_4
+====================
+
+Weighted prediction (encoder algorithm)
+
+Change log:
+Date: March 17, 2006
+Author: Purvin Pandit (Thomson)
+Contribution: JVT-P064
+
+Changes:
+
+1) Added weighted prediction algorithm for encoder (scale and offset)
+2) Weights for the Enhancement layer are always inherited if the corresponding base layer picture exists otherwise they are calculated
+3) Only scales are used in wp. Offsets are never used although code has been provided.
+
+
+
+JSVM_4_2 -> JSVM_4_3
+====================
+
+Smoothed reference prediction
+
+date: march 11, 2006
+author: Woo-Jin Han (Samsung Electronics)
+contribution: JVT-R091
+
+changes:
+
+1) According to JVT-R091, an additional prediction using smoothing function is added for single-loop decoding case. Smoothing function is applied to the sum of MC prediction and base-layer residual signal.
+
+2) New mode is signalled by additional syntax item only when the base_mode_flag and residual_prediction_flag are set.
+
+3) In motion estimation process, new functions to compute R-D cost of smoothed reference prediction are added for both 4x4 and 8x8 transform cases.
+
+4) New short-term test "SmoothedRef" is added.
+
+major S/W changes:
+
+ [ CommonLib changes ]
+
+ IntYuvPicBuffer: 3 new smoothing functions -> smoothMbInside(), smoothMbLeft() and smoothMbTop()
+ MbDataStruct: new MB variable -> m_bSmoothedRefFlag
+
+ [ Encoder-side changes ]
+
+ GOPEncoder: 
+     xFixMCPrediction() (called in xCompositionStage)
+       -> fix normal MC prediction with considerations of smoothed reference
+     xFixOrgResidual() (called in xEncodeHighPassPictures)
+       -> fix original residual with considerations of smoothed reference (necessary for FGS)
+ MbCoder: code segment to call smoothedRefFlag() when base_mode_flag && residual_prediction_flag = 1
+ MbEncoder:
+     new process for smoothed residual prediction (in encodeResidual)
+     new process for computing R-D cost of smoothed residual prediction (in estimatePrediction)
+     (xEstimateMbSR, xSetRdCostInterMbSR, xSetRdCost8x8InterMbSR, and xCheckInterMbMode8x8SR)
+ CabacWriter & UvlcWriter: smoothedRefFlag() -> write smoothed_ref_flag syntax item
+
+ [ Decoder-side changes ]
+
+ CabacReader & UvlcReader: smoothedRefFlag() -> read smoothed_ref_flag syntax item
+ MbDecoder: code segment in xDecodeMbInter() to generate smoothed reference prediction
+ MbParser: code segment to call smoothedRefFlag() when base_mode_flag && residual_prediction_flag = 1
+
+JSVM_4_1 -> JSVM_4_2
+====================
+
+2-loop AR-FGS integration
+
+date: march 6, 2006
+author: Xianglin Wang (Nokia)
+contribution: JVT-R077
+
+changes:
+
+1) Modified AR-FGS buffer usage at decoder. Now it uses pictures from DPB for AR-FGS reference. So it can handle  reference picture reordering, etc. Meanwhile, I also cleaned up some necessary buffers. 
+
+2) According to JVT-R077, added decoder-oriented two loop FGS coding structure and a FGS entropy coder with a new coding order. 
+
+3) A couple of bug fixes from Shijun after his integration. 
+
+4) Bug fix recommendation from Heiko regarding an assertation failure in function xMarkShortTermUnused()
+
+
+
+JSVM_4_0 -> JSVM_4_1
+====================
+
+ESS TOOLS INTEGRATION
+
+date: february 18, 2006
+authors: J.Vieron (Thomson) and S.Sun (Sharp)
+contributions: JVT-Q038, JVT-Q015, JVT-R018, JVT-R006
+
+changes:
+ 
+ downconvert.inl:
+ ----------------
+ Cleaning of the initialisation. (very minor)
+
+ downconvert.h, downconvertTmm.inl:
+ ---------------------------------
+ Cleaning. 
+ -Removal of methods xInitFilterTmmResidual(), xDestroyFilterTmmResidual(),xGenericUpsample(),xUpsamplingFrame(),xUpsamplingBlock(), 
+   xComputeLastSamplePosition(), xUpsamplingDataResidual ().
+ -Removal of members m_pitmpDes4,m_pitmpDes8,m_pitmpDes16; 
+                                   
+ -Implementation of the upsampling 16 taps filter (adopted as normative cf. JVT-Q038)
+ -Dyadic becomes a special case of ESS. For luma in the dyadic case, the previous method filters at phase 0 position while the ESS mode interpolates 
+ at phase 1/2 [JVT-R018]
+ -Implementation of ESS downsampling filters (seven new sets of filters) based on the sine-windowed sinc function. (This is a 12 tap filters)[JVT-R006]
+
+ MbData.h , MbData.cpp:
+ ----------------------
+ Extension of the ESS mechanisms to support scaling ratios greater than 2 (cf. [JVT-Q015]) 
+ (->Introduction of a new method "xInitInfoBaseDim")
+ Various bug fixes.  
+ 
+ main.cpp (DownConvert):
+ ----------------------
+ Replacement of "malloc" by "new".
+  
+ main.cpp (PSNR):
+ ---------------
+ Replacement of "malloc" by "new".
+ 
+ EncoderCodingParameter.h:
+ -------------------------
+ Add of 4 new options in encoder config file:
+ "ESSChromaPhaseX","ESSChromaPhaseY", "ESSBaseChromaPhaseX","ESSBaseChromaPhaseY"
+ Changes in inititialisation of ResizeParameters.
+  
+ GOPDecoder.h,  GOPDecoder.cpp:
+ -----------------------------
+  Removal of method "fillPredictionLists_ESS". It has been replaced by a new piece of code in GOPDecoder.cpp (in method "xInitBaseLayer").
+  The goal of "fillPredictionLists_ESS" and, now, of the new code, is to associate reference list index and POC on the entire GOP. It is mandatory 
+  to support the Picture Level ESS.
+ 
+ GOPEncoder.cpp:
+ ----------------
+ Changes related to chroma phase shift
+ 
+ MbDecoder, MotionEstimation.cpp, MotionEstimationQuarterPer.cpp:
+ ----------------------------------------------------
+ Bug fixes to allow a real 1/4 pel refinement in case of ESS motion upsampling. 
+  
+ ResizeParameters.h,ResizeParameters.cpp:
+ ----------------------------------------
+ "m_acCurrentGop" replaces "m_pcCurrentGop".
+ Initialisation of parameters related to chroma phases (m_iChromaPhaseX, m_iBaseChromaPhaseX...) [JVT-Q038,JVT-R018]
+ 
+ SequenceParameterSet.cpp:
+ ------------------------
+ Dyadic case becomes a special ESS case ([JVT-R018]).
+ Initialisation of parameter "m_uiBaseChromaPhaseXPlus1"(to support a correct chroma phase shift). [JVT-R018]
+ 
+ 
+ SliceHeaderBase.cpp:
+ --------------------
+ Initialisation of parameter "m_uiBaseChromaPhaseXPlus1"(to support a correct chroma phase shift). [JVT-R018]
+

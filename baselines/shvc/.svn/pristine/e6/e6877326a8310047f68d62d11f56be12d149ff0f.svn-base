@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LocalDebuggerCommandArguments>-b str/BasketballPass.bin -ls 2 -o0 rec/BasketballPass_l0_drec.yuv -o1 rec/BasketballPass_l1_drec.yuv</LocalDebuggerCommandArguments>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerWorkingDirectory>$(ProjectDir)/../../../</LocalDebuggerWorkingDirectory>
+  </PropertyGroup>
+</Project>

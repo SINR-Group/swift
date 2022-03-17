@@ -1,0 +1,96 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+name        => "ESS_MGS",
+original    => "CREW_704x576_60.yuv",
+width       => 704,
+height      => 576,
+framerate   => 60,
+nbframes    => 40,
+verbosemode => 1,	
+phasemode   => 0,
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+runencode   => 1,
+
+#=======================#
+# Layers  parameters    #
+#=======================#     
+layers      => [
+                #----------#
+                # Layer  0 #
+                #----------#
+                {
+                 width        => 464,
+                 height       => 384,
+                 framerate    =>  15,
+                },
+                #----------#
+                # Layer  1 #
+                #----------#
+                {
+                 width        => 704,
+                 height       => 576,
+                 framerate    =>  15,
+                },
+                #----------#
+                # Layer  2 #
+                #----------#
+                {
+                 width        => 704,
+                 height       => 576,
+                 framerate    =>  30,
+                },
+               ],
+   
+#==========================================================#
+#          Extracting +Decoding parameters  (i.e Tests )   #
+#==========================================================#  
+bitratecheckrange  => 1,
+psnrcheckrange     => 0,
+         
+tests              => [
+                       #----------#
+                       # Test   0 #
+                       #----------#
+                       {
+                        name        => "L0",
+                        mode        => 1,
+                        width       => 464,
+                        height      => 384,
+                        framerate   => 15,
+                  	bitrate     => 390,
+                  	psnr        => 37.67,
+                        encdecmatch => 1,
+                       },
+                       #----------#
+                       # Test   1 #
+                       #----------#
+                       {
+                        name        => "L1",
+                        mode        => 1,
+                        width       => 704,
+                        height      => 576,
+                        framerate   => 15,
+                  	bitrate     => 670,
+                  	psnr        => 35.96,
+                       },
+                       #----------#
+                       # Test   2 #
+                       #----------#
+                       {
+                        name        => "L2",
+                        mode        => 1,
+                        width       => 704,
+                        height      => 576,
+                        framerate   => 15,
+                  	bitrate     => 768,
+                  	psnr        => 36.21,
+                        encdecmatch => 1,
+                       },
+                      ],
+}
+

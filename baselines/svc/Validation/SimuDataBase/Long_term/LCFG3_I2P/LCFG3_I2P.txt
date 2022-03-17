@@ -1,0 +1,81 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+name        => "LCFG3_I2P",
+original    => "CREW_704x576_60.yuv",
+width       => 704,
+height      => 576,
+framerate   => 60,
+nbframes    => 40,
+verbosemode => 1,	
+phasemode   => 1,
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+runencode   => 1,
+
+#=======================#
+# Layers  parameters    #
+#=======================#     
+layers      => [
+                #----------#
+                # Layer  0 #
+                #----------#
+                {
+                 width        => 704,
+                 height       => 576,
+                 framerate    =>  30,
+                 cropfilename => "4CIFp_4CIFi.txt",
+                 croptype     => 1,
+                 resamplemode => 4,
+                 interlace    =>   1,
+                },
+                #----------#
+                # Layer  1 #
+                #----------#
+                {
+                 width        => 704,
+                 height       => 576,
+                 framerate    =>  60,
+                },
+               ],
+   
+#==========================================================#
+#          Extracting +Decoding parameters  (i.e Tests )   #
+#==========================================================#  
+bitratecheckrange  => 1,
+psnrcheckrange     => 0,
+         
+tests              => [
+                       #----------#
+                       # Test   0 #
+                       #----------#
+                       {
+                        name        => "L0",
+                        mode        =>    1,
+                        width       =>  704,
+                        height      =>  576,
+                        framerate   =>   30,
+                  	bitrate     => 1216,
+                      	psnr        => 38.79,
+                        encdecmatch =>    1,
+                        interlace   =>    1,
+                       },
+                       #----------#
+                       # Test   1 #
+                       #----------#
+                       {
+                        name        => "L1",
+                        mode        => 1,
+                        width       => 704,
+                        height      => 576,
+                        framerate   => 60,
+			bitrate     => 2372,
+		        psnr        => 37.46,
+                        encdecmatch => 1,
+                       },
+                      ],
+}
+

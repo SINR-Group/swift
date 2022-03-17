@@ -1,0 +1,148 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+name 	            => "MLQL",
+original 	        => "BUS_352x288_30.yuv",
+ 
+width      	      => 352,
+height     	      => 288,
+framerate 	      => 30,
+nbframes	        => 33,
+verbosemode       => 1,
+phasemode         => 1,
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+runencode	      => 1,
+qualitylayer    => 3,
+      
+#=======================#
+# Layers  parameters    
+#=======================#
+layers       => [
+    #----------#
+    # Layer  0 #
+    #----------#
+    {
+     width       => 176,
+	 height      => 144,
+	 framerate   => 15,
+	 bitrate     => 192,
+	},
+	#----------#
+    # Layer  1 #
+    #----------#
+    {
+     width       => 176,
+	 height      => 144,
+	 framerate   => 15,
+	 bitrate     => 192,
+	},
+	#----------#
+    # Layer  2 #
+    #----------#
+	{
+	 width       => 352,
+	 height      => 288,
+	 framerate   => 30,
+	 bitrate     => 768,
+	},
+     # Layer  3 #
+    #----------#
+	{
+	 width       => 352,
+	 height      => 288,
+	 framerate   => 30,
+	 bitrate     => 768,
+	},
+],
+   
+#==========================================================#
+#          Extracting +Decoding parameters  (i.e Tests )   #
+#==========================================================#  
+    bitratecheckrange  => 1,
+    psnrcheckrange    =>  0,	
+
+tests      => [
+		#----------#
+        # Test   0 #
+        #----------#
+		{
+		 name => "BL_QL",
+		 mode => 1,
+		 width => 176,
+		 height => 144,
+		 framerate => 15,
+		 useql     => 1,
+		 bitrate => 171,
+		 psnr => 32.24,
+		},
+		#----------#
+        # Test   1 #
+        #----------#
+		{
+		 name => "BL_Ordered_QL",
+		 mode => 1,
+		 width => 176,
+		 height => 144,
+		 framerate => 15,
+		 useql     => 2,
+		 bitrate => 171,
+		 psnr => 32.24,
+		},
+		#----------#
+        # Test   2 #
+        #----------#	
+		{
+		 name => "BL_withoutQL",
+	     mode => 1,
+		 width => 176,
+		 height => 144,
+		 framerate => 15,
+		 bitrate => 166,
+		 psnr => 32.00,
+		},
+		#----------#
+        # Test   3 #
+        #----------#	
+		{
+		 name => "EL_QL",
+	     mode => 1,
+		 width => 352,
+		 height => 288,
+		 framerate => 30,
+		 useql     => 1,
+		 bitrate => 716,
+		 psnr => 31.14,
+		},
+		#----------#
+        # Test   4 #
+        #----------#	
+		{
+		 name => "EL_Ordered_QL",
+	     mode => 1,
+		 width => 352,
+		 height => 288,
+		 framerate => 30,
+		 useql     => 2,
+		 bitrate => 722,
+		 psnr => 31.21,
+		},
+		#----------#
+        # Test   5 #
+        #----------#	
+		{
+		 name => "EL_withoutQL",
+	     mode => 1,
+		 width => 352,
+		 height => 288,
+		 framerate => 30,
+		 bitrate => 735,
+		 psnr => 31.12,
+		},
+	],
+}
+
+

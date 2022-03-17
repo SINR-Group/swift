@@ -1,0 +1,67 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+    name 	   => "6.6.6",
+    verbosemode    => 1,	
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+    runencode	=> 0,
+    
+
+#=======================#
+# Layers  parameters    
+#=======================#     
+    layers       => [
+                    ],
+   
+#==========================================================#
+#          Extracting + Decoding parameters  (i.e Tests )  #
+#==========================================================#  
+      tests      => [
+		                  #----------#
+                      # Test   6.6.6.1 #
+                      #----------#
+                      {
+          		        name   => "AVCPA-1",
+          		        mode   => 0,
+          		        width  => 720,
+          		        height => 480,
+          		        bitstreamname => "Sharp_MP_PAFF_1r2.jvt",
+          		        decodedname   => "Sharp_MP_PAFF_1r2_720x480.yuv",
+          		        origname      => "Sharp_MP_PAFF_1r2_rec.yuv",
+          		        psnr => 99.99,
+            		      },
+            		      #----------#
+                      # Test   6.6.6.2 #
+                      #----------#
+		                  {
+          		        name => "AVCPA-2",
+          		        mode => 0,
+          		        width  => 352,
+          		        height => 288,
+          		        bitstreamname => "CVPA1_TOSHIBA_B.264",
+          		        decodedname   => "CVPA1_TOSHIBA_B_352x288.yuv", 
+          		        origname      => "CVPA1_TOSHIBA_B_dec.yuv",
+          		        psnr => 99.99,
+            		      },
+            		      #----------#
+                      # Test   6.6.6.3 #
+                      #----------#
+                      {
+          		        name   => "AVCPA-3",
+          		        mode   => 0,
+          		        width  => 720,
+          		        height => 480,
+          		        bitstreamname => "cvmp_mot_picaff0_full_B.26l",
+          		        decodedname   => "cvmp_mot_picaff0_full_B_720x480.yuv",
+          		        origname      => "cvmp_mot_picaff0_full_B_rec.yuv",
+          		        psnr => 99.99,
+		                  },
+		 
+    		    ],
+}
+
+

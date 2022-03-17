@@ -1,0 +1,638 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+    name 	   => "6.6.31",
+    verbosemode    => 1,	
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+    runencode	=> 0,
+    
+
+#=======================#
+# Layers  parameters    
+#=======================#     
+    layers       => [
+                    ],
+   
+#==========================================================#
+#          Extracting + Decoding parameters  (i.e Tests )  #
+#==========================================================#  
+      tests      => [
+		      #-----------------#
+                      # Test  6.6.31.1  #
+                      #-----------------#
+                      {
+          	        name          => "SVCHM-1 (L0)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "SVCHM-1-L0.264",
+          	        decodedname   => "SVCHM-1-L0_352x288.yuv",
+          	        origname      => "SVCHM-1-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #-----------------#
+                      # Test  6.6.31.1  #
+                      #-----------------#
+                      {
+          	        name          => "SVCHM-1 (L1)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "SVCHM-1-L1.264",
+          	        decodedname   => "SVCHM-1-L1_352x288.yuv",
+          	        origname      => "SVCHM-1-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #-----------------#
+                      # Test  6.6.31.1  #
+                      #-----------------#
+                      {
+          	        name          => "SVCHM-1 (L2)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "SVCHM-1-L2.264",
+          	        decodedname   => "SVCHM-1-L2_352x288.yuv",
+          	        origname      => "SVCHM-1-L2.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #-----------------#
+                      # Test  6.6.31.1  #
+                      #-----------------#
+                      {
+          	        name          => "SVCHM-1 (L3)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "SVCHM-1-L3.264",
+          	        decodedname   => "SVCHM-1-L3_352x288.yuv",
+          	        origname      => "SVCHM-1-L3.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #-----------------#
+                      # Test  6.6.31.2  #
+                      #-----------------#
+                      {
+          	        name          => "SVCHM-2 (L0)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "SVCHM-2-L0.264",
+          	        decodedname   => "SVCHM-2-L0_352x288.yuv",
+          	        origname      => "SVCHM-2-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #-----------------#
+                      # Test  6.6.31.2  #
+                      #-----------------#
+                      {
+          	        name          => "SVCHM-2 (L1)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "SVCHM-2-L1.264",
+          	        decodedname   => "SVCHM-2-L1_352x288.yuv",
+          	        origname      => "SVCHM-2-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #-----------------#
+                      # Test  6.6.31.3  #
+                      #-----------------#
+                      {
+          	        name          => "SVCHM-3 (L0)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "SVCHM-3-L0.264",
+          	        decodedname   => "SVCHM-3-L0_352x288.yuv",
+          	        origname      => "SVCHM-3-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #-----------------#
+                      # Test  6.6.31.3  #
+                      #-----------------#
+                      {
+          	        name          => "SVCHM-3 (L1)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "SVCHM-3-L1.264",
+          	        decodedname   => "SVCHM-3-L1_352x288.yuv",
+          	        origname      => "SVCHM-3-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #-----------------#
+                      # Test  6.6.31.4  #
+                      #-----------------#
+                      {
+          	        name          => "SVCHM-4 (L0)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "SVCHM-4-L0.264",
+          	        decodedname   => "SVCHM-4-L0_352x288.yuv",
+          	        origname      => "SVCHM-4-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #-----------------#
+                      # Test  6.6.31.4  #
+                      #-----------------#
+                      {
+          	        name          => "SVCHM-4 (L1)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "SVCHM-4-L1.264",
+          	        decodedname   => "SVCHM-4-L1_352x288.yuv",
+          	        origname      => "SVCHM-4-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #-----------------#
+                      # Test  6.6.31.4  #
+                      #-----------------#
+                      {
+          	        name          => "SVCHM-4 (L2)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "SVCHM-4-L2.264",
+          	        decodedname   => "SVCHM-4-L2_352x288.yuv",
+          	        origname      => "SVCHM-4-L2.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+
+
+
+		      #-----------------#
+                      # Test  6.6.31.5  #
+                      #-----------------#
+                      {
+          	        name          => "SVCHS-1 (L0)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "SVCHS-1-L0.264",
+          	        decodedname   => "SVCHS-1-L0_352x288.yuv",
+          	        origname      => "SVCHS-1-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #-----------------#
+                      # Test  6.6.31.5  #
+                      #-----------------#
+                      {
+          	        name          => "SVCHS-1 (L1)",
+          	        mode          => 0,
+          	        width         => 720,
+          	        height        => 576,
+          	        bitstreamname => "SVCHS-1-L1.264",
+          	        decodedname   => "SVCHS-1-L1_720x576.yuv",
+          	        origname      => "SVCHS-1-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #-----------------#
+                      # Test  6.6.31.6  #
+                      #-----------------#
+                      {
+          	        name          => "SVCHS-2 (L0)",
+          	        mode          => 0,
+          	        width         => 320,
+          	        height        => 240,
+          	        bitstreamname => "SVCHS-2-L0.264",
+          	        decodedname   => "SVCHS-2-L0_320x240.yuv",
+          	        origname      => "SVCHS-2-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #-----------------#
+                      # Test  6.6.31.6  #
+                      #-----------------#
+                      {
+          	        name          => "SVCHS-2 (L1)",
+          	        mode          => 0,
+          	        width         => 720,
+          	        height        => 576,
+          	        bitstreamname => "SVCHS-2-L1.264",
+          	        decodedname   => "SVCHS-2-L1_720x576.yuv",
+          	        origname      => "SVCHS-2-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+
+
+		      #-----------------#
+                      # Test  6.6.31.7  #
+                      #-----------------#
+                      {
+          	        name          => "SVCHST-1 (L0)",
+          	        mode          => 0,
+          	        width         => 720,
+          	        height        => 576,
+          	        bitstreamname => "SVCHST-1-L0.264",
+          	        decodedname   => "SVCHST-1-L0_720x576.yuv",
+          	        origname      => "SVCHST-1-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #-----------------#
+                      # Test  6.6.31.7  #
+                      #-----------------#
+                      {
+          	        name          => "SVCHST-1 (L1)",
+          	        mode          => 0,
+          	        width         => 1280,
+          	        height        => 720,
+          	        bitstreamname => "SVCHST-1-L1.264",
+          	        decodedname   => "SVCHST-1-L1_1280x720.yuv",
+          	        origname      => "SVCHST-1-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #-----------------#
+                      # Test  6.6.31.7  #
+                      #-----------------#
+                      {
+          	        name          => "SVCHST-1 (L2)",
+          	        mode          => 0,
+          	        width         => 1920,
+          	        height        => 1072,
+          	        bitstreamname => "SVCHST-1-L2.264",
+          	        decodedname   => "SVCHST-1-L2_1920x1072.yuv",
+          	        origname      => "SVCHST-1-L2.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #-----------------#
+                      # Test  6.6.31.8  #
+                      #-----------------#
+                      {
+          	        name          => "SVCHST-2 (L0)",
+          	        mode          => 0,
+          	        width         => 720,
+          	        height        => 576,
+          	        bitstreamname => "SVCHST-2-L0.264",
+          	        decodedname   => "SVCHST-2-L0_720x576.yuv",
+          	        origname      => "SVCHST-2-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #-----------------#
+                      # Test  6.6.31.8  #
+                      #-----------------#
+                      {
+          	        name          => "SVCHST-2 (L1)",
+          	        mode          => 0,
+          	        width         => 1280,
+          	        height        => 720,
+          	        bitstreamname => "SVCHST-2-L1.264",
+          	        decodedname   => "SVCHST-2-L1_1280x720.yuv",
+          	        origname      => "SVCHST-2-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #-----------------#
+                      # Test  6.6.31.8  #
+                      #-----------------#
+                      {
+          	        name          => "SVCHST-2 (L2)",
+          	        mode          => 0,
+          	        width         => 1920,
+          	        height        => 1072,
+          	        bitstreamname => "SVCHST-2-L2.264",
+          	        decodedname   => "SVCHST-2-L2_1920x1072.yuv",
+          	        origname      => "SVCHST-2-L2.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #-----------------#
+                      # Test  6.6.31.9  #
+                      #-----------------#
+                      {
+          	        name          => "SVCHST-3 (L0)",
+          	        mode          => 0,
+          	        width         => 720,
+          	        height        => 576,
+          	        bitstreamname => "SVCHST-3-L0.264",
+          	        decodedname   => "SVCHST-3-L0_720x576.yuv",
+          	        origname      => "SVCHST-3-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #-----------------#
+                      # Test  6.6.31.9  #
+                      #-----------------#
+                      {
+          	        name          => "SVCHST-3 (L1)",
+          	        mode          => 0,
+          	        width         => 1280,
+          	        height        => 720,
+          	        bitstreamname => "SVCHST-3-L1.264",
+          	        decodedname   => "SVCHST-3-L1_1280x720.yuv",
+          	        origname      => "SVCHST-3-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.31.10  #
+                      #------------------#
+                      {
+          	        name          => "SVCHST-4 (L0)",
+          	        mode          => 0,
+          	        width         => 544,
+          	        height        => 576,
+          	        bitstreamname => "SVCHST-4-L0.264",
+          	        decodedname   => "SVCHST-4-L0_544x576.yuv",
+          	        origname      => "SVCHST-4-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.31.10  #
+                      #------------------#
+                      {
+          	        name          => "SVCHST-4 (L1)",
+          	        mode          => 0,
+          	        width         => 720,
+          	        height        => 576,
+          	        bitstreamname => "SVCHST-4-L1.264",
+          	        decodedname   => "SVCHST-4-L1_720x576.yuv",
+          	        origname      => "SVCHST-4-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+
+
+
+		      #------------------#
+                      # Test  6.6.31.11  #
+                      #------------------#
+                      {
+          	        name          => "SVCHMTS-1 (L0)",
+          	        mode          => 0,
+          	        width         => 720,
+          	        height        => 576,
+          	        bitstreamname => "SVCHMTS-1-L0.264",
+          	        decodedname   => "SVCHMTS-1-L0_720x576.yuv",
+          	        origname      => "SVCHMTS-1-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.31.11  #
+                      #------------------#
+                      {
+          	        name          => "SVCHMTS-1 (L1)",
+          	        mode          => 0,
+          	        width         => 720,
+          	        height        => 576,
+          	        bitstreamname => "SVCHMTS-1-L1.264",
+          	        decodedname   => "SVCHMTS-1-L1_720x576.yuv",
+          	        origname      => "SVCHMTS-1-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.31.11  #
+                      #------------------#
+                      {
+          	        name          => "SVCHMTS-1 (L2)",
+          	        mode          => 0,
+          	        width         => 720,
+          	        height        => 576,
+          	        bitstreamname => "SVCHMTS-1-L2.264",
+          	        decodedname   => "SVCHMTS-1-L2_720x576.yuv",
+          	        origname      => "SVCHMTS-1-L2.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.31.11  #
+                      #------------------#
+                      {
+          	        name          => "SVCHMTS-1 (L3)",
+          	        mode          => 0,
+          	        width         => 1280,
+          	        height        => 720,
+          	        bitstreamname => "SVCHMTS-1-L3.264",
+          	        decodedname   => "SVCHMTS-1-L3_1280x720.yuv",
+          	        origname      => "SVCHMTS-1-L3.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.31.11  #
+                      #------------------#
+                      {
+          	        name          => "SVCHMTS-1 (L4)",
+          	        mode          => 0,
+          	        width         => 1280,
+          	        height        => 720,
+          	        bitstreamname => "SVCHMTS-1-L4.264",
+          	        decodedname   => "SVCHMTS-1-L4_1280x720.yuv",
+          	        origname      => "SVCHMTS-1-L4.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.31.11  #  (layer 5 not present in zip file)
+                      #------------------#
+                      {
+          	        name          => "SVCHMTS-1 (L5)",
+          	        mode          => 0,
+          	        width         => 1280,
+          	        height        => 720,
+          	        bitstreamname => "SVCHMTS-1-L5.264",
+          	        decodedname   => "SVCHMTS-1-L5_1280x720.yuv",
+          	        origname      => "SVCHMTS-1-L5.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.31.12  #
+                      #------------------#
+                      {
+          	        name          => "SVCHMTS-2 (L0)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "SVCHMTS-2-L0.264",
+          	        decodedname   => "SVCHMTS-2-L0_352x288.yuv",
+          	        origname      => "SVCHMTS-2-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.31.12  #
+                      #------------------#
+                      {
+          	        name          => "SVCHMTS-2 (L1)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "SVCHMTS-2-L1.264",
+          	        decodedname   => "SVCHMTS-2-L1_352x288.yuv",
+          	        origname      => "SVCHMTS-2-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.31.12  #
+                      #------------------#
+                      {
+          	        name          => "SVCHMTS-2 (L2)",
+          	        mode          => 0,
+          	        width         => 704,
+          	        height        => 576,
+          	        bitstreamname => "SVCHMTS-2-L2.264",
+          	        decodedname   => "SVCHMTS-2-L2_704x576.yuv",
+          	        origname      => "SVCHMTS-2-L2.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+
+
+		      #------------------#
+                      # Test  6.6.31.13  #
+                      #------------------#
+                      {
+          	        name          => "SVCHCTS-1 (L0)",
+          	        mode          => 0,
+          	        width         => 320,
+          	        height        => 240,
+          	        bitstreamname => "SVCHCTS-1-L0.264",
+          	        decodedname   => "SVCHCTS-1-L0_320x240.yuv",
+          	        origname      => "SVCHCTS-1-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.31.13  #
+                      #------------------#
+                      {
+          	        name          => "SVCHCTS-1 (L1)",
+          	        mode          => 0,
+          	        width         => 320,
+          	        height        => 240,
+          	        bitstreamname => "SVCHCTS-1-L1.264",
+          	        decodedname   => "SVCHCTS-1-L1_320x240.yuv",
+          	        origname      => "SVCHCTS-1-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.31.13  #
+                      #------------------#
+                      {
+          	        name          => "SVCHCTS-1 (L2)",
+          	        mode          => 0,
+          	        width         => 320,
+          	        height        => 240,
+          	        bitstreamname => "SVCHCTS-1-L2.264",
+          	        decodedname   => "SVCHCTS-1-L2_320x240.yuv",
+          	        origname      => "SVCHCTS-1-L2.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.31.13  #
+                      #------------------#
+                      {
+          	        name          => "SVCHCTS-1 (L3)",
+          	        mode          => 0,
+          	        width         => 720,
+          	        height        => 576,
+          	        bitstreamname => "SVCHCTS-1-L3.264",
+          	        decodedname   => "SVCHCTS-1-L3_720x576.yuv",
+          	        origname      => "SVCHCTS-1-L3.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.31.13  #
+                      #------------------#
+                      {
+          	        name          => "SVCHCTS-1 (L4)",
+          	        mode          => 0,
+          	        width         => 720,
+          	        height        => 576,
+          	        bitstreamname => "SVCHCTS-1-L4.264",
+          	        decodedname   => "SVCHCTS-1-L4_720x576.yuv",
+          	        origname      => "SVCHCTS-1-L4.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.31.13  #
+                      #------------------#
+                      {
+          	        name          => "SVCHCTS-1 (L5)",
+          	        mode          => 0,
+          	        width         => 720,
+          	        height        => 576,
+          	        bitstreamname => "SVCHCTS-1-L5.264",
+          	        decodedname   => "SVCHCTS-1-L5_720x576.yuv",
+          	        origname      => "SVCHCTS-1-L5.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.31.13  #
+                      #------------------#
+                      {
+          	        name          => "SVCHCTS-1 (L6)",
+          	        mode          => 0,
+          	        width         => 1280,
+          	        height        => 720,
+          	        bitstreamname => "SVCHCTS-1-L6.264",
+          	        decodedname   => "SVCHCTS-1-L6_1280x720.yuv",
+          	        origname      => "SVCHCTS-1-L6.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.31.13  #
+                      #------------------#
+                      {
+          	        name          => "SVCHCTS-1 (L7)",
+          	        mode          => 0,
+          	        width         => 1280,
+          	        height        => 720,
+          	        bitstreamname => "SVCHCTS-1-L7.264",
+          	        decodedname   => "SVCHCTS-1-L7_1280x720.yuv",
+          	        origname      => "SVCHCTS-1-L7.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+
+
+		      #------------------#
+                      # Test  6.6.31.14  #
+                      #------------------#
+                      {
+          	        name          => "SVCHSTC-1 (L0)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "SVCHSTC-1-L0.264",
+          	        decodedname   => "SVCHSTC-1-L0_352x288.yuv",
+          	        origname      => "SVCHSTC-1-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.31.14  #
+                      #------------------#
+                      {
+          	        name          => "SVCHSTC-1 (L1)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "SVCHSTC-1-L1.264",
+          	        decodedname   => "SVCHSTC-1-L1_352x288.yuv",
+          	        origname      => "SVCHSTC-1-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.31.14  #
+                      #------------------#
+                      {
+          	        name          => "SVCHSTC-1 (L2)",
+          	        mode          => 0,
+          	        width         => 704,
+          	        height        => 576,
+          	        bitstreamname => "SVCHSTC-1-L2.264",
+          	        decodedname   => "SVCHSTC-1-L2_704x576.yuv",
+          	        origname      => "SVCHSTC-1-L2.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+	          ],
+}
+
+

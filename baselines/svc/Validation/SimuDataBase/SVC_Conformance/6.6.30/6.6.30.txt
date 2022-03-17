@@ -1,0 +1,1754 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+    name 	   => "6.6.30",
+    verbosemode    => 1,	
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+    runencode	=> 0,
+    
+
+#=======================#
+# Layers  parameters    
+#=======================#     
+    layers       => [
+                    ],
+   
+#==========================================================#
+#          Extracting + Decoding parameters  (i.e Tests )  #
+#==========================================================#  
+      tests      => [
+		      #-----------------#
+                      # Test  6.6.30.1  #
+                      #-----------------#
+                      {
+          	        name          => "SVCBC-1 (L0)",
+          	        mode          => 0,
+          	        width         => 320,
+          	        height        => 240,
+          	        bitstreamname => "SVCBC-1-L0.264",
+          	        decodedname   => "SVCBC-1-L0_320x240.yuv",
+          	        origname      => "SVCBC-1-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #-----------------#
+                      # Test  6.6.30.1  #
+                      #-----------------#
+                      {
+          	        name          => "SVCBC-1 (L1)",
+          	        mode          => 0,
+          	        width         => 320,
+          	        height        => 240,
+          	        bitstreamname => "SVCBC-1-L1.264",
+          	        decodedname   => "SVCBC-1-L1_320x240.yuv",
+          	        origname      => "SVCBC-1-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+
+
+		      #-----------------#
+                      # Test  6.6.30.2  #
+                      #-----------------#
+                      {
+          	        name          => "SVCBM-1 (L0)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "SVCBM-1-L0.264",
+          	        decodedname   => "SVCBM-1-L0_352x288.yuv",
+          	        origname      => "SVCBM-1-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #-----------------#
+                      # Test  6.6.30.2  #
+                      #-----------------#
+                      {
+          	        name          => "SVCBM-1 (L1)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "SVCBM-1-L1.264",
+          	        decodedname   => "SVCBM-1-L1_352x288.yuv",
+          	        origname      => "SVCBM-1-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #-----------------#
+                      # Test  6.6.30.3  #
+                      #-----------------#
+                      {
+          	        name          => "SVCBM-2 (L0)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "SVCBM-2-L0.264",
+          	        decodedname   => "SVCBM-2-L0_352x288.yuv",
+          	        origname      => "SVCBM-2-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #-----------------#
+                      # Test  6.6.30.3  #
+                      #-----------------#
+                      {
+          	        name          => "SVCBM-2 (L1)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "SVCBM-2-L1.264",
+          	        decodedname   => "SVCBM-2-L1_352x288.yuv",
+          	        origname      => "SVCBM-2-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #-----------------#
+                      # Test  6.6.30.4  #
+                      #-----------------#
+                      {
+          	        name          => "SVCBM-3 (L0)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "SVCBM-3-L0.264",
+          	        decodedname   => "SVCBM-3-L0_352x288.yuv",
+          	        origname      => "SVCBM-3-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #-----------------#
+                      # Test  6.6.30.4  #
+                      #-----------------#
+                      {
+          	        name          => "SVCBM-3 (L1)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "SVCBM-3-L1.264",
+          	        decodedname   => "SVCBM-3-L1_352x288.yuv",
+          	        origname      => "SVCBM-3-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #-----------------#
+                      # Test  6.6.30.5  #
+                      #-----------------#
+                      {
+          	        name          => "SVCBM-4 (L0)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "SVCBM-4-L0.264",
+          	        decodedname   => "SVCBM-4-L0_352x288.yuv",
+          	        origname      => "SVCBM-4-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #-----------------#
+                      # Test  6.6.30.5  #
+                      #-----------------#
+                      {
+          	        name          => "SVCBM-4 (L1)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "SVCBM-4-L1.264",
+          	        decodedname   => "SVCBM-4-L1_352x288.yuv",
+          	        origname      => "SVCBM-4-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #-----------------#
+                      # Test  6.6.30.5  #
+                      #-----------------#
+                      {
+          	        name          => "SVCBM-4 (L2)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "SVCBM-4-L2.264",
+          	        decodedname   => "SVCBM-4-L2_352x288.yuv",
+          	        origname      => "SVCBM-4-L2.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #-----------------#
+                      # Test  6.6.30.6  #
+                      #-----------------#
+                      {
+          	        name          => "SVCBM-5 (L0)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "SVCBM-5-L0.264",
+          	        decodedname   => "SVCBM-5-L0_352x288.yuv",
+          	        origname      => "SVCBM-5-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #-----------------#
+                      # Test  6.6.30.6  #
+                      #-----------------#
+                      {
+          	        name          => "SVCBM-5 (L1)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "SVCBM-5-L1.264",
+          	        decodedname   => "SVCBM-5-L1_352x288.yuv",
+          	        origname      => "SVCBM-5-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #-----------------#
+                      # Test  6.6.30.6  #
+                      #-----------------#
+                      {
+          	        name          => "SVCBM-5 (L2)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "SVCBM-5-L2.264",
+          	        decodedname   => "SVCBM-5-L2_352x288.yuv",
+          	        origname      => "SVCBM-5-L2.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #-----------------#
+                      # Test  6.6.30.6  #
+                      #-----------------#
+                      {
+          	        name          => "SVCBM-5 (L3)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "SVCBM-5-L3.264",
+          	        decodedname   => "SVCBM-5-L3_352x288.yuv",
+          	        origname      => "SVCBM-5-L3.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+
+
+		      #-----------------#
+                      # Test  6.6.30.7  #
+                      #-----------------#
+                      {
+          	        name          => "SVCBCT-1 (L0)",
+          	        mode          => 0,
+          	        width         => 320,
+          	        height        => 240,
+          	        bitstreamname => "SVCBCT-1-L0.264",
+          	        decodedname   => "SVCBCT-1-L0_320x240.yuv",
+          	        origname      => "SVCBCT-1-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #-----------------#
+                      # Test  6.6.30.7  #
+                      #-----------------#
+                      {
+          	        name          => "SVCBCT-1 (L1)",
+          	        mode          => 0,
+          	        width         => 320,
+          	        height        => 240,
+          	        bitstreamname => "SVCBCT-1-L1.264",
+          	        decodedname   => "SVCBCT-1-L1_320x240.yuv",
+          	        origname      => "SVCBCT-1-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+
+
+
+		      #-----------------#
+                      # Test  6.6.30.8  #
+                      #-----------------#
+                      {
+          	        name          => "SVCBMT-1 (L0)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 240,
+          	        bitstreamname => "SVCBMT-1-L0.264",
+          	        decodedname   => "SVCBMT-1-L0_352x240.yuv",
+          	        origname      => "SVCBMT-1-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #-----------------#
+                      # Test  6.6.30.8  #
+                      #-----------------#
+                      {
+          	        name          => "SVCBMT-1 (L1)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 240,
+          	        bitstreamname => "SVCBMT-1-L1.264",
+          	        decodedname   => "SVCBMT-1-L1_352x240.yuv",
+          	        origname      => "SVCBMT-1-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #-----------------#
+                      # Test  6.6.30.9  #
+                      #-----------------#
+                      {
+          	        name          => "SVCBMT-2 (L0)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 240,
+          	        bitstreamname => "SVCBMT-2-L0.264",
+          	        decodedname   => "SVCBMT-2-L0_352x240.yuv",
+          	        origname      => "SVCBMT-2-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #-----------------#
+                      # Test  6.6.30.9  #
+                      #-----------------#
+                      {
+          	        name          => "SVCBMT-2 (L1)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 240,
+          	        bitstreamname => "SVCBMT-2-L1.264",
+          	        decodedname   => "SVCBMT-2-L1_352x240.yuv",
+          	        origname      => "SVCBMT-2-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.10  #
+                      #------------------#
+                      {
+          	        name          => "SVCBMT-3 (L0)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 240,
+          	        bitstreamname => "SVCBMT-3-L0.264",
+          	        decodedname   => "SVCBMT-3-L0_352x240.yuv",
+          	        origname      => "SVCBMT-3-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.10  #
+                      #------------------#
+                      {
+          	        name          => "SVCBMT-3 (L1)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 240,
+          	        bitstreamname => "SVCBMT-3-L1.264",
+          	        decodedname   => "SVCBMT-3-L1_352x240.yuv",
+          	        origname      => "SVCBMT-3-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.11  #
+                      #------------------#
+                      {
+          	        name          => "SVCBMT-4 (L0)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 240,
+          	        bitstreamname => "SVCBMT-4-L0.264",
+          	        decodedname   => "SVCBMT-4-L0_352x240.yuv",
+          	        origname      => "SVCBMT-4-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.11  #
+                      #------------------#
+                      {
+          	        name          => "SVCBMT-4 (L1)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 240,
+          	        bitstreamname => "SVCBMT-4-L1.264",
+          	        decodedname   => "SVCBMT-4-L1_352x240.yuv",
+          	        origname      => "SVCBMT-4-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.12  #
+                      #------------------#
+                      {
+          	        name          => "SVCBMT-5 (L0)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 240,
+          	        bitstreamname => "SVCBMT-5-L0.264",
+          	        decodedname   => "SVCBMT-5-L0_352x240.yuv",
+          	        origname      => "SVCBMT-5-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.12  #
+                      #------------------#
+                      {
+          	        name          => "SVCBMT-5 (L1)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 240,
+          	        bitstreamname => "SVCBMT-5-L1.264",
+          	        decodedname   => "SVCBMT-5-L1_352x240.yuv",
+          	        origname      => "SVCBMT-5-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.13  #
+                      #------------------#
+                      {
+          	        name          => "SVCBMT-6 (L0)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 240,
+          	        bitstreamname => "SVCBMT-6-L0.264",
+          	        decodedname   => "SVCBMT-6-L0_352x240.yuv",
+          	        origname      => "SVCBMT-6-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.13  #
+                      #------------------#
+                      {
+          	        name          => "SVCBMT-6 (L1)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 240,
+          	        bitstreamname => "SVCBMT-6-L1.264",
+          	        decodedname   => "SVCBMT-6-L1_352x240.yuv",
+          	        origname      => "SVCBMT-6-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.14  #
+                      #------------------#
+                      {
+          	        name          => "SVCBMT-7 (L0)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 240,
+          	        bitstreamname => "SVCBMT-7-L0.264",
+          	        decodedname   => "SVCBMT-7-L0_352x240.yuv",
+          	        origname      => "SVCBMT-7-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.14  #
+                      #------------------#
+                      {
+          	        name          => "SVCBMT-7 (L1)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 240,
+          	        bitstreamname => "SVCBMT-7-L1.264",
+          	        decodedname   => "SVCBMT-7-L1_352x240.yuv",
+          	        origname      => "SVCBMT-7-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.15  #
+                      #------------------#
+                      {
+          	        name          => "SVCBMT-8 (L0)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 240,
+          	        bitstreamname => "SVCBMT-8-L0.264",
+          	        decodedname   => "SVCBMT-8-L0_352x240.yuv",
+          	        origname      => "SVCBMT-8-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.15  #
+                      #------------------#
+                      {
+          	        name          => "SVCBMT-8 (L1)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 240,
+          	        bitstreamname => "SVCBMT-8-L1.264",
+          	        decodedname   => "SVCBMT-8-L1_352x240.yuv",
+          	        origname      => "SVCBMT-8-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.16  #
+                      #------------------#
+                      {
+          	        name          => "SVCBMT-9 (L0)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 240,
+          	        bitstreamname => "SVCBMT-9-L0.264",
+          	        decodedname   => "SVCBMT-9-L0_352x240.yuv",
+          	        origname      => "SVCBMT-9-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.16  #
+                      #------------------#
+                      {
+          	        name          => "SVCBMT-9 (L1)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 240,
+          	        bitstreamname => "SVCBMT-9-L1.264",
+          	        decodedname   => "SVCBMT-9-L1_352x240.yuv",
+          	        origname      => "SVCBMT-9-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.17  #
+                      #------------------#
+                      {
+          	        name          => "SVCBMT-10 (L0)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 240,
+          	        bitstreamname => "SVCBMT-10-L0.264",
+          	        decodedname   => "SVCBMT-10-L0_352x240.yuv",
+          	        origname      => "SVCBMT-10-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.17  #
+                      #------------------#
+                      {
+          	        name          => "SVCBMT-10 (L1)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 240,
+          	        bitstreamname => "SVCBMT-10-L1.264",
+          	        decodedname   => "SVCBMT-10-L1_352x240.yuv",
+          	        origname      => "SVCBMT-10-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.18  #
+                      #------------------#
+                      {
+          	        name          => "SVCBMT-11 (L0)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 240,
+          	        bitstreamname => "SVCBMT-11-L0.264",
+          	        decodedname   => "SVCBMT-11-L0_352x240.yuv",
+          	        origname      => "SVCBMT-11-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.18  #
+                      #------------------#
+                      {
+          	        name          => "SVCBMT-11 (L1)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 240,
+          	        bitstreamname => "SVCBMT-11-L1.264",
+          	        decodedname   => "SVCBMT-11-L1_352x240.yuv",
+          	        origname      => "SVCBMT-11-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.19  #
+                      #------------------#
+                      {
+          	        name          => "SVCBMT-12 (L0)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 240,
+          	        bitstreamname => "SVCBMT-12-L0.264",
+          	        decodedname   => "SVCBMT-12-L0_352x240.yuv",
+          	        origname      => "SVCBMT-12-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.19  #
+                      #------------------#
+                      {
+          	        name          => "SVCBMT-12 (L1)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 240,
+          	        bitstreamname => "SVCBMT-12-L1.264",
+          	        decodedname   => "SVCBMT-12-L1_352x240.yuv",
+          	        origname      => "SVCBMT-12-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.20  #
+                      #------------------#
+                      {
+          	        name          => "SVCBMT-13 (L0)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 240,
+          	        bitstreamname => "SVCBMT-13-L0.264",
+          	        decodedname   => "SVCBMT-13-L0_352x240.yuv",
+          	        origname      => "SVCBMT-13-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.20  #
+                      #------------------#
+                      {
+          	        name          => "SVCBMT-13 (L1)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 240,
+          	        bitstreamname => "SVCBMT-13-L1.264",
+          	        decodedname   => "SVCBMT-13-L1_352x240.yuv",
+          	        origname      => "SVCBMT-13-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.20  #
+                      #------------------#
+                      {
+          	        name          => "SVCBMT-13 (L2)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 240,
+          	        bitstreamname => "SVCBMT-13-L2.264",
+          	        decodedname   => "SVCBMT-13-L2_352x240.yuv",
+          	        origname      => "SVCBMT-13-L2.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+
+
+
+		      #------------------#
+                      # Test  6.6.30.21  #
+                      #------------------#
+                      {
+          	        name          => "SVCBS-1 (L0)",
+          	        mode          => 0,
+          	        width         => 176,
+          	        height        => 144,
+          	        bitstreamname => "SVCBS-1-L0.264",
+          	        decodedname   => "SVCBS-1-L0_176x144.yuv",
+          	        origname      => "SVCBS-1-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.21  #
+                      #------------------#
+                      {
+          	        name          => "SVCBS-1 (L1)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "SVCBS-1-L1.264",
+          	        decodedname   => "SVCBS-1-L1_352x288.yuv",
+          	        origname      => "SVCBS-1-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.22  #
+                      #------------------#
+                      {
+          	        name          => "SVCBS-2 (L0)",
+          	        mode          => 0,
+          	        width         => 320,
+          	        height        => 240,
+          	        bitstreamname => "SVCBS-2-L0.264",
+          	        decodedname   => "SVCBS-2-L0_320x240.yuv",
+          	        origname      => "SVCBS-2-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.22  #
+                      #------------------#
+                      {
+          	        name          => "SVCBS-2 (L1)",
+          	        mode          => 0,
+          	        width         => 640,
+          	        height        => 480,
+          	        bitstreamname => "SVCBS-2-L1.264",
+          	        decodedname   => "SVCBS-2-L1_640x480.yuv",
+          	        origname      => "SVCBS-2-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.23  #
+                      #------------------#
+                      {
+          	        name          => "SVCBS-3 (L0)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "SVCBS-3-L0.264",
+          	        decodedname   => "SVCBS-3-L0_352x288.yuv",
+          	        origname      => "SVCBS-3-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.23  #
+                      #------------------#
+                      {
+          	        name          => "SVCBS-3 (L1)",
+          	        mode          => 0,
+          	        width         => 704,
+          	        height        => 576,
+          	        bitstreamname => "SVCBS-3-L1.264",
+          	        decodedname   => "SVCBS-3-L1_704x576.yuv",
+          	        origname      => "SVCBS-3-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.24  #
+                      #------------------#
+                      {
+          	        name          => "SVCBS-4 (L0)",
+          	        mode          => 0,
+          	        width         => 320,
+          	        height        => 240,
+          	        bitstreamname => "SVCBS-4-L0.264",
+          	        decodedname   => "SVCBS-4-L0_320x240.yuv",
+          	        origname      => "SVCBS-4-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.24  #
+                      #------------------#
+                      {
+          	        name          => "SVCBS-4 (L1)",
+          	        mode          => 0,
+          	        width         => 640,
+          	        height        => 480,
+          	        bitstreamname => "SVCBS-4-L1.264",
+          	        decodedname   => "SVCBS-4-L1_640x480.yuv",
+          	        origname      => "SVCBS-4-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.25  #
+                      #------------------#
+                      {
+          	        name          => "SVCBS-5 (L0)",
+          	        mode          => 0,
+          	        width         => 384,
+          	        height        => 224,
+          	        bitstreamname => "SVCBS-5-L0.264",
+          	        decodedname   => "SVCBS-5-L0_384x224.yuv",
+          	        origname      => "SVCBS-5-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.25  #
+                      #------------------#
+                      {
+          	        name          => "SVCBS-5 (L1)",
+          	        mode          => 0,
+          	        width         => 768,
+          	        height        => 448,
+          	        bitstreamname => "SVCBS-5-L1.264",
+          	        decodedname   => "SVCBS-5-L1_768x448.yuv",
+          	        origname      => "SVCBS-5-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.26  #
+                      #------------------#
+                      {
+          	        name          => "SVCBS-6 (L0)",
+          	        mode          => 0,
+          	        width         => 176,
+          	        height        => 144,
+          	        bitstreamname => "SVCBS-6-L0.264",
+          	        decodedname   => "SVCBS-6-L0_176x144.yuv",
+          	        origname      => "SVCBS-6-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.26  #
+                      #------------------#
+                      {
+          	        name          => "SVCBS-6 (L1)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "SVCBS-6-L1.264",
+          	        decodedname   => "SVCBS-6-L1_352x288.yuv",
+          	        origname      => "SVCBS-6-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.26  #
+                      #------------------#
+                      {
+          	        name          => "SVCBS-6 (L2)",
+          	        mode          => 0,
+          	        width         => 704,
+          	        height        => 576,
+          	        bitstreamname => "SVCBS-6-L2.264",
+          	        decodedname   => "SVCBS-6-L2_704x576.yuv",
+          	        origname      => "SVCBS-6-L2.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.27  #
+                      #------------------#
+                      {
+          	        name          => "SVCBS-7 (L0)",
+          	        mode          => 0,
+          	        width         => 176,
+          	        height        => 144,
+          	        bitstreamname => "SVCBS-7-L0.264",
+          	        decodedname   => "SVCBS-7-L0_176x144.yuv",
+          	        origname      => "SVCBS-7-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.27  #
+                      #------------------#
+                      {
+          	        name          => "SVCBS-7 (L1)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "SVCBS-7-L1.264",
+          	        decodedname   => "SVCBS-7-L1_352x288.yuv",
+          	        origname      => "SVCBS-7-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.28  #
+                      #------------------#
+                      {
+          	        name          => "SVCBS-8 (L0)",
+          	        mode          => 0,
+          	        width         => 320,
+          	        height        => 240,
+          	        bitstreamname => "SVCBS-8-L0.264",
+          	        decodedname   => "SVCBS-8-L0_320x240.yuv",
+          	        origname      => "SVCBS-8-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.28  #
+                      #------------------#
+                      {
+          	        name          => "SVCBS-8 (L1)",
+          	        mode          => 0,
+          	        width         => 640,
+          	        height        => 480,
+          	        bitstreamname => "SVCBS-8-L1.264",
+          	        decodedname   => "SVCBS-8-L1_640x480.yuv",
+          	        origname      => "SVCBS-8-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+
+
+
+		      #------------------#
+                      # Test  6.6.30.29  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-1 (L0)",
+          	        mode          => 0,
+          	        width         => 360,
+          	        height        => 240,
+          	        bitstreamname => "SVCBST-1-L0.264",
+          	        decodedname   => "SVCBST-1-L0_360x240.yuv",
+          	        origname      => "SVCBST-1-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.29  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-1 (L1)",
+          	        mode          => 0,
+          	        width         => 720,
+          	        height        => 480,
+          	        bitstreamname => "SVCBST-1-L1.264",
+          	        decodedname   => "SVCBST-1-L1_720x480.yuv",
+          	        origname      => "SVCBST-1-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.30  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-2 (L0)",
+          	        mode          => 0,
+          	        width         => 360,
+          	        height        => 240,
+          	        bitstreamname => "SVCBST-2-L0.264",
+          	        decodedname   => "SVCBST-2-L0_360x240.yuv",
+          	        origname      => "SVCBST-2-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.30  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-2 (L1)",
+          	        mode          => 0,
+          	        width         => 720,
+          	        height        => 480,
+          	        bitstreamname => "SVCBST-2-L1.264",
+          	        decodedname   => "SVCBST-2-L1_720x480.yuv",
+          	        origname      => "SVCBST-2-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.31  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-3 (L0)",
+          	        mode          => 0,
+          	        width         => 360,
+          	        height        => 240,
+          	        bitstreamname => "SVCBST-3-L0.264",
+          	        decodedname   => "SVCBST-3-L0_360x240.yuv",
+          	        origname      => "SVCBST-3-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.31  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-3 (L1)",
+          	        mode          => 0,
+          	        width         => 720,
+          	        height        => 480,
+          	        bitstreamname => "SVCBST-3-L1.264",
+          	        decodedname   => "SVCBST-3-L1_720x480.yuv",
+          	        origname      => "SVCBST-3-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.32  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-4 (L0)",
+          	        mode          => 0,
+          	        width         => 360,
+          	        height        => 240,
+          	        bitstreamname => "SVCBST-4-L0.264",
+          	        decodedname   => "SVCBST-4-L0_360x240.yuv",
+          	        origname      => "SVCBST-4-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.32  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-4 (L1)",
+          	        mode          => 0,
+          	        width         => 720,
+          	        height        => 480,
+          	        bitstreamname => "SVCBST-4-L1.264",
+          	        decodedname   => "SVCBST-4-L1_720x480.yuv",
+          	        origname      => "SVCBST-4-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.33  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-5 (L0)",
+          	        mode          => 0,
+          	        width         => 360,
+          	        height        => 240,
+          	        bitstreamname => "SVCBST-5-L0.264",
+          	        decodedname   => "SVCBST-5-L0_360x240.yuv",
+          	        origname      => "SVCBST-5-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.33  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-5 (L1)",
+          	        mode          => 0,
+          	        width         => 720,
+          	        height        => 480,
+          	        bitstreamname => "SVCBST-5-L1.264",
+          	        decodedname   => "SVCBST-5-L1_720x480.yuv",
+          	        origname      => "SVCBST-5-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.34  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-6 (L0)",
+          	        mode          => 0,
+          	        width         => 360,
+          	        height        => 240,
+          	        bitstreamname => "SVCBST-6-L0.264",
+          	        decodedname   => "SVCBST-6-L0_360x240.yuv",
+          	        origname      => "SVCBST-6-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.34  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-6 (L1)",
+          	        mode          => 0,
+          	        width         => 720,
+          	        height        => 480,
+          	        bitstreamname => "SVCBST-6-L1.264",
+          	        decodedname   => "SVCBST-6-L1_720x480.yuv",
+          	        origname      => "SVCBST-6-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.35  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-7 (L0)",
+          	        mode          => 0,
+          	        width         => 360,
+          	        height        => 240,
+          	        bitstreamname => "SVCBST-7-L0.264",
+          	        decodedname   => "SVCBST-7-L0_360x240.yuv",
+          	        origname      => "SVCBST-7-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.35  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-7 (L1)",
+          	        mode          => 0,
+          	        width         => 720,
+          	        height        => 480,
+          	        bitstreamname => "SVCBST-7-L1.264",
+          	        decodedname   => "SVCBST-7-L1_720x480.yuv",
+          	        origname      => "SVCBST-7-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.36  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-8 (L0)",
+          	        mode          => 0,
+          	        width         => 360,
+          	        height        => 240,
+          	        bitstreamname => "SVCBST-8-L0.264",
+          	        decodedname   => "SVCBST-8-L0_360x240.yuv",
+          	        origname      => "SVCBST-8-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.36  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-8 (L1)",
+          	        mode          => 0,
+          	        width         => 720,
+          	        height        => 480,
+          	        bitstreamname => "SVCBST-8-L1.264",
+          	        decodedname   => "SVCBST-8-L1_720x480.yuv",
+          	        origname      => "SVCBST-8-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.37  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-9 (L0)",
+          	        mode          => 0,
+          	        width         => 360,
+          	        height        => 240,
+          	        bitstreamname => "SVCBST-9-L0.264",
+          	        decodedname   => "SVCBST-9-L0_360x240.yuv",
+          	        origname      => "SVCBST-9-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.37  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-9 (L1)",
+          	        mode          => 0,
+          	        width         => 720,
+          	        height        => 480,
+          	        bitstreamname => "SVCBST-9-L1.264",
+          	        decodedname   => "SVCBST-9-L1_720x480.yuv",
+          	        origname      => "SVCBST-9-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.38  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-10 (L0)",
+          	        mode          => 0,
+          	        width         => 360,
+          	        height        => 240,
+          	        bitstreamname => "SVCBST-10-L0.264",
+          	        decodedname   => "SVCBST-10-L0_360x240.yuv",
+          	        origname      => "SVCBST-10-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.38  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-10 (L1)",
+          	        mode          => 0,
+          	        width         => 720,
+          	        height        => 480,
+          	        bitstreamname => "SVCBST-10-L1.264",
+          	        decodedname   => "SVCBST-10-L1_720x480.yuv",
+          	        origname      => "SVCBST-10-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.39  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-11 (L0)",
+          	        mode          => 0,
+          	        width         => 360,
+          	        height        => 240,
+          	        bitstreamname => "SVCBST-11-L0.264",
+          	        decodedname   => "SVCBST-11-L0_360x240.yuv",
+          	        origname      => "SVCBST-11-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.39  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-11 (L1)",
+          	        mode          => 0,
+          	        width         => 720,
+          	        height        => 480,
+          	        bitstreamname => "SVCBST-11-L1.264",
+          	        decodedname   => "SVCBST-11-L1_720x480.yuv",
+          	        origname      => "SVCBST-11-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.40  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-12 (L0)",
+          	        mode          => 0,
+          	        width         => 360,
+          	        height        => 240,
+          	        bitstreamname => "SVCBST-12-L0.264",
+          	        decodedname   => "SVCBST-12-L0_360x240.yuv",
+          	        origname      => "SVCBST-12-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.40  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-12 (L1)",
+          	        mode          => 0,
+          	        width         => 720,
+          	        height        => 480,
+          	        bitstreamname => "SVCBST-12-L1.264",
+          	        decodedname   => "SVCBST-12-L1_720x480.yuv",
+          	        origname      => "SVCBST-12-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.41  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-13 (L0)",
+          	        mode          => 0,
+          	        width         => 1280,
+          	        height        => 720,
+          	        bitstreamname => "SVCBST-13-L0.264",
+          	        decodedname   => "SVCBST-13-L0_1280x720.yuv",
+          	        origname      => "SVCBST-13-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.41  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-13 (L1)",
+          	        mode          => 0,
+          	        width         => 1920,
+          	        height        => 1080,
+          	        bitstreamname => "SVCBST-13-L1.264",
+          	        decodedname   => "SVCBST-13-L1_1920x1080.yuv",
+          	        origname      => "SVCBST-13-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.42  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-14 (L0)",
+          	        mode          => 0,
+          	        width         => 640,
+          	        height        => 360,
+          	        bitstreamname => "SVCBST-14-L0.264",
+          	        decodedname   => "SVCBST-14-L0_640x360.yuv",
+          	        origname      => "SVCBST-14-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.42  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-14 (L1)",
+          	        mode          => 0,
+          	        width         => 1280,
+          	        height        => 720,
+          	        bitstreamname => "SVCBST-14-L1.264",
+          	        decodedname   => "SVCBST-14-L1_1280x720.yuv",
+          	        origname      => "SVCBST-14-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.42  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-14 (L2)",
+          	        mode          => 0,
+          	        width         => 1920,
+          	        height        => 1080,
+          	        bitstreamname => "SVCBST-14-L2.264",
+          	        decodedname   => "SVCBST-14-L2_1920x1080.yuv",
+          	        origname      => "SVCBST-14-L2.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.43  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-15 (L0)",
+          	        mode          => 0,
+          	        width         => 640,
+          	        height        => 360,
+          	        bitstreamname => "SVCBST-15-L0.264",
+          	        decodedname   => "SVCBST-15-L0_640x360.yuv",
+          	        origname      => "SVCBST-15-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.43  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-15 (L1)",
+          	        mode          => 0,
+          	        width         => 1280,
+          	        height        => 720,
+          	        bitstreamname => "SVCBST-15-L1.264",
+          	        decodedname   => "SVCBST-15-L1_1280x720.yuv",
+          	        origname      => "SVCBST-15-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.43  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-15 (L2)",
+          	        mode          => 0,
+          	        width         => 1920,
+          	        height        => 1080,
+          	        bitstreamname => "SVCBST-15-L2.264",
+          	        decodedname   => "SVCBST-15-L2_1920x1080.yuv",
+          	        origname      => "SVCBST-15-L2.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.44  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-16 (L0)",
+          	        mode          => 0,
+          	        width         => 640,
+          	        height        => 360,
+          	        bitstreamname => "SVCBST-16-L0.264",
+          	        decodedname   => "SVCBST-16-L0_640x360.yuv",
+          	        origname      => "SVCBST-16-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.44  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-16 (L1)",
+          	        mode          => 0,
+          	        width         => 1280,
+          	        height        => 720,
+          	        bitstreamname => "SVCBST-16-L1.264",
+          	        decodedname   => "SVCBST-16-L1_1280x720.yuv",
+          	        origname      => "SVCBST-16-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.44  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-16 (L2)",
+          	        mode          => 0,
+          	        width         => 1920,
+          	        height        => 1080,
+          	        bitstreamname => "SVCBST-16-L2.264",
+          	        decodedname   => "SVCBST-16-L2_1920x1080.yuv",
+          	        origname      => "SVCBST-16-L2.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.45  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-17 (L0)",
+          	        mode          => 0,
+          	        width         => 640,
+          	        height        => 360,
+          	        bitstreamname => "SVCBST-17-L0.264",
+          	        decodedname   => "SVCBST-17-L0_640x360.yuv",
+          	        origname      => "SVCBST-17-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.45  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-17 (L1)",
+          	        mode          => 0,
+          	        width         => 1280,
+          	        height        => 720,
+          	        bitstreamname => "SVCBST-17-L1.264",
+          	        decodedname   => "SVCBST-17-L1_1280x720.yuv",
+          	        origname      => "SVCBST-17-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.45  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-17 (L2)",
+          	        mode          => 0,
+          	        width         => 1920,
+          	        height        => 1080,
+          	        bitstreamname => "SVCBST-17-L2.264",
+          	        decodedname   => "SVCBST-17-L2_1920x1080.yuv",
+          	        origname      => "SVCBST-17-L2.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.46  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-18 (L0)",
+          	        mode          => 0,
+          	        width         => 640,
+          	        height        => 360,
+          	        bitstreamname => "SVCBST-18-L0.264",
+          	        decodedname   => "SVCBST-18-L0_640x360.yuv",
+          	        origname      => "SVCBST-18-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.46  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-18 (L1)",
+          	        mode          => 0,
+          	        width         => 1280,
+          	        height        => 720,
+          	        bitstreamname => "SVCBST-18-L1.264",
+          	        decodedname   => "SVCBST-18-L1_1280x720.yuv",
+          	        origname      => "SVCBST-18-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.46  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-18 (L2)",
+          	        mode          => 0,
+          	        width         => 1920,
+          	        height        => 1080,
+          	        bitstreamname => "SVCBST-18-L2.264",
+          	        decodedname   => "SVCBST-18-L2_1920x1080.yuv",
+          	        origname      => "SVCBST-18-L2.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.47  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-19 (L0)",
+          	        mode          => 0,
+          	        width         => 320,
+          	        height        => 240,
+          	        bitstreamname => "SVCBST-19-L0.264",
+          	        decodedname   => "SVCBST-19-L0_320x240.yuv",
+          	        origname      => "SVCBST-19-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.47  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-19 (L1)",
+          	        mode          => 0,
+          	        width         => 640,
+          	        height        => 480,
+          	        bitstreamname => "SVCBST-19-L1.264",
+          	        decodedname   => "SVCBST-19-L1_640x480.yuv",
+          	        origname      => "SVCBST-19-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.48  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-20 (L0)",
+          	        mode          => 0,
+          	        width         => 192,
+          	        height        => 144,
+          	        bitstreamname => "SVCBST-20-L0.264",
+          	        decodedname   => "SVCBST-20-L0_192x144.yuv",
+          	        origname      => "SVCBST-20-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.48  #
+                      #------------------#
+                      {
+          	        name          => "SVCBST-20 (L1)",
+          	        mode          => 0,
+          	        width         => 640,
+          	        height        => 352,
+          	        bitstreamname => "SVCBST-20-L1.264",
+          	        decodedname   => "SVCBST-20-L1_640x352.yuv",
+          	        origname      => "SVCBST-20-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+
+
+
+		      #------------------#
+                      # Test  6.6.30.49  #
+                      #------------------#
+                      {
+          	        name          => "SVCBMST-1 (L0)",
+          	        mode          => 0,
+          	        width         => 360,
+          	        height        => 240,
+          	        bitstreamname => "SVCBMST-1-L0.264",
+          	        decodedname   => "SVCBMST-1-L0_360x240.yuv",
+          	        origname      => "SVCBMST-1-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.49  #
+                      #------------------#
+                      {
+          	        name          => "SVCBMST-1 (L1)",
+          	        mode          => 0,
+          	        width         => 360,
+          	        height        => 240,
+          	        bitstreamname => "SVCBMST-1-L1.264",
+          	        decodedname   => "SVCBMST-1-L1_360x240.yuv",
+          	        origname      => "SVCBMST-1-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.49  #
+                      #------------------#
+                      {
+          	        name          => "SVCBMST-1 (L2)",
+          	        mode          => 0,
+          	        width         => 720,
+          	        height        => 480,
+          	        bitstreamname => "SVCBMST-1-L2.264",
+          	        decodedname   => "SVCBMST-1-L2_720x480.yuv",
+          	        origname      => "SVCBMST-1-L2.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.50  #
+                      #------------------#
+                      {
+          	        name          => "SVCBMST-2 (L0)",
+          	        mode          => 0,
+          	        width         => 360,
+          	        height        => 240,
+          	        bitstreamname => "SVCBMST-2-L0.264",
+          	        decodedname   => "SVCBMST-2-L0_360x240.yuv",
+          	        origname      => "SVCBMST-2-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.50  #
+                      #------------------#
+                      {
+          	        name          => "SVCBMST-2 (L1)",
+          	        mode          => 0,
+          	        width         => 360,
+          	        height        => 240,
+          	        bitstreamname => "SVCBMST-2-L1.264",
+          	        decodedname   => "SVCBMST-2-L1_360x240.yuv",
+          	        origname      => "SVCBMST-2-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.50  #
+                      #------------------#
+                      {
+          	        name          => "SVCBMST-2 (L2)",
+          	        mode          => 0,
+          	        width         => 720,
+          	        height        => 480,
+          	        bitstreamname => "SVCBMST-2-L2.264",
+          	        decodedname   => "SVCBMST-2-L2_720x480.yuv",
+          	        origname      => "SVCBMST-2-L2.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.51  #
+                      #------------------#
+                      {
+          	        name          => "SVCBMST-3 (L0)",
+          	        mode          => 0,
+          	        width         => 320,
+          	        height        => 240,
+          	        bitstreamname => "SVCBMST-3-L0.264",
+          	        decodedname   => "SVCBMST-3-L0_320x240.yuv",
+          	        origname      => "SVCBMST-3-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.51  #
+                      #------------------#
+                      {
+          	        name          => "SVCBMST-3 (L1)",
+          	        mode          => 0,
+          	        width         => 320,
+          	        height        => 240,
+          	        bitstreamname => "SVCBMST-3-L1.264",
+          	        decodedname   => "SVCBMST-3-L1_320x240.yuv",
+          	        origname      => "SVCBMST-3-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.51  #
+                      #------------------#
+                      {
+          	        name          => "SVCBMST-3 (L2)",
+          	        mode          => 0,
+          	        width         => 640,
+          	        height        => 480,
+          	        bitstreamname => "SVCBMST-3-L2.264",
+          	        decodedname   => "SVCBMST-3-L2_640x480.yuv",
+          	        origname      => "SVCBMST-3-L2.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+
+
+		      #------------------#
+                      # Test  6.6.30.52  #
+                      #------------------#
+                      {
+          	        name          => "SVCBCTS-1 (L0)",
+          	        mode          => 0,
+          	        width         => 320,
+          	        height        => 240,
+          	        bitstreamname => "SVCBCTS-1-L0.264",
+          	        decodedname   => "SVCBCTS-1-L0_320x240.yuv",
+          	        origname      => "SVCBCTS-1-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.52  #
+                      #------------------#
+                      {
+          	        name          => "SVCBCTS-1 (L1)",
+          	        mode          => 0,
+          	        width         => 320,
+          	        height        => 240,
+          	        bitstreamname => "SVCBCTS-1-L1.264",
+          	        decodedname   => "SVCBCTS-1-L1_320x240.yuv",
+          	        origname      => "SVCBCTS-1-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.52  #
+                      #------------------#
+                      {
+          	        name          => "SVCBCTS-1 (L2)",
+          	        mode          => 0,
+          	        width         => 640,
+          	        height        => 480,
+          	        bitstreamname => "SVCBCTS-1-L2.264",
+          	        decodedname   => "SVCBCTS-1-L2_640x480.yuv",
+          	        origname      => "SVCBCTS-1-L2.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.53  #
+                      #------------------#
+                      {
+          	        name          => "SVCBCTS-2 (L0)",
+          	        mode          => 0,
+          	        width         => 320,
+          	        height        => 240,
+          	        bitstreamname => "SVCBCTS-2-L0.264",
+          	        decodedname   => "SVCBCTS-2-L0_320x240.yuv",
+          	        origname      => "SVCBCTS-2-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.53  #
+                      #------------------#
+                      {
+          	        name          => "SVCBCTS-2 (L1)",
+          	        mode          => 0,
+          	        width         => 320,
+          	        height        => 240,
+          	        bitstreamname => "SVCBCTS-2-L1.264",
+          	        decodedname   => "SVCBCTS-2-L1_320x240.yuv",
+          	        origname      => "SVCBCTS-2-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.53  #
+                      #------------------#
+                      {
+          	        name          => "SVCBCTS-2 (L2)",
+          	        mode          => 0,
+          	        width         => 640,
+          	        height        => 480,
+          	        bitstreamname => "SVCBCTS-2-L2.264",
+          	        decodedname   => "SVCBCTS-2-L2_640x480.yuv",
+          	        origname      => "SVCBCTS-2-L2.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+		      #------------------#
+                      # Test  6.6.30.54  #
+                      #------------------#
+                      {
+          	        name          => "SVCBCTS-3 (L0)",
+          	        mode          => 0,
+          	        width         => 176,
+          	        height        => 144,
+          	        bitstreamname => "SVCBCTS-3-L0.264",
+          	        decodedname   => "SVCBCTS-3-L0_176x144.yuv",
+          	        origname      => "SVCBCTS-3-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.54  #
+                      #------------------#
+                      {
+          	        name          => "SVCBCTS-3 (L1)",
+          	        mode          => 0,
+          	        width         => 176,
+          	        height        => 144,
+          	        bitstreamname => "SVCBCTS-3-L1.264",
+          	        decodedname   => "SVCBCTS-3-L1_176x144.yuv",
+          	        origname      => "SVCBCTS-3-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.54  #
+                      #------------------#
+                      {
+          	        name          => "SVCBCTS-3 (L2)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "SVCBCTS-3-L2.264",
+          	        decodedname   => "SVCBCTS-3-L2_352x288.yuv",
+          	        origname      => "SVCBCTS-3-L2.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+
+
+
+		      #------------------#
+                      # Test  6.6.30.55  #
+                      #------------------#
+                      {
+          	        name          => "SVCBSTC-1 (L0)",
+          	        mode          => 0,
+          	        width         => 176,
+          	        height        => 144,
+          	        bitstreamname => "SVCBSTC-1-L0.264",
+          	        decodedname   => "SVCBSTC-1-L0_176x144.yuv",
+          	        origname      => "SVCBSTC-1-L0.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.55  #
+                      #------------------#
+                      {
+          	        name          => "SVCBSTC-1 (L1)",
+          	        mode          => 0,
+          	        width         => 176,
+          	        height        => 144,
+          	        bitstreamname => "SVCBSTC-1-L1.264",
+          	        decodedname   => "SVCBSTC-1-L1_176x144.yuv",
+          	        origname      => "SVCBSTC-1-L1.yuv",
+          	        psnr          => 99.99,
+            	      },
+		      #------------------#
+                      # Test  6.6.30.55  #
+                      #------------------#
+                      {
+          	        name          => "SVCBSTC-1 (L2)",
+          	        mode          => 0,
+          	        width         => 352,
+          	        height        => 288,
+          	        bitstreamname => "SVCBSTC-1-L2.264",
+          	        decodedname   => "SVCBSTC-1-L2_352x288.yuv",
+          	        origname      => "SVCBSTC-1-L2.yuv",
+          	        psnr          => 99.99,
+            	      },
+
+	          ],
+}
+
+

@@ -1,0 +1,113 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+    name 	           => "SIMUSAMPLE",	      # Name of the simulation (same as the .txt file name)           
+    original 	       => "MOBILE_CIF30.yuv", # Name of the original YUV sequences from which the input sequences of each layer
+    					                              # will be built. NO PATH must be specified. (Default path : "orig/" but can be modified in the command line) 
+    originalwidth    => 352,                # Width of the original YUV sequence. [OPTIONAL] 
+                                            # If not present "width" will be used instead.              
+    originalheight    => 288,               # Height of the original YUV sequence. [OPTIONAL] 
+                                            # If not present "height" will be used instead.    
+    originalframerate => 30,                # Framerate of the original YUV sequence. [OPTIONAL] 
+    					                              # If not present "framerate" will be used instead. 
+    width             => 320,               # Width of the High Layer YUV sequence.
+    height            => 256,               # Height of the High Layer YUV sequence.
+    framerate         => 30,                # Framerate of the High Layer YUV sequence.
+    cropfilename      => "crop.txt",        # File containing crop parameters for the generation of the High Layer YUV sequence. [OPTIONAL]	
+    nbframes          => 75,                # Number of High Layer considered frames.
+    verbosemode       => 1,                 # 0: means that all the data will be removed at the end of the simulation execution 
+                                            # 1: all the data will be removed except in case one of the following "tests" failed.
+                                            # 2: keep all the data
+    phasemode         => 0,                 # 0: means -phase -1 0 -1 0 (default mode)
+                                            # 1: means -phase  0 0  0 0 
+
+						
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+   
+    runencode        => 1,                  # 0: no encoding 1: encoding [OPTIONAL] (default value:1)
+    singleloopflag   => "-bcip",            # The well known command option for the singleloop call.
+    nbfgslayer	     => 2,                  # Number of FGS layer (one parameter for all the layers) [OPTIONAL]	(default value:2)
+    qualitylayer     => 1,                  # 0: no quality layer 1: quality layers in PID NAL 2: quality layers in SEI messages
+											# 3: Multi layer quality Layers(MLQL) in PID NAL, 4: Multi layer quality layers(MLQL) quality Layers in SEI            
+       
+#=======================#
+# Layers  parameters    
+#=======================#
+    layers       => [
+                      #----------#
+                      # Layer  0 #
+                      #----------#
+		                  {
+                			width        => 80,         # Width of the layer 0  [OPTIONAL] (if not present the "width" specified in General parameters will be used)
+                			height       => 64,         # Height of the layer 0 [OPTIONAL] (if not present the "height" specified in General parameters will be used)
+                			framerate    => 15,         # Framerate of the layer 0 [OPTIONAL] (if not present the "framerate" specified in General parameters will be used)
+                			bitrate      => 64,         # FGS bitrate for layer 0  [OPTIONAL] (default value :0 -> meaning no usage of FGS)
+			                bitrateDS    => 0 ,         # Dead-substream bitrate for layer 0 [OPTIONAL] (default value :0 -> meaning no usage of Dead-Substreams )
+		                  cropfilename => "crop0.txt" # File containing crop parameters for the generation of layer 0 from the High Layer YUV sequences. [OPTIONAL]	
+		      	          croptype     => 1           # 1: sequence level cropping 2: picture level cropping [OPTIONAL] (default value :1)
+		                  interlace    => 0           # 0: coding of non interlaced material 1: coding of interlaced material (default value :0)
+		                  resamplemode => 0           # This represent the "-resample_mode" option of the "DownconvertStatic" tool (default value :0)
+		                  },
+                      #----------#
+                      # Layer  1 #
+                      #----------#
+		                  {
+			                  ...
+                			width       => 160,
+                			height      => 128,
+                			framerate   => 15,
+                			bitrate     => 384,
+                			bitrateDS   => 0,
+		                  },
+		                  #ETC FOR EACH CONSIDERED LAYER...
+		     
+   		  ],
+   
+#==========================================================#
+#          Extracting +Decoding parameters  (i.e Tests )   #
+#==========================================================#  
+    bitratechekrange => 5,                      # Percentage of error for the bitrate checking [OPTIONAL] (default: 5%)  
+    psnrcheckrange   => 0,                      # Percentage of error for the psnr checking [OPTIONAL] (default: 0%)  
+    					                                	# (Note : if the psnr is higher that the upper bound of the range the test will "pass") 
+    
+    tests      => [
+                      #----------#
+                      # Test   0 #
+                      #----------#
+            		      {
+            		        name          => "Basic",  # Name of the test 0 
+            		        mode          => 0,	       # 0: Decode only                 1: Extract+ Decode 
+            		                                   # 2: Doublecheck: Extract+Decode 3: Extract only + the results will be used as input stream for the next "Test". 
+            		        width         => 320,      # Width of the sequence to Extract or/and Decode
+            		        height        => 256,      # Height of the sequence to Extract or/and Decode
+            		        framerate     => 30,       # Frame Rate of the sequence to Extract or/and Decode
+            		        useql         => 1         # 0: no use of quality layer 1: use quality layers for extraction  [OPTIONAL] 2: use ordered quality layers for extraction  [OPTIONAL] (default value 0)
+            		        bitrate       => 0,        # Expected Bitrate [OPTIONAL] (default value 0: means that no bitrate constraints -> actually a constraint of 50000 kbps will be considered)
+            		        psnr          => 28,	     # Expected PSNR    [OPTIONAL] (default value 0: means that psnr reults will not be checked)
+            		     	  encdecmatch   => 1,        # 0: no check 1: check encoder/decoder perfect matching  [OPTIONAL] (default value 0) 
+            		        jmdecmatch    => 1,        # 0: no check 1: check JSVM/JM  decoders perfect matching  [OPTIONAL] (default value 0) 
+            		        interlace     => 0,        # 0: Non Interlaced material 1: Interlaced material (default value :0)
+            		      
+            		       [bitstreamname => "mybstream.264", #[CAUTION][OPTIONAL++]: this option must be used for very special cases (c.f. AVC_Conformance simulations set)]
+            		      },
+		                  #----------#
+                      # Test   1 #
+                      #----------#	
+		                  {
+		                  name        => "Basic-Ext",
+		                  mode        => 1,
+		                  width       => 160,
+		                  height      => 128,
+		                  framerate   => 30,
+		                  bitrate     => 756,
+		                  psnr        => 28,
+		                  },
+		      #ETC...
+    		     
+		],
+}
+
+

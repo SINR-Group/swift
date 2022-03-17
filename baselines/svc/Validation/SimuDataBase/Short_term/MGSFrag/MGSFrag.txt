@@ -1,0 +1,107 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+    name        => "MGSFrag",
+    original    => "MOBILE_352x288_30.yuv",
+    width      	=> 352,
+    height     	=> 288,
+    framerate 	=> 15,
+    nbframes    => 30,
+    verbosemode => 1,	
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+    runencode	=> 1,
+    singleloopflag => "-bcip",   
+    qualitylayer    => 1,	
+
+#=======================#
+# Layers  parameters    
+#=======================#     
+    layers       => [
+                      #----------#
+                      # Layer  0 #
+                      #----------#
+                       {
+                         width        => 352,
+                  			 height       => 288,
+                  			 framerate    =>  15,
+                  		 },
+		                  #----------#
+                      #----------#
+                      # Layer  1 #
+                      #----------#
+                       {
+                         width        => 352,
+                  			 height       => 288,
+                  			 framerate    =>  15,
+                  		  },
+		                  #----------#
+   		              ],
+   
+#==========================================================#
+#          Extracting +Decoding parameters  (i.e Tests )   #
+#==========================================================#  
+      bitratecheckrange  => 1.,
+      psnrcheckrange     => 0.,
+	
+
+      tests      => [
+		                  #----------#
+                      # Test   0 #
+                      #----------#
+                      {
+            		        name => "test0",
+            		        mode => 1,
+            		        width => 352,
+            		        height => 288,
+            		        framerate => 15,
+				bitrate => 214,
+            		        psnr => 29.76,
+            		      },
+			 
+		                  #----------#
+                      # Test   1 #
+                      #----------#
+                      {
+            		        name => "test1",
+            		        mode => 1,
+            		        width => 352,
+            		        height => 288,
+            		        framerate => 15,
+				bitrate => 691,
+            		        psnr => 33.47,
+            		        encdecmatch => 1,
+            		      },
+            		      #----------#
+		                   #----------#
+                      # Test   2 #
+                      #----------#
+                      {
+            		        name => "test2",
+            		        mode => 1,
+            		        width => 352,
+            		        height => 288,
+            		        framerate => 15,
+				bitrate => 373,
+				useql     => 0,
+            		        psnr => 30.75,            		        
+            		      },
+            		      #----------#
+		                   #----------#
+                      # Test   3 #
+                      #----------#
+                      {
+            		        name => "test3",
+            		        mode => 1,
+            		        width => 352,
+            		        height => 288,
+            		        framerate => 15,
+				bitrate => 366,
+				useql     => 1,
+            		        psnr => 31.02,            		        
+            		      },
+		  ],
+}

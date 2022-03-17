@@ -1,0 +1,112 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+name        => "MbAffSNR",
+original    => "CANOA_720x576_25i.yuv",
+width       => 720,
+height      => 576,
+framerate   => 25,
+nbframes    => 15,
+verbosemode => 1,	
+phasemode   => 0,
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+runencode   => 1,
+
+#=======================#
+# Layers  parameters    #
+#=======================#     
+layers      => [
+                #----------#
+                # Layer  0 #
+                #----------#
+                {
+                 width        => 352,
+                 height       => 288,
+                 framerate    =>  25,
+                 cropfilename => "crop_L0.txt",
+                 croptype     => 1,
+                },
+                #----------#
+                # Layer  1 #
+                #----------#
+                {
+                 width        => 352,
+                 height       => 288,
+                 framerate    =>  25,
+                 cropfilename => "crop_L0.txt",
+                 croptype     => 1,
+                },
+                #----------#
+                # Layer  2 #
+                #----------#
+                {
+                 width        => 416,
+                 height       => 352,
+                 framerate    =>  25,
+                 cropfilename => "crop_L1.txt",
+                 croptype     => 1,
+                },
+                #----------#
+                # Layer  3 #
+                #----------#
+                {
+                 width        => 416,
+                 height       => 352,
+                 framerate    =>  25,
+                 cropfilename => "crop_L1.txt",
+                 croptype     => 1,
+                },
+               ],
+   
+#==========================================================#
+#          Extracting +Decoding parameters  (i.e Tests )   #
+#==========================================================#  
+bitratecheckrange  => 1,
+psnrcheckrange     => 0,
+         
+tests              => [
+                       #----------#
+                       # Test   0 #
+                       #----------#
+                       {
+                        name        => "L0",
+                        mode        => 11,
+                        width       => 352,
+                        height      => 288,
+                        framerate   => 25,
+                        bitrate     => 1569,
+                        psnr        => 35.46,
+                        encdecmatch => 1,
+                       },
+                       #----------#
+                       # Test   1 #
+                       #----------#
+                       {
+                        name        => "L1",
+                        mode        => 1,
+                        width       => 416,
+                        height      => 352,
+                        framerate   => 25,
+                        bitrate     => 2118,
+                        psnr        => 35.70,
+                        encdecmatch => 1,
+			},
+                       #----------#
+                       # Test   1 #
+                       #----------#
+                       {
+                        name        => "L1 wo skip slices",
+                        mode        => 1,
+                        width       => 416,
+                        height      => 352,
+                        framerate   => 25,
+                        bitrate     => 2108,
+                        psnr        => 35.70,
+                        encdecmatch => 1,
+                       },
+],
+}

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LocalDebuggerCommandArguments>-c cfg/per-sequence-svc/Bus-2x.cfg -c cfg/encoder_lowdelay_main.cfg -q0 30 -q1 30 -g 4 -f 5 -b str/Bus.bin -c option.cfg -ibl rec/BusBL-2x_rec.yuv -ibs rec/BusBL-2x_syntax.bin</LocalDebuggerCommandArguments>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LocalDebuggerWorkingDirectory>$(ProjectDir)/../../../</LocalDebuggerWorkingDirectory>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LocalDebuggerCommandArguments>-c cfg/per-sequence-svc/CactusCrop-2x.cfg -c cfg/encoder_randomaccess_main.cfg -q0 30 -q1 30 -g 8 -f 17 -b str/CactusCrop.bin -c option.cfg -ibl rec/CactusCropBL-2x_rec.yuv -ibs rec/CactusCropBL-2x_syntax.bin</LocalDebuggerCommandArguments>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LocalDebuggerWorkingDirectory>$(ProjectDir)/../../../</LocalDebuggerWorkingDirectory>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,656 @@
+#########################################################
+# check CONFIG parameter
+#########################################################
+
+!IF ("$(CONFIG)" != "LIBRARY") && ("$(CONFIG)" != "CONSOLE") && ("$(CONFIG)" != "MFC")
+!MESSAGE Set CONFIG to LIBRARY, CONSOLE or MFC!
+!ERROR An invalid configuration is specified!
+!ENDIF
+
+#########################################################
+# executables used
+#########################################################
+
+CPP		= cl
+AR		= lib
+LD		= link
+RSC		= rc
+ASM		= nasmw
+
+#########################################################
+# output file names
+#########################################################
+
+!IF "$(CONFIG)" == "LIBRARY"
+# the libraries that can be created
+STAT_DEBUG_OUT		= $(LIB_DIR)\lib$(PRJ_NAME)d.lib
+STAT_RELEASE_OUT	= $(LIB_DIR)\lib$(PRJ_NAME).lib
+DYN_DEBUG_OUT		= $(BIN_DIR)\$(PRJ_NAME)d.dll
+DYN_RELEASE_OUT		= $(BIN_DIR)\$(PRJ_NAME).dll
+#
+!ELSEIF ("$(CONFIG)" == "CONSOLE") || ("$(CONFIG)" == "MFC")
+# the executables that can be created
+STAT_DEBUG_OUT		= $(BIN_DIR)\$(PRJ_NAME)sd.exe
+STAT_RELEASE_OUT	= $(BIN_DIR)\$(PRJ_NAME)s.exe
+DYN_DEBUG_OUT		= $(BIN_DIR)\$(PRJ_NAME)d.exe
+DYN_RELEASE_OUT		= $(BIN_DIR)\$(PRJ_NAME).exe
+#
+!ENDIF
+
+#########################################################
+# assembler flags
+#########################################################
+
+ASMFLAGS			= -f win32 $(DEFS)
+DEBUG_ASMFLAGS		= -g
+RELEASE_ASMFLAGS	=
+
+
+#########################################################
+# c compiler flags
+#########################################################
+
+# default cpp flags for all configurations
+CPPFLAGS			= \
+					-W3 \
+					-GX \
+					-D WIN32 \
+					-D _MBCS \
+					$(USER_INC_DIRS) \
+					-I $(INC_DIR) \
+					-FD \
+					$(DEFS)
+
+!IF "$(CONFIG)" == "LIBRARY"
+# cpp flags for creating libraries					
+CPPFLAGS			= $(CPPFLAGS) -D _WINDOWS -D _USRDLL
+# cpp flags for creating static libraries
+STAT_CPPFLAGS		= $(STAT_DEF)
+# cpp flags for creating dynamic libraries
+DYN_CPPFLAGS		= $(DYN_DEF)
+#
+!ELSEIF ("$(CONFIG)" == "CONSOLE")
+# cpp flags for creating console applications
+CPPFLAGS			= $(CPPFLAGS) -D _CONSOLE
+# cpp flags for creating console applications static linked with MSysLib
+STAT_CPPFLAGS		= $(STAT_DEF)
+# cpp flags for creating console applications dynamic linked with MSysLib
+DYN_CPPFLAGS		= $(DYN_DEF)
+#
+!ELSEIF ("$(CONFIG)" == "MFC")
+# cpp flags for creating MFC applications
+CPPFLAGS			= $(CPPFLAGS) -D _WINDOWS -D _AFXDLL
+# cpp flags for creating MFC applications static linked with MSysLib
+STAT_CPPFLAGS		= $(STAT_DEF)
+# cpp flags for creating MFC applications dynamic linked with MSysLib
+DYN_CPPFLAGS		= $(DYN_DEF)
+#
+!ENDIF
+
+# debug cpp flags
+DEBUG_CPPFLAGS		= \
+					-MDd \
+					-Gm \
+					-Zi \
+					-Od \
+					-D _DEBUG \
+					-GZ 
+							
+# dynamic debug cpp flags for all
+DYN_DEBUG_CPPFLAGS	= \
+					-Fp$(OBJ_DIR)\$(PRJ_NAME)dd.pch \
+					-Fd$(OBJ_DIR)\$(PRJ_NAME)dd
+
+# static debug cpp flags for all
+STAT_DEBUG_CPPFLAGS	= \
+					-Fp$(OBJ_DIR)\$(PRJ_NAME)sd.pch \
+					-Fd$(OBJ_DIR)\$(PRJ_NAME)sd
+
+# release cpp flags for all
+RELEASE_CPPFLAGS	= \
+					-MD \
+					-O2 \
+					-D NDEBUG 
+
+# dynamic release cpp flags for all
+DYN_RELEASE_CPPFLAGS	= \
+					-Fp$(OBJ_DIR)\$(PRJ_NAME)dr.pch \
+					-Fd$(OBJ_DIR)\$(PRJ_NAME)dr
+
+# static release cpp flags for all
+STAT_RELEASE_CPPFLAGS	= \
+					-Fp$(OBJ_DIR)\$(PRJ_NAME)sr.pch \
+					-Fd$(OBJ_DIR)\$(PRJ_NAME)sr
+
+
+#########################################################
+# precompiled header cpp flags
+#########################################################
+
+# cpp flags for using precomiled header file
+USE_PCH_CPPFLAGS		= -Yu$(PCH_NAME).h 
+# cpp flags for creating precomiled header file
+CREATE_PCH_CPPFLAGS		= -Yc$(PCH_NAME).h 
+
+DYN_RELEASE_PCH_OBJ		= $(OBJ_DIR)\$(PCH_NAME).dr_o
+DYN_DEBUG_PCH_OBJ		= $(OBJ_DIR)\$(PCH_NAME).dd_o
+STAT_RELEASE_PCH_OBJ	= $(OBJ_DIR)\$(PCH_NAME).sr_o
+STAT_DEBUG_PCH_OBJ		= $(OBJ_DIR)\$(PCH_NAME).sd_o
+
+
+#########################################################
+# linker flags
+#########################################################
+
+# linker flags for all
+LDFLAGS				= -machine:I386
+
+!IF "$(CONFIG)" == "LIBRARY"
+# linker flags for library
+LDFLAGS				= $(LDFLAGS) -dll 
+#
+!ELSEIF ("$(CONFIG)" == "CONSOLE")
+# linker flags for console
+LDFLAGS				= $(LDFLAGS) -subsystem:console
+#
+!ELSEIF ("$(CONFIG)" == "MFC")
+# linker flags for MFC
+LDFLAGS				= $(LDFLAGS) -subsystem:windows
+#
+!ENDIF
+
+# debug linker flags for all
+DEBUG_LDFLAGS		= \
+					-incremental:yes \
+					-debug \
+					-pdbtype:sept
+
+# release linker flags for all
+RELEASE_LDFLAGS		= -incremental:no
+
+
+!IF "$(CONFIG)" == "LIBRARY"
+# debug linker flags for library
+DYN_DEBUG_LDFLAGS	= \
+					-pdb:$(BIN_DIR)\$(PRJ_NAME)d.pdb \
+					-out:$(DYN_DEBUG_OUT) \
+					-implib:$(LIB_DIR)\$(PRJ_NAME)d.lib				
+#
+# release linker flags for library
+DYN_RELEASE_LDFLAGS	= \
+					-pdb:$(BIN_DIR)\$(PRJ_NAME).pdb \
+					-out:$(DYN_RELEASE_OUT) \
+					-implib:$(LIB_DIR)\$(PRJ_NAME).lib
+
+!ELSEIF ("$(CONFIG)" == "CONSOLE") || ("$(CONFIG)" == "MFC")
+# static debug linker flags for console and MFC
+STAT_DEBUG_LDFLAGS	= \
+					-pdb:$(BIN_DIR)\$(PRJ_NAME)sd.pdb \
+					-out:$(STAT_DEBUG_OUT)
+#
+# dynamic debug linker flags for console and MFC
+DYN_DEBUG_LDFLAGS	= \
+					-pdb:$(BIN_DIR)\$(PRJ_NAME)d.pdb \
+					-out:$(DYN_DEBUG_OUT)				
+#
+# static release linker flags for console and MFC
+STAT_RELEASE_LDFLAGS = \
+					-pdb:$(BIN_DIR)\$(PRJ_NAME)s.pdb \
+					-out:$(STAT_RELEASE_OUT)
+#
+# dynamic release linker flags for console and MFC
+DYN_RELEASE_LDFLAGS	= \
+					-pdb:$(BIN_DIR)\$(PRJ_NAME).pdb \
+					-out:$(DYN_RELEASE_OUT)
+#
+!ENDIF
+
+
+#########################################################
+# resource flags
+#########################################################
+
+# typical flags for the resource compiler
+RSCFLAGS			= -l 0x409
+
+!IF "$(RSC_NAME)" != ""
+DYN_RELEASE_RES		= $(OBJ_DIR)\$(RSC_NAME)dr.res
+DYN_DEBUG_RES		= $(OBJ_DIR)\$(RSC_NAME)dd.res
+#
+!IF ("$(CONFIG)" == "CONSOLE") || ("$(CONFIG)" == "MFC")
+STAT_RELEASE_RES	= $(OBJ_DIR)\$(RSC_NAME)sr.res
+STAT_DEBUG_RES		= $(OBJ_DIR)\$(RSC_NAME)sd.res
+#
+!ENDIF
+#
+!ENDIF
+
+
+#########################################################
+# objects that have to be created
+#########################################################
+
+# the object types that have to be created			
+DYN_RELEASE_OBJS	= $(OBJS:.o=.dr_o) $(DYN_RELEASE_RES)
+DYN_DEBUG_OBJS		= $(OBJS:.o=.dd_o) $(DYN_DEBUG_RES)
+STAT_RELEASE_OBJS	= $(OBJS:.o=.sr_o) $(STAT_RELEASE_RES)
+STAT_DEBUG_OBJS		= $(OBJS:.o=.sd_o) $(STAT_DEBUG_RES)
+
+
+#########################################################
+# rules
+#########################################################
+
+# the used suffixes
+.SUFFIXES: .cpp .asm .dr_o .dd_o .sr_o .sd_o
+
+#########################################################
+# asm rules
+#########################################################
+
+# create dynamic release objects
+{$(SRC_DIR)}.asm{$(OBJ_DIR)}.dr_o: 
+	@ $(ASM) $(ASMFLAGS) $(RELEASE_ASMFLAGS) -o $@ $<
+
+# create dynamic debug objects
+{$(SRC_DIR)}.asm{$(OBJ_DIR)}.dd_o: 
+	@ $(ASM) $(ASMFLAGS) $(DEBUG_ASMFLAGS) -o $@ $<
+
+# create dynamic release objects
+{$(SRC_DIR)}.asm{$(OBJ_DIR)}.sr_o: 
+	@ $(ASM) $(ASMFLAGS) $(RELEASE_ASMFLAGS) -o $@ $<
+
+# create dynamic debug objects
+{$(SRC_DIR)}.asm{$(OBJ_DIR)}.sd_o: 
+	@ $(ASM) $(ASMFLAGS) $(DEBUG_ASMFLAGS) -o $@ $<
+
+
+
+# create dynamic release objects
+{$(SRC_DIR1)}.asm{$(OBJ_DIR)}.dr_o: 
+	@ $(ASM) $(ASMFLAGS) $(RELEASE_ASMFLAGS) -o $@ $<
+
+# create dynamic debug objects
+{$(SRC_DIR1)}.asm{$(OBJ_DIR)}.dd_o: 
+	@ $(ASM) $(ASMFLAGS) $(DEBUG_ASMFLAGS) -o $@ $<
+
+# create dynamic release objects
+{$(SRC_DIR1)}.asm{$(OBJ_DIR)}.sr_o: 
+	@ $(ASM) $(ASMFLAGS) $(RELEASE_ASMFLAGS) -o $@ $<
+
+# create dynamic debug objects
+{$(SRC_DIR1)}.asm{$(OBJ_DIR)}.sd_o: 
+	@ $(ASM) $(ASMFLAGS) $(DEBUG_ASMFLAGS) -o $@ $<
+
+
+
+# create dynamic release objects
+{$(SRC_DIR2)}.asm{$(OBJ_DIR)}.dr_o: 
+	@ $(ASM) $(ASMFLAGS) $(RELEASE_ASMFLAGS) -o $@ $<
+
+# create dynamic debug objects
+{$(SRC_DIR2)}.asm{$(OBJ_DIR)}.dd_o: 
+	@ $(ASM) $(ASMFLAGS) $(DEBUG_ASMFLAGS) -o $@ $<
+
+# create dynamic release objects
+{$(SRC_DIR2)}.asm{$(OBJ_DIR)}.sr_o: 
+	@ $(ASM) $(ASMFLAGS) $(RELEASE_ASMFLAGS) -o $@ $<
+
+# create dynamic debug objects
+{$(SRC_DIR2)}.asm{$(OBJ_DIR)}.sd_o: 
+	@ $(ASM) $(ASMFLAGS) $(DEBUG_ASMFLAGS) -o $@ $<
+
+
+
+# create dynamic release objects
+{$(SRC_DIR3)}.asm{$(OBJ_DIR)}.dr_o: 
+	@ $(ASM) $(ASMFLAGS) $(RELEASE_ASMFLAGS) -o $@ $<
+
+# create dynamic debug objects
+{$(SRC_DIR3)}.asm{$(OBJ_DIR)}.dd_o: 
+	@ $(ASM) $(ASMFLAGS) $(DEBUG_ASMFLAGS) -o $@ $<
+
+# create dynamic release objects
+{$(SRC_DIR3)}.asm{$(OBJ_DIR)}.sr_o: 
+	@ $(ASM) $(ASMFLAGS) $(RELEASE_ASMFLAGS) -o $@ $<
+
+# create dynamic debug objects
+{$(SRC_DIR3)}.asm{$(OBJ_DIR)}.sd_o: 
+	@ $(ASM) $(ASMFLAGS) $(DEBUG_ASMFLAGS) -o $@ $<
+
+
+
+# create dynamic release objects
+{$(SRC_DIR4)}.asm{$(OBJ_DIR)}.dr_o: 
+	@ $(ASM) $(ASMFLAGS) $(RELEASE_ASMFLAGS) -o $@ $<
+
+# create dynamic debug objects
+{$(SRC_DIR4)}.asm{$(OBJ_DIR)}.dd_o: 
+	@ $(ASM) $(ASMFLAGS) $(DEBUG_ASMFLAGS) -o $@ $<
+
+# create dynamic release objects
+{$(SRC_DIR4)}.asm{$(OBJ_DIR)}.sr_o: 
+	@ $(ASM) $(ASMFLAGS) $(RELEASE_ASMFLAGS) -o $@ $<
+
+# create dynamic debug objects
+{$(SRC_DIR4)}.asm{$(OBJ_DIR)}.sd_o: 
+	@ $(ASM) $(ASMFLAGS) $(DEBUG_ASMFLAGS) -o $@ $<
+
+
+
+
+#########################################################
+# c rules
+#########################################################
+
+
+# create dynamic release objects
+{$(SRC_DIR)}.cpp{$(OBJ_DIR)}.dr_o: 
+	@ $(CPP) $(CPPFLAGS) $(DYN_CPPFLAGS) $(USE_PCH_CPPFLAGS) $(RELEASE_CPPFLAGS) $(DYN_RELEASE_CPPFLAGS) -c -Fo$@ $<
+
+# create dynamic debug objects
+{$(SRC_DIR)}.cpp{$(OBJ_DIR)}.dd_o: 
+	@ $(CPP) $(CPPFLAGS) $(DYN_CPPFLAGS) $(USE_PCH_CPPFLAGS) $(DEBUG_CPPFLAGS) $(DYN_DEBUG_CPPFLAGS) -c -Fo$@ $<
+
+# create static release objects
+{$(SRC_DIR)}.cpp{$(OBJ_DIR)}.sr_o: 
+	@ $(CPP) $(CPPFLAGS) $(STAT_CPPFLAGS) $(USE_PCH_CPPFLAGS) $(RELEASE_CPPFLAGS) $(STAT_RELEASE_CPPFLAGS) -c -Fo$@ $<
+
+# create static debug objects
+{$(SRC_DIR)}.cpp{$(OBJ_DIR)}.sd_o: 
+	@ $(CPP) $(CPPFLAGS) $(STAT_CPPFLAGS) $(USE_PCH_CPPFLAGS) $(DEBUG_CPPFLAGS) $(STAT_DEBUG_CPPFLAGS) -c -Fo$@ $<
+
+
+# create dynamic release objects
+{$(SRC_DIR1)}.cpp{$(OBJ_DIR)}.dr_o: 
+	@ $(CPP) $(CPPFLAGS) $(DYN_CPPFLAGS) $(USE_PCH_CPPFLAGS) $(RELEASE_CPPFLAGS) $(DYN_RELEASE_CPPFLAGS) -c -Fo$@ $<
+
+# create dynamic debug objects
+{$(SRC_DIR1)}.cpp{$(OBJ_DIR)}.dd_o: 
+	@ $(CPP) $(CPPFLAGS) $(DYN_CPPFLAGS) $(USE_PCH_CPPFLAGS) $(DEBUG_CPPFLAGS) $(DYN_DEBUG_CPPFLAGS) -c -Fo$@ $<
+
+# create static release objects
+{$(SRC_DIR1)}.cpp{$(OBJ_DIR)}.sr_o: 
+	@ $(CPP) $(CPPFLAGS) $(STAT_CPPFLAGS) $(USE_PCH_CPPFLAGS) $(RELEASE_CPPFLAGS) $(STAT_RELEASE_CPPFLAGS) -c -Fo$@ $<
+
+# create static debug objects
+{$(SRC_DIR1)}.cpp{$(OBJ_DIR)}.sd_o: 
+	@ $(CPP) $(CPPFLAGS) $(STAT_CPPFLAGS) $(USE_PCH_CPPFLAGS) $(DEBUG_CPPFLAGS) $(STAT_DEBUG_CPPFLAGS) -c -Fo$@ $<
+
+
+# create dynamic release objects
+{$(SRC_DIR2)}.cpp{$(OBJ_DIR)}.dr_o: 
+	@ $(CPP) $(CPPFLAGS) $(DYN_CPPFLAGS) $(USE_PCH_CPPFLAGS) $(RELEASE_CPPFLAGS) $(DYN_RELEASE_CPPFLAGS) -c -Fo$@ $<
+
+# create dynamic debug objects
+{$(SRC_DIR2)}.cpp{$(OBJ_DIR)}.dd_o: 
+	@ $(CPP) $(CPPFLAGS) $(DYN_CPPFLAGS) $(USE_PCH_CPPFLAGS) $(DEBUG_CPPFLAGS) $(DYN_DEBUG_CPPFLAGS) -c -Fo$@ $<
+
+# create static release objects
+{$(SRC_DIR2)}.cpp{$(OBJ_DIR)}.sr_o: 
+	@ $(CPP) $(CPPFLAGS) $(STAT_CPPFLAGS) $(USE_PCH_CPPFLAGS) $(RELEASE_CPPFLAGS) $(STAT_RELEASE_CPPFLAGS) -c -Fo$@ $<
+
+# create static debug objects
+{$(SRC_DIR2)}.cpp{$(OBJ_DIR)}.sd_o: 
+	@ $(CPP) $(CPPFLAGS) $(STAT_CPPFLAGS) $(USE_PCH_CPPFLAGS) $(DEBUG_CPPFLAGS) $(STAT_DEBUG_CPPFLAGS) -c -Fo$@ $<
+
+
+# create dynamic release objects
+{$(SRC_DIR3)}.cpp{$(OBJ_DIR)}.dr_o: 
+	@ $(CPP) $(CPPFLAGS) $(DYN_CPPFLAGS) $(USE_PCH_CPPFLAGS) $(RELEASE_CPPFLAGS) $(DYN_RELEASE_CPPFLAGS) -c -Fo$@ $<
+
+# create dynamic debug objects
+{$(SRC_DIR3)}.cpp{$(OBJ_DIR)}.dd_o: 
+	@ $(CPP) $(CPPFLAGS) $(DYN_CPPFLAGS) $(USE_PCH_CPPFLAGS) $(DEBUG_CPPFLAGS) $(DYN_DEBUG_CPPFLAGS) -c -Fo$@ $<
+
+# create static release objects
+{$(SRC_DIR3)}.cpp{$(OBJ_DIR)}.sr_o: 
+	@ $(CPP) $(CPPFLAGS) $(STAT_CPPFLAGS) $(USE_PCH_CPPFLAGS) $(RELEASE_CPPFLAGS) $(STAT_RELEASE_CPPFLAGS) -c -Fo$@ $<
+
+# create static debug objects
+{$(SRC_DIR3)}.cpp{$(OBJ_DIR)}.sd_o: 
+	@ $(CPP) $(CPPFLAGS) $(STAT_CPPFLAGS) $(USE_PCH_CPPFLAGS) $(DEBUG_CPPFLAGS) $(STAT_DEBUG_CPPFLAGS) -c -Fo$@ $<
+
+
+# create dynamic release objects
+{$(SRC_DIR4)}.cpp{$(OBJ_DIR)}.dr_o: 
+	@ $(CPP) $(CPPFLAGS) $(DYN_CPPFLAGS) $(USE_PCH_CPPFLAGS) $(RELEASE_CPPFLAGS) $(DYN_RELEASE_CPPFLAGS) -c -Fo$@ $<
+
+# create dynamic debug objects
+{$(SRC_DIR4)}.cpp{$(OBJ_DIR)}.dd_o: 
+	@ $(CPP) $(CPPFLAGS) $(DYN_CPPFLAGS) $(USE_PCH_CPPFLAGS) $(DEBUG_CPPFLAGS) $(DYN_DEBUG_CPPFLAGS) -c -Fo$@ $<
+
+# create static release objects
+{$(SRC_DIR4)}.cpp{$(OBJ_DIR)}.sr_o: 
+	@ $(CPP) $(CPPFLAGS) $(STAT_CPPFLAGS) $(USE_PCH_CPPFLAGS) $(RELEASE_CPPFLAGS) $(STAT_RELEASE_CPPFLAGS) -c -Fo$@ $<
+
+# create static debug objects
+{$(SRC_DIR4)}.cpp{$(OBJ_DIR)}.sd_o: 
+	@ $(CPP) $(CPPFLAGS) $(STAT_CPPFLAGS) $(USE_PCH_CPPFLAGS) $(DEBUG_CPPFLAGS) $(STAT_DEBUG_CPPFLAGS) -c -Fo$@ $<
+
+
+#########################################################
+# directory settings
+#########################################################
+
+!IF "$(CONFIG)" == "LIBRARY"
+# directories that have to be created for a library
+CHECK_DIRS = $(OBJ_DIR) $(LIB_DIR) $(BIN_DIR)
+#
+!ELSEIF ("$(CONFIG)" == "CONSOLE") || ("$(CONFIG)" == "MFC")
+# directories that have to be created for console and MFC
+CHECK_DIRS = $(OBJ_DIR) $(BIN_DIR)
+#
+!ENDIF
+
+
+#########################################################
+# targets
+#########################################################
+
+all: 			debug release
+
+debug: 			$(CHECK_DIRS) \
+				$(DYN_DEBUG_RES) \
+				$(DYN_DEBUG_PCH_OBJ) \
+				$(DYN_DEBUG_OUT) \
+				$(STAT_DEBUG_RES) \
+				$(STAT_DEBUG_PCH_OBJ) \
+				$(STAT_DEBUG_OUT)
+
+release: 		$(CHECK_DIRS) \
+				$(DYN_RELEASE_RES) \
+				$(DYN_RELEASE_PCH_OBJ) \
+				$(DYN_RELEASE_OUT) \
+				$(STAT_RELEASE_RES) \
+				$(STAT_RELEASE_PCH_OBJ) \
+				$(STAT_RELEASE_OUT)
+
+stat_debug: 	$(CHECK_DIRS) \
+				$(STAT_DEBUG_RES) \
+				$(STAT_DEBUG_PCH_OBJ) \
+				$(STAT_DEBUG_OUT)
+					
+dyn_debug: 		$(CHECK_DIRS) \
+				$(DYN_DEBUG_RES) \
+				$(DYN_DEBUG_PCH_OBJ) \
+				$(DYN_DEBUG_OUT)
+
+stat_release: 	$(CHECK_DIRS) \
+				$(STAT_RELEASE_RES) \
+				$(STAT_RELEASE_PCH_OBJ) \
+				$(STAT_RELEASE_OUT)
+				
+dyn_release: 	$(CHECK_DIRS) \
+				$(DYN_RELEASE_RES) \
+				$(DYN_RELEASE_PCH_OBJ) \
+				$(DYN_RELEASE_OUT)
+
+##########################################################
+# create directories
+##########################################################
+
+$(OBJ_DIR):
+    @ if not exist "$(OBJ_DIR)" mkdir "$(OBJ_DIR)"
+
+$(LIB_DIR):
+    @ if not exist "$(LIB_DIR)" mkdir "$(LIB_DIR)"
+
+$(BIN_DIR):
+    @ if not exist "$(BIN_DIR)" mkdir "$(BIN_DIR)"
+
+
+##########################################################
+# create resources
+##########################################################
+
+!IF "$(RSC_NAME)" != ""
+# dynamic release resources
+$(DYN_RELEASE_RES) : $(SRC_DIR)\$(RSC_NAME).rc
+	@ $(RSC) $(RSCFLAGS) -fo$(DYN_RELEASE_RES) -i $(SRC_DIR) -d NDEBUG $(SRC_DIR)\$(RSC_NAME).rc
+#
+# dynamic debug resources
+$(DYN_DEBUG_RES) : $(SRC_DIR)\$(RSC_NAME).rc
+	@ $(RSC) $(RSCFLAGS) -fo$(DYN_DEBUG_RES) -i $(SRC_DIR) -d _DEBUG $(SRC_DIR)\$(RSC_NAME).rc
+#
+!IF ("$(CONFIG)" == "CONSOLE") || ("$(CONFIG)" == "MFC")
+#
+# static release resources
+$(STAT_RELEASE_RES) : $(SRC_DIR)\$(RSC_NAME).rc
+	@ $(RSC) $(RSCFLAGS) -fo$(STAT_RELEASE_RES) -i $(SRC_DIR) -d NDEBUG $(SRC_DIR)\$(RSC_NAME).rc
+#
+# static debug resources
+$(STAT_DEBUG_RES) : $(SRC_DIR)\$(RSC_NAME).rc
+	@ $(RSC) $(RSCFLAGS) -fo$(STAT_DEBUG_RES) -i $(SRC_DIR) -d _DEBUG $(SRC_DIR)\$(RSC_NAME).rc
+#
+!ENDIF
+#
+!ENDIF
+
+
+##########################################################
+# create precomiled header objects
+##########################################################
+
+# create precompiled header dynamic debug object
+$(DYN_DEBUG_PCH_OBJ):	$(SRC_DIR)\$(PCH_NAME).cpp $(OBJ_DIR)
+	@ $(CPP) $(CPPFLAGS) $(DYN_CPPFLAGS) $(CREATE_PCH_CPPFLAGS) $(DEBUG_CPPFLAGS) $(DYN_DEBUG_CPPFLAGS) -c -Fo$@ $(SRC_DIR)\$(PCH_NAME).cpp
+
+# create precompiled header dynamic release object
+$(DYN_RELEASE_PCH_OBJ):	$(SRC_DIR)\$(PCH_NAME).cpp $(OBJ_DIR)
+	@ $(CPP) $(CPPFLAGS) $(DYN_CPPFLAGS) $(CREATE_PCH_CPPFLAGS) $(RELEASE_CPPFLAGS) $(DYN_RELEASE_CPPFLAGS) -c -Fo$@ $(SRC_DIR)\$(PCH_NAME).cpp
+
+# create precompiled header static debug object
+$(STAT_DEBUG_PCH_OBJ):	$(SRC_DIR)\$(PCH_NAME).cpp $(OBJ_DIR)
+	@ $(CPP) $(CPPFLAGS) $(STAT_CPPFLAGS) $(CREATE_PCH_CPPFLAGS) $(DEBUG_CPPFLAGS) $(STAT_DEBUG_CPPFLAGS) -c -Fo$@ $(SRC_DIR)\$(PCH_NAME).cpp
+
+# create precompiled header static release object
+$(STAT_RELEASE_PCH_OBJ):	$(SRC_DIR)\$(PCH_NAME).cpp $(OBJ_DIR)
+	@ $(CPP) $(CPPFLAGS) $(STAT_CPPFLAGS) $(CREATE_PCH_CPPFLAGS) $(RELEASE_CPPFLAGS) $(STAT_RELEASE_CPPFLAGS) -c -Fo$@ $(SRC_DIR)\$(PCH_NAME).cpp
+
+
+##########################################################
+# create output files
+##########################################################
+
+# STAT_DEBUG_OUT		= $(LIB_DIR)\lib$(PRJ_NAME)d.lib
+# STAT_RELEASE_OUT	= $(LIB_DIR)\lib$(PRJ_NAME).lib
+# DYN_DEBUG_OUT		= $(BIN_DIR)\$(PRJ_NAME)d.dll
+# DYN_RELEASE_OUT		= $(BIN_DIR)\$(PRJ_NAME).dll
+
+
+
+!IF "$(CONFIG)" == "LIBRARY"
+#
+# create static debug out
+$(STAT_DEBUG_OUT): $(STAT_DEBUG_OBJS)
+	@ $(AR) -out:$@ $(STAT_DEBUG_OBJS)
+#
+#
+# create release debug out
+$(STAT_RELEASE_OUT): $(STAT_RELEASE_OBJS)
+	@ $(AR) -out:$@ $(STAT_RELEASE_OBJS)
+#
+#
+# create dynamic debug out
+$(DYN_DEBUG_OUT): $(DYN_DEBUG_OBJS) 
+	@ $(LD) $(LDFLAGS) $(DEBUG_LDFLAGS) $(DYN_DEBUG_LDFLAGS) $(DYN_DEBUG_OBJS) $(USER_LIB_DIRS) $(LIBS) $(DEBUG_LIBS) $(DYN_DEBUG_LIBS)
+	
+#
+#
+# create dynamic release out
+$(DYN_RELEASE_OUT): $(DYN_RELEASE_OBJS)
+	@ $(LD) $(LDFLAGS) $(RELEASE_LDFLAGS) $(DYN_RELEASE_LDFLAGS) $(DYN_RELEASE_OBJS) $(USER_LIB_DIRS) $(LIBS) $(RELEASE_LIBS) $(DYN_RELEASE_LIBS)
+#
+#
+#
+#
+#
+!ELSEIF ("$(CONFIG)" == "CONSOLE") || ("$(CONFIG)" == "MFC")
+#
+# create static debug out
+$(STAT_DEBUG_OUT): $(STAT_DEBUG_OBJS)
+	@ $(LD) $(LDFLAGS) $(DEBUG_LDFLAGS) $(STAT_DEBUG_LDFLAGS) $(STAT_DEBUG_OBJS) $(USER_LIB_DIRS) $(LIBS) $(DEBUG_LIBS) $(STAT_DEBUG_LIBS)
+#
+#
+# create static release out
+$(STAT_RELEASE_OUT): $(STAT_RELEASE_OBJS)
+	@ $(LD) $(LDFLAGS) $(RELEASE_LDFLAGS) $(STAT_RELEASE_LDFLAGS) $(STAT_RELEASE_OBJS) $(USER_LIB_DIRS) $(LIBS) $(RELEASE_LIBS) $(STAT_RELEASE_LIBS)
+#
+#
+# create dynamic debug out
+$(DYN_DEBUG_OUT): $(DYN_DEBUG_OBJS)
+	@ $(LD) $(LDFLAGS) $(DEBUG_LDFLAGS) $(DYN_DEBUG_LDFLAGS) $(DYN_DEBUG_OBJS) $(USER_LIB_DIRS) $(LIBS) $(DEBUG_LIBS) $(DYN_DEBUG_LIBS)
+#
+#
+# create dynamic release out
+$(DYN_RELEASE_OUT): $(DYN_RELEASE_OBJS)
+	@ $(LD) $(LDFLAGS) $(RELEASE_LDFLAGS) $(DYN_RELEASE_LDFLAGS) $(DYN_RELEASE_OBJS) $(USER_LIB_DIRS) $(LIBS) $(RELEASE_LIBS) $(DYN_RELEASE_LIBS)
+#
+#
+!ENDIF
+
+
+##########################################################
+# delete all produced files
+##########################################################
+
+!IF "$(CONFIG)" == "LIBRARY"
+#
+clean:
+	-@erase 	/q "$(LIB_DIR)\lib$(PRJ_NAME)d.lib" >nul 2>&1
+	-@erase 	/q "$(LIB_DIR)\lib$(PRJ_NAME).lib" >nul 2>&1
+	-@erase 	/q "$(LIB_DIR)\$(PRJ_NAME).lib" >nul 2>&1
+	-@erase 	/q "$(LIB_DIR)\$(PRJ_NAME).exp" >nul 2>&1
+	-@erase 	/q "$(LIB_DIR)\$(PRJ_NAME)d.lib" >nul 2>&1
+	-@erase 	/q "$(LIB_DIR)\$(PRJ_NAME)d.exp" >nul 2>&1
+	-@erase 	/q "$(BIN_DIR)\$(PRJ_NAME)d.dll" >nul 2>&1
+	-@erase 	/q "$(BIN_DIR)\$(PRJ_NAME).dll" >nul 2>&1
+	-@erase 	/q "$(BIN_DIR)\$(PRJ_NAME)d.ilk" >nul 2>&1
+	-@erase 	/q "$(BIN_DIR)\$(PRJ_NAME)d.pdb" >nul 2>&1
+	-@erase 	/q "$(BIN_DIR)\$(PRJ_NAME).ilk" >nul 2>&1
+	-@erase 	/q "$(BIN_DIR)\$(PRJ_NAME).pdb" >nul 2>&1
+	-@erase		/s /q "$(OBJ_DIR)" >nul 2>&1
+	-@rmdir		"$(OBJ_DIR)" >nul 2>&1
+
+!ELSEIF ("$(CONFIG)" == "CONSOLE") || ("$(CONFIG)" == "MFC")
+#
+clean:
+	-@erase 	/q "$(BIN_DIR)\$(PRJ_NAME)sd.exe" >nul 2>&1
+	-@erase 	/q "$(BIN_DIR)\$(PRJ_NAME)s.exe" >nul 2>&1
+	-@erase 	/q "$(BIN_DIR)\$(PRJ_NAME)d.exe" >nul 2>&1
+	-@erase 	/q "$(BIN_DIR)\$(PRJ_NAME).exe" >nul 2>&1
+	-@erase 	/q "$(BIN_DIR)\$(PRJ_NAME)sd.pdb" >nul 2>&1
+	-@erase 	/q "$(BIN_DIR)\$(PRJ_NAME)sd.ilk" >nul 2>&1
+	-@erase 	/q "$(BIN_DIR)\$(PRJ_NAME)s.pdb" >nul 2>&1
+	-@erase 	/q "$(BIN_DIR)\$(PRJ_NAME)s.ilk" >nul 2>&1
+	-@erase 	/q "$(BIN_DIR)\$(PRJ_NAME)d.pdb" >nul 2>&1
+	-@erase 	/q "$(BIN_DIR)\$(PRJ_NAME)d.ilk" >nul 2>&1
+	-@erase 	/q "$(BIN_DIR)\$(PRJ_NAME).pdb" >nul 2>&1
+	-@erase 	/q "$(BIN_DIR)\$(PRJ_NAME).ilk" >nul 2>&1
+	-@erase		/s /q "$(OBJ_DIR)" >nul 2>&1
+	-@rmdir		"$(OBJ_DIR)" >nul 2>&1
+
+# add your dependencies here
+#
+!ENDIF

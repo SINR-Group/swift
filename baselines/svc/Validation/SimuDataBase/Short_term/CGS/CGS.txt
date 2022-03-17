@@ -1,0 +1,95 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+    name 	=> "CGS",
+    original 	=> "MOBILE_352x288_30.yuv",
+    width      	=> 352,
+    height     	=> 288,
+    framerate 	=> 30,
+    nbframes	=> 40,
+    verbosemode => 1,	
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+    runencode	=> 1,
+    singleloopflag => "-bcip",
+
+#=======================#
+# Layers  parameters    
+#=======================#     
+    layers       => [
+                      #----------#
+                      # Layer  0 #
+                      #----------#
+                       {
+                        width        => 352,
+                  	height       => 288,
+                  	framerate    =>  15,
+       			},
+                      #----------#
+                      # Layer  1 #
+                      #----------#
+                       {
+                        width        => 352,
+                  	height       => 288,
+                  	framerate    =>  15,
+       			},
+                      #----------#
+                      # Layer  2 #
+                      #----------#
+                       {
+                        width        => 352,
+                  	height       => 288,
+                  	framerate    =>  15,
+       			},
+             ],
+   
+#==========================================================#
+#          Extracting +Decoding parameters  (i.e Tests )   #
+#==========================================================#  
+      bitratecheckrange  => 1.,
+      psnrcheckrange     => 0.,
+	
+
+      tests      => [
+                      #----------#
+                      # Test   0 #
+                      #----------#
+                      {
+            		        name => "L0",
+            		        mode => 1,
+            		        width => 352,
+            		        height => 288,
+            		        framerate => 15,
+            		        bitrate => 190,
+            		        psnr => 27.58,
+       		      },
+                      #----------#
+                      # Test   1 #
+                      #----------#
+                      {
+            		        name => "L1",
+            		        mode => 1,
+            		        width => 352,
+            		        height => 288,
+            		        framerate => 15,
+            		        bitrate => 472,
+            		        psnr => 31.15,
+       		      },
+                      #----------#
+                      # Test   2 #
+                      #----------#
+                      {
+            		        name => "L2",
+            		        mode => 1,
+            		        width => 352,
+            		        height => 288,
+            		        framerate => 15,
+            		        bitrate => 1011,
+            		        psnr => 34.37,
+            		        encdecmatch => 1,
+       		      },
+		  ],
+}

@@ -1,0 +1,81 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+name        => "LCFG1_P2I",
+original    => "CANOA_720x576_25i.yuv",
+width       => 720,
+height      => 576,
+framerate   => 25,
+nbframes    => 40,
+verbosemode => 1,	
+phasemode   => 1,
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+runencode   => 1,
+
+#=======================#
+# Layers  parameters    #
+#=======================#     
+layers      => [
+                #----------#
+                # Layer  0 #
+                #----------#
+                {
+                 width        => 352,
+                 height       => 288,
+                 framerate    =>  25,
+                 cropfilename => "SDi_CIFp.txt",
+                 croptype     => 1,
+                 resamplemode => 2,
+                },
+                #----------#
+                # Layer  1 #
+                #----------#
+                {
+                 width        => 720,
+                 height       => 576,
+                 framerate    =>  25,
+                 interlace    =>   1,
+                },
+               ],
+   
+#==========================================================#
+#          Extracting +Decoding parameters  (i.e Tests )   #
+#==========================================================#  
+bitratecheckrange  => 1,
+psnrcheckrange     => 0,
+         
+tests              => [
+                       #----------#
+                       # Test   0 #
+                       #----------#
+                       {
+                        name        => "L0",
+                        mode        => 1,
+                        width       => 352,
+                        height      => 288,
+                        framerate   => 25,
+                        bitrate     => 392,
+                  	psnr        => 29.48,
+                        encdecmatch => 1,
+                       },
+                       #----------#
+                       # Test   1 #
+                       #----------#
+                       {
+                        name        => "L1",
+                        mode        =>    1,
+                        width       =>  720,
+                        height      =>  576,
+                        framerate   =>   25,
+			bitrate     => 946,
+		        psnr        => 29.72,
+                        encdecmatch =>    1,
+                        interlace   =>    1,
+                       },
+                      ],
+}
+

@@ -1,0 +1,98 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+name        => "BaseId",
+original    => "BUS_352x288_30.yuv",
+width       => 352,
+height      => 288,
+framerate   => 30,
+nbframes    => 25,
+verbosemode => 1,	
+phasemode   => 1,
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+runencode   => 1,
+
+#=======================#
+# Layers  parameters    #
+#=======================#     
+layers      => [
+                #----------#
+                # Layer  0 #
+                #----------#
+                {
+                 width        => 176,
+                 height       => 144,
+                 framerate    =>  15,
+                },
+                #----------#
+                # Layer  1 #
+                #----------#
+                {
+                 width        => 176,
+                 height       => 144,
+                 framerate    =>  15,
+                },
+                #----------#
+                # Layer  2 #
+                #----------#
+                {
+                 width        => 352,
+                 height       => 288,
+                 framerate    =>  30,
+                },
+               ],
+   
+#==========================================================#
+#          Extracting +Decoding parameters  (i.e Tests )   #
+#==========================================================#  
+bitratecheckrange  => 1,
+psnrcheckrange     => 0,
+         
+tests              => [
+		       #----------#
+                       # Test   1 #
+                       #----------#
+                       {
+                        name        => "L1",
+                        mode        => 1,
+                        width       => 176,
+                        height      => 144,
+                        framerate   => 15,
+			bitrate     => 173,
+                        psnr        => 31.08,
+                        encdecmatch => 1,
+                       },
+                       #----------#
+                       # Test   1 #
+                       #----------#
+                       {
+                        name        => "L2 with Discardable stream",
+                        mode        => 1,
+                        width       => 352,
+                        height      => 288,
+                        framerate   => 30,
+                        bitrate     => 449,
+                        psnr        => 28.61,
+                        encdecmatch => 1,
+                       },
+			#----------#
+                       # Test   2 #
+                       #----------#
+                       {
+                        name        => "L2 without discardable stream",
+                        mode        => 1,
+                        width       => 352,
+                        height      => 288,
+                        framerate   => 30,
+                        bitrate     => 350,
+                        psnr        => 28.61,
+                        usesip      => 1,
+			encdecmatch => 1,
+                       },
+                      ],
+}
+

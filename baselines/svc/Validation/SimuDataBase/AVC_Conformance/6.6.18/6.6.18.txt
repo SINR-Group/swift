@@ -1,0 +1,66 @@
+{
+#==========================================================#
+#               General parameters                         #
+#==========================================================#
+    name 	   => "6.6.18",
+    verbosemode    => 1,	
+
+#==========================================================#
+#               Encoding parameters                        #
+#==========================================================#
+    runencode	=> 0,
+    
+
+#=======================#
+# Layers  parameters    
+#=======================#     
+    layers       => [
+                    ],
+   
+#==========================================================#
+#          Extracting + Decoding parameters  (i.e Tests )  #
+#==========================================================#  
+      tests      => [
+		                  #----------#
+                      # Test   6.6.18.1 #
+                      #----------#
+                      {
+            		        name   => "AVCCAFI-1",
+            		        mode   => 0,
+            		        width  => 352,
+            		        height => 288,
+            		        bitstreamname => "CABREF3_Sand_D.264",
+            		        decodedname   => "CABREF3_Sand_D_352x288.yuv",
+            		        origname      => "CABREF3_Sand_D.yuv",
+            		        psnr => 99.99,
+            		      },
+            		      #----------#
+                      # Test   6.6.18.2 #
+                      #----------#
+            		      {
+            		        name => "AVCCAFI-2",
+            		        mode => 0,
+            		        width  => 720,
+            		        height => 480,
+            		        bitstreamname => "CAFI1_SVA_C.264",
+            		        decodedname   => "CAFI1_SVA_C_720x480.yuv", 
+            		        origname      => "CAFI1_SVA_C_rec.yuv",
+            		        psnr => 99.99,
+            		      },
+            		      #----------#
+                      # Test   6.6.18.1 #
+                      #----------#
+                      {
+            		        name   => "AVCCAFI-3",
+            		        mode   => 0,
+            		        width  => 720,
+            		        height => 480,
+                        	bitstreamname => "camp_mot_fld0_full.26l",
+            		        decodedname   => "camp_mot_fld0_full_720x480.yuv",
+            		        origname      => "camp_mot_fld0_full_rec.yuv",
+            		        psnr => 99.99,
+		                  },
+		               ],
+}
+
+
