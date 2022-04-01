@@ -46,6 +46,8 @@ Once you train and test the codec, prepare the videos in DASH fomat and run the 
 - The model generated from training is kept in ./best_model/ folder 
 - Run command `python test_grad.py [model path] [trace path] [0|1 use real trace infomation or not]` e.g `python test_grad.py ./example_model/nn_model_ep_48500.ckpt(the model we trained) ./datasets/test/ 0`
 
+There are also baseline codecs from MPEG for layered coding: SVC and SHVC scalable extensions of H.264 and H.265 codecs.
+
 Citation
 --------
 
