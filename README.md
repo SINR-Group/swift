@@ -31,6 +31,9 @@ Swift's layered coding is built on top of [Pytorch-VCII](https://github.com/chao
 ### Training the codec
 
 - We used 64x64 patches of images with video samples of 10 seconds each to train the model.
+- Prepare the data using the instructions from the flows directory in the root folder.
+- To train the codec end-to-end, run `train.sh` with all three options (`0`, `1`, or `2`) to have a 3-level heirarchical coding.
+- To test the codec, 
 
 
 Citation
