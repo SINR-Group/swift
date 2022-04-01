@@ -20,9 +20,7 @@ Network Architecture
 Quick Start
 -----------
 
-
-Detailed Instructions
----------------------
+Swift's layered coding is built on top of [Pytorch-VCII](https://github.com/chaoyuaw/pytorch-vcii), and hence the running instructions are mostly similar. To run the code run `train.sh 2` (the argument (`0`, `1`, or `2`) specifies the level of hierarchy).
 
 
 Citation
