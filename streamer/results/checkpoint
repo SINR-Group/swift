@@ -1,0 +1,2 @@
+model_checkpoint_path: "grad_500.ckpt"
+all_model_checkpoint_paths: "grad_500.ckpt"

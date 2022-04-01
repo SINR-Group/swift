@@ -1,0 +1,16 @@
+## GRAD
+
+### Training
+- Modify the "**python_path**" in **grad.ini** to the path of the executable python in your environment
+- Run command
+```
+python train_grad.py
+```
+
+### Testing
+- The model generated from training is kept in ./best_model/ folder 
+- Run command
+```
+python test_grad.py [model path] [trace path] [0|1 use real trace infomation or not]
+e.g python test_grad.py ./example_model/nn_model_ep_48500.ckpt(the model we trained) ./datasets/test/ 0
+```

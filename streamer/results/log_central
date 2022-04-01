@@ -1,0 +1,22 @@
+WARNING:tensorflow:From /Users/nihalgoalla/Documents/VideoStreaming/venv_pensieve/lib/python2.7/site-packages/tflearn/initializations.py:165: calling __init__ (from tensorflow.python.ops.init_ops) with dtype is deprecated and will be removed in a future version.
+Instructions for updating:
+Call initializer instance with the dtype argument instead of passing it to the constructor
+WARNING:tensorflow:From /Users/nihalgoalla/Documents/VideoStreaming/venv_pensieve/lib/python2.7/site-packages/tflearn/initializations.py:110: calling __init__ (from tensorflow.python.ops.init_ops) with dtype is deprecated and will be removed in a future version.
+Instructions for updating:
+Call initializer instance with the dtype argument instead of passing it to the constructor
+WARNING:tensorflow:From /Users/nihalgoalla/Documents/VideoStreaming/venv_pensieve/lib/python2.7/site-packages/tensorflow_core/python/util/deprecation.py:507: __init__ (from tensorflow.python.ops.init_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.initializers.variance_scaling instead with distribution=uniform to get equivalent behavior.
+WARNING:tensorflow:From /Users/nihalgoalla/Documents/VideoStreaming/grad-algo/net.py:46: calling reduce_sum_v1 (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+WARNING:tensorflow:From /Users/nihalgoalla/Documents/VideoStreaming/venv_pensieve/lib/python2.7/site-packages/tensorflow_core/python/training/rmsprop.py:119: calling __init__ (from tensorflow.python.ops.init_ops) with dtype is deprecated and will be removed in a future version.
+Instructions for updating:
+Call initializer instance with the dtype argument instead of passing it to the constructor
+INFO:root:Epoch: 1 TD_loss: 0.9526506278872034 Avg_reward: 97.89423165316347 Avg_entropy: 2.069350513984705
+INFO:root:Epoch: 2 TD_loss: 0.8757246492080449 Avg_reward: 98.40619011242009 Avg_entropy: 2.2420885963823953
+INFO:root:Epoch: 3 TD_loss: 0.9485136649837033 Avg_reward: 103.57230355827606 Avg_entropy: 2.2913955945140683
+INFO:root:Epoch: 4 TD_loss: 0.8711474966088566 Avg_reward: 96.15741118791256 Avg_entropy: 2.2168882429913723
+INFO:root:Epoch: 5 TD_loss: 0.6768747119954299 Avg_reward: 74.51564884490753 Avg_entropy: 2.3158702465447423
+INFO:root:Epoch: 6 TD_loss: 0.8552304305782488 Avg_reward: 93.86182325480222 Avg_entropy: 2.4346393952889316
+INFO:root:Epoch: 7 TD_loss: 0.8759197161551532 Avg_reward: 91.15950503468223 Avg_entropy: 2.2469827268543745
