@@ -20,7 +20,7 @@ Network Architecture
 Quick Start
 -----------
 
-Swift's layered coding is built on top of [Pytorch-VCII](https://github.com/chaoyuaw/pytorch-vcii), and hence the running instructions are mostly similar. To run the code run `train.sh 2` (the argument (`0`, `1`, or `2`) specifies the level of hierarchy).
+Swift's layered coding is built on top of [Pytorch-VCII](https://github.com/chaoyuaw/pytorch-vcii), and hence the running instructions are mostly similar. To run the code, go to src directory and run `train.sh 2` (the argument (`0`, `1`, or `2`) specifies the level of hierarchy).
 
 ### Prerequisites
 
@@ -33,11 +33,22 @@ Swift's layered coding is built on top of [Pytorch-VCII](https://github.com/chao
 - We used 64x64 patches of images with video samples of 10 seconds each to train the model.
 - Prepare the data using the instructions from the flows directory in the root folder.
 - To train the codec end-to-end, run `train.sh` with all three options (`0`, `1`, or `2`) to have a 3-level heirarchical coding.
-- To test the codec, 
+- To test the codec, there is an eval function within `train.py` code, it will run if you pass max iters argument more than what used during the training.
 
+Note that this is only for P-frame training and testing. The I-frames are encoded using [pytorch-image-comp-rnn](https://github.com/1zb/pytorch-image-comp-rnn/), and the corresponding instructions can be seen inside `codec/icodec` folder.
+
+Once you train and test the codec, prepare the videos in DASH fomat and run the following streamer code to test end-to-end.
+
+### Running the streamer
+
+- Modify the "**python_path**" in **grad.ini** to the path of the executable python in your environment
+- Run command `python train_grad.py`
+- The model generated from training is kept in ./best_model/ folder 
+- Run command `python test_grad.py [model path] [trace path] [0|1 use real trace infomation or not]` e.g `python test_grad.py ./example_model/nn_model_ep_48500.ckpt(the model we trained) ./datasets/test/ 0`
 
 Citation
 --------
+
 If you find this useful, please use the following citation.
 <pre>
 @inproceedings {278366,
